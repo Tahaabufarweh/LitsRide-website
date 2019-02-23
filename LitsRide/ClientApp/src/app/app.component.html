@@ -1,0 +1,34 @@
+<body> 
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav [mode]="over" style="width:20%">
+      <button mat-button (click)="sidenav.toggle()"><mat-icon> menu</mat-icon></button>
+      <mat-nav-list>
+        <a mat-list-item [routerLink]='["/"]'>Home</a>
+        <a mat-list-item [routerLink]='["/counter"]'>Counter</a>
+        <a mat-list-item [routerLink]='["/fetch-data"]'>Fetch data</a>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+
+      <mat-toolbar color="primary">
+        <button mat-button (click)="sidenav.toggle()"><mat-icon> menu</mat-icon></button>
+        My App
+      </mat-toolbar>
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  
+
+
+  <!--<app-nav-menu></app-nav-menu>-->
+
+
+
+</body>
