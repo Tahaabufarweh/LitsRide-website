@@ -11,11 +11,28 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { DemoMaterialModule } from './material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NewTripComponent } from './new-trip/new-trip.component';
+import { TripsComponent } from './trips/trips.component';
+import { RatingComponent } from './rating/rating.component';
+import { ProfileComponent } from './profile/profile.component';
+import { InternationalizationService } from './services/internationalization.service';
+import { TripsService } from './services/trips.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    AdminComponent,
+    LoginComponent,
+    RegisterComponent,
+    NewTripComponent,
+    TripsComponent,
+    ProfileComponent,
+    RatingComponent,
     CounterComponent,
     FetchDataComponent
   ],
@@ -30,10 +47,21 @@ import { MatNativeDateModule } from '@angular/material';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'admin', component: AdminComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'new-trip', component: NewTripComponent },
+      { path: 'trips', component: TripsComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'rating', component: RatingComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    InternationalizationService,
+    TripsService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
