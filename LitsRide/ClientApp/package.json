@@ -34,7 +34,6 @@
     "@angular/material": "6.4.7",
     "@angular/material-moment-adapter": "6.4.7",
     "angular-in-memory-web-api": "0.5.4",
-
     "moment": "2.24.0",
     "web-animations-js": "2.3.1"
   },
