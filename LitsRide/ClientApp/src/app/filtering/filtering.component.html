@@ -1,0 +1,51 @@
+
+<div class="container">
+  <h1>Filter Your Results</h1>
+  <div class="row">
+    <mat-form-field class="w-100">
+      <input matInput disabled value="Destination">
+    </mat-form-field>
+  </div>
+  <div class="row mb-1 mx-1">
+    <mat-form-field class="m-1">
+      <input matInput placeholder="From">
+    </mat-form-field>
+    <mat-form-field class="m-1">
+      <input matInput placeholder="To">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <input matInput disabled value="Time">
+    </mat-form-field>
+  </div>
+  <div class="row mb-1 mx-1">
+    <mat-form-field class="m-1 w-100">
+      <input matInput placeholder="Start Time">
+    </mat-form-field>
+
+  </div>
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <input matInput disabled value="Price">
+    </mat-form-field>
+  </div>
+  <div class="row mb-1 mx-1">
+    <mat-form-field class="m-1">
+      <input matInput type="number" placeholder="Min Price" [(ngModel)]="min">
+    </mat-form-field>
+    <mat-form-field class="m-1">
+      <input matInput type="number" placeholder="Max Price" [(ngModel)]="max">
+    </mat-form-field>
+  </div>
+
+</div>
+
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">Cancel</button>
+  <button mat-button class="btn btn-danger btn-round mt-lg-5">Submit</button>
+</mat-dialog-actions>

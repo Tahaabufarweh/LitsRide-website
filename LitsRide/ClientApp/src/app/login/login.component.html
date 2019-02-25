@@ -1,48 +1,66 @@
-<mat-card>
-  <mat-card-header>
-    <h4 class="card-title">Login</h4>
-  </mat-card-header>
-  <form [formGroup]="loginForm">
-    <br />
-    <div class="row">
-      <div class="col-md-3"></div>
+<div class="container d-flex justify-content-center p-5">
+  <mat-card class="w-50 mx-auto mt-5">
+    <mat-card-header>
 
-      <div class="col-md-6">
+      <h4 class="card-title">Login</h4>
 
-        <mat-form-field>
-          <input matInput placeholder="username or email" formControlName="username">
-
-          <mat-error *ngIf="username.touched && username.invalid">
-            username is required
-          </mat-error>
-        </mat-form-field>
-
-
-      </div>
+    </mat-card-header>
+    <div class="row d-flex justify-content-center p-1">
+      <a href="#" class="btn btn-primary btn-circle btn-lg m-1"><i class="fa fa-facebook"></i></a>
+      <a href="#" class="btn btn-danger btn-circle btn-lg m-1"><i class="fa fa-google"></i></a>
+      <a href="#" class="btn btn-info btn-circle btn-lg m-1"><i class="fa fa-twitter"></i></a>
     </div>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="password" formControlName="password">
+    <div class="row mt-4">
+      <div class="col-md-4"><hr /></div>
+      <div class="col text-center">OR</div>
+      <div class="col-md-4"><hr /> </div>
+    </div>
+    <form [formGroup]="loginForm">
+      <br />
+      <div class="row">
+        <div class="col-md-3"></div>
 
-          <mat-error *ngIf="password.touched && password.invalid">
-            password is required
-          </mat-error>
-        </mat-form-field>
+        <div class="col-md-6">
+
+          <mat-form-field>
+            <input matInput placeholder="Username or email" formControlName="username">
+
+            <mat-error *ngIf="username.touched && username.invalid">
+              username is required
+            </mat-error>
+          </mat-form-field>
+
+
+        </div>
       </div>
-    </div>
-    <hr />
-    <div class="row">
-      <div class="col-md-10"></div>
-      <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="Login()">
-          Login
-        </button>
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password">
+
+            <mat-error *ngIf="password.touched && password.invalid">
+              password is required
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-    <br />
-  </form>
-</mat-card>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-2">
+          <button mat-raised-button color="primary" (click)="Login()">
+            Login
+          </button>
+        </div>
+      </div>
+      <br />
+
+
+    </form>
+  </mat-card>
+  </div>

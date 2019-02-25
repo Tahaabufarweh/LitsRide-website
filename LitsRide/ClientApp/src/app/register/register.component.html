@@ -1,113 +1,132 @@
-<mat-card>
-  <mat-card-header>
+<div class="container d-flex justify-content-center p-5">
+  <mat-card class="w-75 mx-auto mt-5">
+    <mat-card-header>
       <h4 class="card-title">Sign Up</h4>
-  </mat-card-header>
 
-  <form [formGroup]="signUpForm">
-    <br />
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="Full Name" formControlName="fullName">
-          <mat-hint>*First and Last name</mat-hint>
-          <mat-error *ngIf="fullName.touched && fullName.invalid">
-            Full Name is required
-          </mat-error>
-        </mat-form-field>
-      </div>
+    </mat-card-header>
+    <div class="row d-flex justify-content-center p-1">
+      <a href="#" class="btn btn-primary btn-circle btn-lg m-1"><i class="fa fa-facebook"></i></a>
+      <a href="#" class="btn btn-danger btn-circle btn-lg m-1"><i class="fa fa-google"></i></a>
+      <a href="#" class="btn btn-info btn-circle btn-lg m-1"><i class="fa fa-twitter"></i></a>
     </div>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="Username" formControlName="username">
-          <mat-hint>
-            Username
-          </mat-hint>
-          <mat-error *ngIf="username.touched && username.invalid">
-            username is required
-          </mat-error>
-        </mat-form-field>
-      </div>
+    <div class="row mt-4">
+      <div class="col-md-4"><hr /></div>
+      <div class="col text-center">OR</div>
+      <div class="col-md-4"><hr /> </div>
     </div>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="Username" formControlName="username">
-          <mat-hint>
-            Username or Email
-          </mat-hint>
-          <mat-error *ngIf="username.touched && username.invalid">
-            Username is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="password" formControlName="password">
-          <mat-hint>
-            Username or Email
-          </mat-hint>
-          <mat-error *ngIf="password.touched && password.invalid">
-            password is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <br />
-    <br />
+    <form [formGroup]="signUpForm">
+      <br />
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input matInput placeholder="Full Name" formControlName="fullName">
+                <mat-hint>*First and Last name</mat-hint>
+                <mat-error *ngIf="fullName.touched && fullName.invalid">
+                  Full Name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
 
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="Password" formControlName="password">
-          <mat-hint>
-            Password
-          </mat-hint>
-          <mat-error *ngIf="password.touched && password.invalid">
-            Password is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <br />
-    <br />
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input matInput placeholder="Username" formControlName="username">
+                <mat-hint>
+                  Username
+                </mat-hint>
+                <mat-error *ngIf="username.touched && username.invalid">
+                  username is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
 
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <mat-form-field>
-          <input matInput placeholder="Repeat Password" formControlName="repeatPassword">
-          <mat-error *ngIf="repeatPassword.touched && repeatPassword.value == password.value">
-            Password not matched
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input matInput placeholder="Username" formControlName="username">
+                <mat-hint>
+                  Username or Email
+                </mat-hint>
+                <mat-error *ngIf="username.touched && username.invalid">
+                  Username is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
+
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input matInput placeholder="password" formControlName="password">
+                <mat-hint>
+                  Username or Email
+                </mat-hint>
+                <mat-error *ngIf="password.touched && password.invalid">
+                  password is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
 
 
-    <hr />
-    <div class="row">
-      <div class="col-md-9"></div>
-      <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="Login()">
-          Login
-        </button>
-      </div>
-    </div>
-    <br />
-  </form>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password">
+                <mat-hint>
+                  Password
+                </mat-hint>
+                <mat-error *ngIf="password.touched && password.invalid">
+                  Password is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
 
-</mat-card>
+
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <input matInput placeholder="Repeat Password" formControlName="repeatPassword">
+                <mat-error *ngIf="repeatPassword.touched && repeatPassword.value == password.value">
+                  Password not matched
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-2">
+          <button mat-raised-button color="primary" (click)="Login()">
+            Signup
+          </button>
+        </div>
+      </div>
+      <br />
+    </form>
+
+  </mat-card>
+  </div>

@@ -22,27 +22,7 @@ import { InternationalizationService } from './services/internationalization.ser
 import { TripsService } from './services/trips.service';
 import { UserService } from './services/user.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
-
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-} from "angular-6-social-login";
-
-// Configs 
-export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
-    [
-      {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("tup5BITYUMsC-r5FSHTUt760")
-      }
-
-    ]);
-  return config;
-}
-
+import { FilteringComponent } from '../app/filtering/filtering.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,9 +35,8 @@ export function getAuthServiceConfigs() {
     ProfileComponent,
     RatingComponent,
     CounterComponent,
- 
-
-    FetchDataComponent
+    FetchDataComponent,
+    FilteringComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -66,7 +45,7 @@ export function getAuthServiceConfigs() {
     BrowserAnimationsModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    SocialLoginModule,
+
     DemoMaterialModule,
     FormsModule,
     RouterModule.forRoot([
@@ -80,16 +59,13 @@ export function getAuthServiceConfigs() {
       { path: 'profile', component: ProfileComponent },
       { path: 'rating', component: RatingComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'filtering', component: FilteringComponent },
     ])
   ],
   providers: [
     InternationalizationService,
     TripsService,
-    UserService,
-    {
-      provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
-    }
+    UserService
   ],
   bootstrap: [AppComponent]
 })
