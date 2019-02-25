@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 declare interface RouteInfo {
   path: string;
@@ -8,13 +8,8 @@ declare interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: '/login', title: 'Dashboard', icon: 'dashboard', class: '' },
-  { path: '/admin', title: 'User Profile', icon: 'person', class: '' },
-  { path: '/register', title: 'Login', icon: 'content_paste', class: '' },
-  { path: '/new-trip', title: 'Trips', icon: 'content_paste', class: '' },
-  { path: '/trips', title: 'signup', icon: 'library_books', class: '' },
-  { path: '/profile', title: 'signup', icon: 'library_books', class: '' },
-  { path: '/rating', title: 'signup', icon: 'library_books', class: '' },
+  { path: '/new-trip', title: 'new trip', icon: 'directions_car', class: '' },
+  { path: '/trips', title: 'trips', icon: 'card_travel', class: '' },
 ];
 @Component({
   selector: 'app-root',
@@ -23,7 +18,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class AppComponent implements OnInit {
   menuItems: any[];
-
+  @Input() themeColor = '';
   constructor() { }
 
   ngOnInit() {

@@ -15,7 +15,17 @@
 .example-icon {
   padding: 0 14px;
 }
-
+.mat-drawer.mat-drawer-side {
+  z-index: 2;
+  background-color: #3F51B5;
+  color:white;
+}
+.mat-list-item {
+  color: white; 
+}
+active-list-item {
+  color: #3F51B5 !important;
+}
 .example-spacer {
   flex: 1 1 auto;
 }

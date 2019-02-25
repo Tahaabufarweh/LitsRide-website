@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -21,7 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { InternationalizationService } from './services/internationalization.service';
 import { TripsService } from './services/trips.service';
 import { UserService } from './services/user.service';
-
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +39,11 @@ import { UserService } from './services/user.service';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    AngularDateTimePickerModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+
     DemoMaterialModule,
     FormsModule,
     RouterModule.forRoot([
