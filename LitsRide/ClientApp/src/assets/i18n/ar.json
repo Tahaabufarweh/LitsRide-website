@@ -1,7 +1,15 @@
-﻿{
+{
   "HOME": {
     "HELLO": "هلا والله",
     "TITLE": "هلا والله",
-    "SELECT": "تغيير اللغة"
+    "SELECT": "تغيير اللغة",
+    "Login": "دخول",
+    "Or": "او",
+    "Usernameoremail": "اسم المستخدم او البريد الالكتروني",
+    "usernameisrequired": "اسم المستخدم مطلوب",
+    "password": "الرقم السري",
+    "passwordisrequired": "الرقم السري مطلوب",
+    "Language": "اللغة"
+
   }
 }

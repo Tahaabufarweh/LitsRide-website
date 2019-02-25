@@ -1,4 +1,4 @@
-<body>
+<body [dir]="isRtl()">
   <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
       <mat-nav-list>
@@ -35,6 +35,14 @@
             <span>My Profile</span>
           </a>
         </mat-menu>
+        <div>
+          <label>
+            {{ 'HOME.Language' | translate }}
+            <select #langSelect (change)="translate.use(langSelect.value); internationalizationService.setLang(langSelect.value)">
+              <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+            </select>
+          </label>
+        </div>
       </mat-toolbar>
       <div class="container pad">
         <router-outlet></router-outlet>

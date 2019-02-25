@@ -2,7 +2,7 @@
   <mat-card class="w-50 mx-auto mt-5">
     <mat-card-header>
 
-      <h4 class="card-title">Login</h4>
+      <h4 class="card-title">{{ 'HOME.Login' | translate }}</h4>
 
     </mat-card-header>
     <div class="row d-flex justify-content-center p-1">
@@ -12,7 +12,7 @@
     </div>
     <div class="row mt-4">
       <div class="col-md-4"><hr /></div>
-      <div class="col text-center">OR</div>
+      <div class="col text-center">{{ 'HOME.Or' | translate }}</div>
       <div class="col-md-4"><hr /> </div>
     </div>
     <form [formGroup]="loginForm">
@@ -23,10 +23,10 @@
         <div class="col-md-6">
 
           <mat-form-field>
-            <input matInput placeholder="Username or email" formControlName="username">
+            <input matInput placeholder="{{ 'HOME.Usernameoremail' | translate }}" formControlName="username">
 
             <mat-error *ngIf="username.touched && username.invalid">
-              username is required
+              {{ 'HOME.usernameisrequired' | translate }}
             </mat-error>
           </mat-form-field>
 
@@ -39,10 +39,10 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
           <mat-form-field>
-            <input matInput placeholder="Password" formControlName="password">
+            <input matInput placeholder="{{ 'HOME.password' | translate }}" formControlName="password">
 
             <mat-error *ngIf="password.touched && password.invalid">
-              password is required
+              {{ 'HOME.passwordisrequired' | translate }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -54,7 +54,7 @@
         <div class="col-md-9"></div>
         <div class="col-md-2">
           <button mat-raised-button color="primary" (click)="Login()">
-            Login
+            {{ 'HOME.Login' | translate }}
           </button>
         </div>
       </div>

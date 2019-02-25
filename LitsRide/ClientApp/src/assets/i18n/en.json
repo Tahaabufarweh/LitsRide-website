@@ -2,6 +2,13 @@
   "HOME": {
     "HELLO": "Angular",
     "TITLE": "Hello Angular with ngx-translate!",
-    "SELECT": "Change language"
+    "SELECT": "Change language",
+    "Login": "Login",
+    "Or": "or",
+    "Usernameoremail": "Username or Email",
+    "usernameisrequired": "Username is Required",
+    "password": "Password",
+    "passwordisrequired": "Password is Required",
+    "Language": "Language"
   }
 }

@@ -1,8 +1,12 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class InternationalizationService {
-    constructor() {
+  public static lang = 'en';
+  constructor() {
 
-    }
+  }
+  setLang(lang) {
+    InternationalizationService.lang = lang;
+  }
 }

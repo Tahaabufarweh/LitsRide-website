@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { InternationalizationService } from '../services/internationalization.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -15,7 +17,10 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   })
 
-  constructor() { }
+  constructor(public translate: TranslateService) {
+ 
+    translate.use(InternationalizationService.lang);
+  }
 
 
   ngOnInit() { }
