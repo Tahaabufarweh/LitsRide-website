@@ -9,7 +9,7 @@
         <mat-step [stepControl]="firstFormGroup">
 
           <ng-template matStepLabel>Start your trip</ng-template>
-          <mat-form-field>
+          <mat-form-field class="col-md-6">
             <input matInput placeholder="From Destination" formControlName="fromDestination">
             <!--<mat-hint><b>Example:</b> exm@abc.com </mat-hint>-->
             <mat-error *ngIf="fromDestination.touched && fromDestination.invalid">
@@ -17,20 +17,21 @@
             </mat-error>
           </mat-form-field>
           <br />
-          <mat-form-field>
+          <mat-form-field class="col-md-6">
             <input matInput placeholder="To Destination" formControlName="toDestination">
             <mat-error *ngIf="toDestination.touched && toDestination.invalid">
               Please enter a place
             </mat-error>
           </mat-form-field>
           <div class="text-right">
-            <button mat-raised-button color="primary" matStepperNext>Next</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="fromDestination.invalid || toDestination.invalid">Next</button>
           </div>
 
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
 
           <ng-template matStepLabel>Complete your trip</ng-template>
+          <br />
           <angular2-date-picker formControlName="StartTime" [settings]="settings"></angular2-date-picker>
 
 
@@ -41,8 +42,9 @@
 
 
           <angular2-date-picker formControlName="ExpectedArrivalTime" [settings]="settings"></angular2-date-picker>
-
-
+          <br />
+          <br />
+          <hr />
           <div class="text-right">
             <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious>Back</button>
             <button mat-raised-button color="primary" matStepperNext>Next</button>
@@ -102,7 +104,7 @@
           </div>
           <br />
 
-
+          <hr />
           <div class="text-right">
             <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious>Back</button>
             <button mat-raised-button color="primary" (click)="submitTrip()">Submit</button>
@@ -115,6 +117,6 @@
 
     </div>
   </form>
-
+  
 </mat-card>
 

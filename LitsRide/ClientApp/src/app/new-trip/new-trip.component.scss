@@ -5,3 +5,13 @@
 ::ng-deep .mat-vertical-stepper-header {
   pointer-events: none !important;
 }
+
+::ng-deep .wc-date-popover[_ngcontent-c12] {
+  width: 250px;
+  position: relative !important;
+  top: 0px !important;
+  height: auto;
+  left: 0;
+  z-index: 50 !important;
+  transform: translateX(0);
+}
