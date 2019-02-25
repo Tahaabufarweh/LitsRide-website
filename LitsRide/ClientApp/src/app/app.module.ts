@@ -22,6 +22,7 @@ import { InternationalizationService } from './services/internationalization.ser
 import { TripsService } from './services/trips.service';
 import { UserService } from './services/user.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { FilteringComponent } from '../app/filtering/filtering.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
     ProfileComponent,
     RatingComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    FilteringComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,6 +59,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
       { path: 'profile', component: ProfileComponent },
       { path: 'rating', component: RatingComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'filtering', component: FilteringComponent },
     ])
   ],
   providers: [
