@@ -52,11 +52,11 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
               <mat-form-field>
-                <input matInput placeholder="Username" formControlName="username">
+                <input matInput placeholder="email" formControlName="email">
                 <mat-hint>
                   Username or Email
                 </mat-hint>
-                <mat-error *ngIf="username.touched && username.invalid">
+                <mat-error *ngIf="email.touched && email.invalid">
                   Username is required
                 </mat-error>
               </mat-form-field>
@@ -83,23 +83,7 @@
           <br />
 
 
-          <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-              <mat-form-field>
-                <input matInput placeholder="Password" formControlName="password">
-                <mat-hint>
-                  Password
-                </mat-hint>
-                <mat-error *ngIf="password.touched && password.invalid">
-                  Password is required
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          <br />
-
-
+         
           <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">

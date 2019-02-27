@@ -19,7 +19,8 @@ export class LoginComponent {
 
   constructor(public translate: TranslateService) {
  
-    translate.use(InternationalizationService.lang);
+    translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
+
   }
 
 

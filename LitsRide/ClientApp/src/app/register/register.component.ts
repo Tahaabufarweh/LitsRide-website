@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -19,10 +20,12 @@ export class RegisterComponent {
   })
 
   /** signup ctor */
-  constructor() {
+  constructor(private translate: TranslateService) {
+    translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
   }
   get repeatPassword() {
+    
     return this.signUpForm.get('repeatPassword') as FormControl;
   }
 

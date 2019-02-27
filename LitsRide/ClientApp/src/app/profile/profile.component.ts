@@ -14,7 +14,8 @@ export class ProfileComponent {
   fileNameDialogRef: MatDialogRef<RatingComponent>;
   constructor(public dialog: MatDialog, public translate: TranslateService) {
 
-    translate.use(InternationalizationService.lang);
+    translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
+
   }
   openDialog() {
     this.fileNameDialogRef = this.dialog.open(RatingComponent);
