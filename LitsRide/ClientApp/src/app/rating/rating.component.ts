@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { InternationalizationService } from '../services/internationalization.service';
 
 @Component({
     selector: 'app-rating',
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
 /** rating component*/
 export class RatingComponent {
   ratingValue;
-  constructor() { this.ratingValue = 10; }
+  constructor( public translate: TranslateService) {
 
+    translate.use(InternationalizationService.lang);
+  }
 }

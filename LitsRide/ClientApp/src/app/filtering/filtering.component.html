@@ -1,43 +1,43 @@
 
 <div class="container">
-  <h1>Filter Your Results</h1>
+  <h1>{{ 'HOME.filterResult' | translate }}</h1>
   <div class="row">
     <mat-form-field class="w-100">
-      <input matInput disabled value="Destination">
+      <input matInput disabled value="{{ 'HOME.Destination' | translate }}">
     </mat-form-field>
   </div>
   <div class="row mb-1 mx-1">
     <mat-form-field class="m-1">
-      <input matInput placeholder="From">
+      <input matInput placeholder="{{ 'HOME.fromDest' | translate }}">
     </mat-form-field>
     <mat-form-field class="m-1">
-      <input matInput placeholder="To">
+      <input matInput placeholder="{{ 'HOME.toDest' | translate }}">
     </mat-form-field>
   </div>
 
   <div class="row">
     <mat-form-field class="w-100">
-      <input matInput disabled value="Time">
+      <input matInput disabled value="{{ 'HOME.Time' | translate }}">
     </mat-form-field>
   </div>
   <div class="row mb-1 mx-1">
     <mat-form-field class="m-1 w-100">
-      <input matInput placeholder="Start Time">
+      <input matInput placeholder="{{ 'HOME.StartTime' | translate }}">
     </mat-form-field>
 
   </div>
 
   <div class="row">
     <mat-form-field class="w-100">
-      <input matInput disabled value="Price">
+      <input matInput disabled value="{{ 'HOME.price' | translate }}">
     </mat-form-field>
   </div>
   <div class="row mb-1 mx-1">
     <mat-form-field class="m-1">
-      <input matInput type="number" placeholder="Min Price" [(ngModel)]="min">
+      <input matInput type="number" placeholder="{{ 'HOME.minPrice' | translate }}" [(ngModel)]="min">
     </mat-form-field>
     <mat-form-field class="m-1">
-      <input matInput type="number" placeholder="Max Price" [(ngModel)]="max">
+      <input matInput type="number" placeholder="{{ 'HOME.maxPrice' | translate }}" [(ngModel)]="max">
     </mat-form-field>
   </div>
 
@@ -46,6 +46,6 @@
 
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">Cancel</button>
-  <button mat-button class="btn btn-danger btn-round mt-lg-5">Submit</button>
+  <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.Cancel' | translate }}</button>
+  <button mat-button class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.submit' | translate }}</button>
 </mat-dialog-actions>

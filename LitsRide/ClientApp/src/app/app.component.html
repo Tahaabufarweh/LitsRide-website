@@ -22,19 +22,20 @@
         Lit's Ride
         <span class="example-spacer"></span>
         <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon class="example-icon">account_circle</mat-icon>
+          <mat-icon class="example-icon mr-3">account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <a mat-menu-item routerLink="/login">
-            <span>Login</span>
+            <span>{{ 'HOME.Login' | translate }}</span>
           </a>
           <a mat-menu-item routerLink="/register">
-            <span>Sign up</span>
+            <span>{{ 'HOME.Signup' | translate }}</span>
           </a>
           <a mat-menu-item routerLink="/profile">
-            <span>My Profile</span>
+            <span>{{ 'HOME.MyProfile' | translate }}</span>
           </a>
         </mat-menu>
+       
         <div>
           <label>
             {{ 'HOME.Language' | translate }}

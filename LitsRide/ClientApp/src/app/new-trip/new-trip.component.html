@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <h4 class="card-title">New Trip</h4>
+    <h4 class="card-title">  {{ 'HOME.newTripLabel' | translate }}</h4>
   
   </mat-card-header>
   <form [formGroup]="TripsForm">
@@ -8,29 +8,29 @@
       <mat-vertical-stepper #stepper>
         <mat-step [stepControl]="firstFormGroup">
 
-          <ng-template matStepLabel>Start your trip</ng-template>
+          <ng-template matStepLabel>{{ 'HOME.startTrip' | translate }}</ng-template>
           <mat-form-field class="col-md-6">
-            <input matInput placeholder="From Destination" formControlName="fromDestination">
+            <input matInput placeholder="{{ 'HOME.fromDest' | translate }}" formControlName="fromDestination">
             <!--<mat-hint><b>Example:</b> exm@abc.com </mat-hint>-->
             <mat-error *ngIf="fromDestination.touched && fromDestination.invalid">
-              Please enter a place
+              {{ 'HOME.enterPlace' | translate }}
             </mat-error>
           </mat-form-field>
           <br />
           <mat-form-field class="col-md-6">
-            <input matInput placeholder="To Destination" formControlName="toDestination">
+            <input matInput placeholder= "{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
             <mat-error *ngIf="toDestination.touched && toDestination.invalid">
-              Please enter a place
+              {{ 'HOME.enterPlace' | translate }}
             </mat-error>
           </mat-form-field>
           <div class="text-right">
-            <button mat-raised-button color="primary" matStepperNext [disabled]="fromDestination.invalid || toDestination.invalid">Next</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="fromDestination.invalid || toDestination.invalid"> {{ 'HOME.nextButton' | translate }}</button>
           </div>
 
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
 
-          <ng-template matStepLabel>Complete your trip</ng-template>
+          <ng-template matStepLabel>   {{ 'HOME.completeTrip' | translate }}</ng-template>
           <br />
           <angular2-date-picker formControlName="StartTime" [settings]="settings"></angular2-date-picker>
 
@@ -46,8 +46,8 @@
           <br />
           <hr />
           <div class="text-right">
-            <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious>Back</button>
-            <button mat-raised-button color="primary" matStepperNext>Next</button>
+            <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious>{{ 'HOME.backButton' | translate }}</button>
+            <button mat-raised-button color="primary" matStepperNext>{{ 'HOME.nextButton' | translate }}</button>
           </div>
           <div>
 
@@ -55,31 +55,31 @@
         </mat-step>
         <mat-step [stepControl]="ThirdFormGroup">
 
-          <ng-template matStepLabel>Finish Trip Info</ng-template>
+          <ng-template matStepLabel>{{ 'HOME.finishTrip' | translate }}</ng-template>
           <div class="row">
             <div class="col-md-6">
               <mat-form-field>
-                <input matInput placeholder="Price" formControlName="Price">
-                <mat-hint>For free rides type '0' in this field or leave it empty </mat-hint>
+                <input matInput placeholder="{{ 'HOME.price' | translate }}" formControlName="Price">
+                <mat-hint>{{ 'HOME.priceHint' | translate }} </mat-hint>
 
               </mat-form-field>
 
             </div>
             <div class="col-md-4">
               <mat-form-field>
-                <input matInput placeholder="Car Number" formControlName="carNo">
+                <input matInput placeholder="{{ 'HOME.carNo' | translate }}" formControlName="carNo">
                 <!--<mat-hint>For free rides type '0' in this field or leave it empty </mat-hint>-->
                 <mat-error *ngIf="carNo.touched && carNo.invalid">
-                  Car Number is required
+                  {{ 'HOME.carNorequired' | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-2">
               <mat-form-field>
-                <input matInput placeholder="Seats Number" formControlName="seatsNo">
+                <input matInput placeholder="{{ 'HOME.seatsNo' | translate }}" formControlName="seatsNo">
                 <!--<mat-hint>For free rides type '0' in this field or leave it empty </mat-hint>-->
                 <mat-error *ngIf="seatsNo.touched && seatsNo.invalid">
-                  Seats Number is required
+                  {{ 'HOME.seatsNorequired' | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
@@ -87,16 +87,16 @@
           <div class="row">
             <div class="col-md-12">
               <mat-form-field>
-                <input matInput placeholder="Details" formControlName="Details">
+                <input matInput placeholder="{{ 'HOME.details' | translate }}" formControlName="Details">
               </mat-form-field>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <mat-form-field>
-                <input matInput placeholder="CarInfo" formControlName="CarInfo">
+                <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" formControlName="CarInfo">
                 <mat-error *ngIf="CarInfo.touched && CarInfo.invalid">
-                  Car Info is required
+                  {{ 'HOME.carInfoRequired' | translate }}
                 </mat-error>
               </mat-form-field>
             </div>
@@ -106,8 +106,8 @@
 
           <hr />
           <div class="text-right">
-            <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious>Back</button>
-            <button mat-raised-button color="primary" (click)="submitTrip()">Submit</button>
+            <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious> {{ 'HOME.backButton' | translate }}</button>
+            <button mat-raised-button color="primary" (click)="submitTrip()"> {{ 'HOME.submit' | translate }}</button>
           </div>
           <div>
 

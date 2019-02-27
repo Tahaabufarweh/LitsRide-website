@@ -9,9 +9,10 @@ declare interface RouteInfo {
   class: string;
 }
 
+
 export const ROUTES: RouteInfo[] = [
-  { path: '/new-trip', title: 'new trip', icon: 'directions_car', class: '' },
-  { path: '/trips', title: 'trips', icon: 'card_travel', class: '' },
+  { path: '/new-trip', title:'New Trip', icon: 'directions_car', class: '' },
+  { path: '/trips', title: 'Trips', icon: 'card_travel', class: '' },
 ];
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class AppComponent implements OnInit {
   menuItems: any[];
+  
   @Input() themeColor = '';
 
   constructor(public translate: TranslateService, private internationalizationService: InternationalizationService) {
@@ -37,4 +39,5 @@ export class AppComponent implements OnInit {
   isRtl() {
     return InternationalizationService.lang == 'ar' ? "rtl" : "ltr";
   }
+  
 }

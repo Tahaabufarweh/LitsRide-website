@@ -14,14 +14,14 @@
       <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
     </div>
   </div>
-  <mat-label>Rate Value :</mat-label>
+  <mat-label>{{ 'HOME.RateValue' | translate }} :</mat-label>
 
 </div>
 
 <div class="container">
 
   <mat-form-field>
-    <textarea matInput placeholder="Leave a comment" class="w-100"></textarea>
+    <textarea matInput placeholder="{{ 'HOME.LeaveComment' | translate }}" class="w-100"></textarea>
   </mat-form-field>
 
 
@@ -30,6 +30,6 @@
 
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">Cancel</button>
-  <button mat-button class="btn btn-danger btn-round mt-lg-5">Submit</button>
+  <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.Cancel' | translate }}</button>
+  <button mat-button class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.submit' | translate }}</button>
 </mat-dialog-actions>

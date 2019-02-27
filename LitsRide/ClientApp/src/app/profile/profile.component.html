@@ -18,7 +18,7 @@
     </div>
     <div class="col">
 
-      <button class="btn btn-danger btn-round mt-lg-5" mat-raised-button color="primary" (click)="openDialog()">Rate</button>
+      <button class="btn btn-danger btn-round mt-lg-5" mat-raised-button color="primary" (click)="openDialog()">{{ 'HOME.rateButton' | translate }}</button>
     </div>
   </mat-card>
 
@@ -29,12 +29,12 @@
 
       <mat-card class="col-md-12">
         <mat-tab-group>
-          <mat-tab label="Profile Info">
+          <mat-tab label="{{ 'HOME.ProfileInfo' | translate }}">
 
           </mat-tab>
-          <mat-tab label="Trips"> Content 2 </mat-tab>
-          <mat-tab label="Requests"> Content 3 </mat-tab>
-          <mat-tab label="Rating"> Content 3 </mat-tab>
+          <mat-tab label="{{ 'HOME.TripsLabel' | translate }}"> Content 2 </mat-tab>
+          <mat-tab label="{{ 'HOME.Requests' | translate }}"> Content 3 </mat-tab>
+          <mat-tab label="{{ 'HOME.Ratings' | translate }}"> Content 3 </mat-tab>
         </mat-tab-group>
       </mat-card>
 

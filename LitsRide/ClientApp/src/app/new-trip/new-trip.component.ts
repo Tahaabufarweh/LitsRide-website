@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { InternationalizationService } from '../services/internationalization.service';
 
 @Component({
     selector: 'app-new-trip',
@@ -15,7 +17,10 @@ export class NewTripComponent {
   focus;
   focus1;
 
-  constructor() { }
+  constructor(public translate: TranslateService) {
+
+    translate.use(InternationalizationService.lang);
+  }
 
   ngOnInit() {
 
