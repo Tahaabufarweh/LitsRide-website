@@ -46,10 +46,21 @@
     "Requests": "الطلبات",
     "Ratings": "التقييمات",
     "RateValue": "قيمة التقييم ",
-    "LeaveComment": "اترك تعليق"
-
-
-
+    "LeaveComment": "اترك تعليق",
+    "FullName": "الاسم الكامل",
+    "FullNameHint": "الاسم الأول والأخير *",
+    "FullNameRequired": "الاسم الكامل مطلوب",
+    "Username": "اسم المستخدم",
+    "Email": "البريد الالكتروني",
+    "EmailRequired": "البريد الالكتروني مطلوب",
+    "repassword": "اعادة كلمة المرور",
+    "PasswordNotMatch": "كلمات المرور غير متطابقة ",
+    "MobileNumber": "رقم الهاتف",
+    "completeprofileinfo": "اكمال معلومات الحساب",
+    "country": "البلد",
+    "Gender": "الجنس",
+    "Female": "انثى",
+    "Male": "ذكر"
 
 
 

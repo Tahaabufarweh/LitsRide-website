@@ -1,0 +1,84 @@
+
+<div class="container w-100">
+
+  <mat-card-header>
+    <h4 class="card-title">{{ 'HOME.completeprofileinfo' | translate }}</h4>
+  </mat-card-header>
+
+
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <mat-select placeholder="{{ 'HOME.country' | translate }}">
+        <mat-option *ngFor="let countr of countries" [value]="countr.code">
+          {{countr.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <mat-select placeholder="{{ 'HOME.Gender' | translate }}">
+        <mat-option value="F">
+          {{ 'HOME.Female' | translate }}
+        </mat-option>
+        <mat-option value="M">
+          {{ 'HOME.Male' | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+ 
+
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" formControlName="CarInfo" required>
+      <mat-error>
+        {{ 'HOME.carInfo' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="{{ 'HOME.carNo' | translate }}" formControlName="carNo" required>
+     
+      <mat-error>
+        {{ 'HOME.carNorequired' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+
+
+
+  <div class="row">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}" formControlName="MobileNumber" required>
+
+      <mat-error>
+        {{ 'HOME.MobileNumber' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.Cancel' | translate }}</button>
+  <button mat-button class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.submit' | translate }}</button>
+</mat-dialog-actions>
+
