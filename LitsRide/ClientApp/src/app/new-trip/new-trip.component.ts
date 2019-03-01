@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+
 
 @Component({
     selector: 'app-new-trip',
@@ -16,7 +18,12 @@ export class NewTripComponent {
   test: Date = new Date();
   focus;
   focus1;
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+  @ViewChild("placesRef") placesRef1: GooglePlaceDirective;
 
+  public handleAddressChange(address) {
+    console.log(address.formatted_address)
+  }
   constructor(public translate: TranslateService) {
 
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
@@ -67,7 +74,7 @@ export class NewTripComponent {
   }
 
   submitTrip() {
-
+    console.log(this.TripsForm.value)
   }
   settings = {
     bigBanner: false,

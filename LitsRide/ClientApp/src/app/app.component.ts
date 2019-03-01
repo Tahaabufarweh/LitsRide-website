@@ -26,15 +26,15 @@ export class AppComponent implements OnInit {
 
   constructor(public translate: TranslateService, private internationalizationService: InternationalizationService) {
     translate.addLangs(['en', 'fr', 'ar']);
+    this.translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== undefined ? localStorage.getItem('lang') : 'en');
+
    }
   changelang(value) {
     console.log(value)
   }
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
-    console.log(localStorage.getItem('lang'))
-    this.translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== undefined ? localStorage.getItem('lang') : 'en');
-    console.log(this.translate.currentLang)
+
   }
 
   setPrefLang(value) {
@@ -43,9 +43,7 @@ export class AppComponent implements OnInit {
 
   title = 'app';
   isRtl() {
-    console.log(this.translate.currentLang)
-    this.translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== undefined ? localStorage.getItem('lang') : 'en');
-
+    
     return localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== undefined ?
       (localStorage.getItem('lang') !== "ar"? "ltr" : "rtl") : "ltr" ;
   }

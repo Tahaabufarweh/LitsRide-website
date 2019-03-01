@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { InternationalizationService } from '../services/internationalization.service';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular-6-social-login';
 
 
 @Component({
@@ -11,20 +16,48 @@ import { TranslateService } from '@ngx-translate/core';
 })
 /** login component*/
 export class LoginComponent {
+
+
     /** login ctor */
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   })
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private socialAuthService: AuthService ) {
  
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
   }
+  onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform == "facebook") {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform == "google") {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
 
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + " sign in data : ", userData);
+        localStorage.setItem('login', JSON.stringify(userData))
+        // Now sign-in with userData
+        // ...
 
-  ngOnInit() { }
+      }
+    );
+  }
+  ngOnInit() {
+
+    console.log(localStorage.getItem('login'))
+  }
 
   get username() {
     return this.loginForm.get('username') as FormControl;

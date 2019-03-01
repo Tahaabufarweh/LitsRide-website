@@ -10,7 +10,8 @@
 
           <ng-template matStepLabel>{{ 'HOME.startTrip' | translate }}</ng-template>
           <mat-form-field class="col-md-6">
-            <input matInput placeholder="{{ 'HOME.fromDest' | translate }}" formControlName="fromDestination">
+          
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder="{{ 'HOME.fromDest' | translate }}" formControlName="fromDestination">
             <!--<mat-hint><b>Example:</b> exm@abc.com </mat-hint>-->
             <mat-error *ngIf="fromDestination.touched && fromDestination.invalid">
               {{ 'HOME.enterPlace' | translate }}
@@ -18,7 +19,7 @@
           </mat-form-field>
           <br />
           <mat-form-field class="col-md-6">
-            <input matInput placeholder= "{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef1="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder= "{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
             <mat-error *ngIf="toDestination.touched && toDestination.invalid">
               {{ 'HOME.enterPlace' | translate }}
             </mat-error>

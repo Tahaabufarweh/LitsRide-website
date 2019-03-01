@@ -6,9 +6,6 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { DemoMaterialModule } from './material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material';
@@ -25,7 +22,29 @@ import { UserService } from './services/user.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { FilteringComponent } from '../app/filtering/filtering.component';
 import { CompleteProfileComponent } from '../app/complete-profile/complete-profile.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+
+// Configs 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("79683878315-9fqpne6k711es3h6tfgoo09ui4keneol.apps.googleusercontent.com")
+      }
+    ]
+  );
+
+  return config;
+}
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -34,7 +53,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    
     AdminComponent,
     LoginComponent,
     RegisterComponent,
@@ -42,17 +61,17 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TripsComponent,
     ProfileComponent,
     RatingComponent,
-    CounterComponent,
-    FetchDataComponent,
     FilteringComponent,
     CompleteProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    GooglePlaceModule,
     AngularDateTimePickerModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
+    SocialLoginModule,
     ReactiveFormsModule,
     DemoMaterialModule,
     TranslateModule.forRoot({
@@ -64,8 +83,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     }),
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: '', component: TripsComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'admin', component: AdminComponent },
       { path: 'register', component: RegisterComponent },
@@ -73,7 +91,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       { path: 'trips', component: TripsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'rating', component: RatingComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'filtering', component: FilteringComponent },
       { path: 'complete-profile', component: CompleteProfileComponent },
     ])
@@ -81,6 +98,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   providers: [
     InternationalizationService,
     TripsService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    },
     UserService
   ],
   bootstrap: [AppComponent]
