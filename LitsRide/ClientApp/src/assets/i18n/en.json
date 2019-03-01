@@ -46,7 +46,22 @@
     "Requests": "Requests",
     "Ratings": "Ratings",
     "RateValue": "Rate Value",
-    "LeaveComment": "Leave a Comment"
+    "LeaveComment": "Leave a Comment",
+    "FullName": "Full Name",
+    "FullNameHint": "First and last name *",
+    "FullNameRequired": "Full Name is Required",
+    "Username": "Username",
+    "Email": "Email",
+    "EmailRequired": "Email Is Required",
+    "repassword": "Repeat Password",
+    "PasswordNotMatch": "Password Not Match",
+    "MobileNumber": "Mobile Number",
+    "completeprofileinfo": "Complete profile info",
+    "country": "Country",
+    "Gender": "Gender",
+    "Female": "Female",
+    "Male": "Male"
+
 
 
 

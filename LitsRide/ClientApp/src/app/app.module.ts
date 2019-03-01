@@ -24,6 +24,7 @@ import { TripsService } from './services/trips.service';
 import { UserService } from './services/user.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { FilteringComponent } from '../app/filtering/filtering.component';
+import { CompleteProfileComponent } from '../app/complete-profile/complete-profile.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RatingComponent,
     CounterComponent,
     FetchDataComponent,
-    FilteringComponent
+    FilteringComponent,
+    CompleteProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -73,6 +75,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       { path: 'rating', component: RatingComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'filtering', component: FilteringComponent },
+      { path: 'complete-profile', component: CompleteProfileComponent },
     ])
   ],
   providers: [

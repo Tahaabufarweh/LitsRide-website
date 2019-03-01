@@ -46,7 +46,22 @@
     "Requests": "Demandes",
     "Ratings": "Évaluations",
     "RateValue": "Valeur du tarif",
-    "LeaveComment": "Laissez un commentaire"
+    "LeaveComment": "Laissez un commentaire",
+    "FullName": "Nom complet",
+    "FullNameHint": "nom et prénom *",
+    "FullNameRequired": "Le nom complet est requis",
+    "Username": "Nom d'utilisateur",
+    "Email": "Email",
+    "EmailRequired": "Email est requis",
+    "repassword": "Répéter le mot de passe",
+    "PasswordNotMatch": "Le mot de passe ne correspond pas",
+    "MobileNumber": "Numéro de portable",
+    "completeprofileinfo": "information complète de profil",
+    "country": "pays",
+    "Gender": "Le sexe",
+    "Female": "Femelle",
+    "Male": "Mâle"
+
 
 
 
