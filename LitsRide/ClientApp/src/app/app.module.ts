@@ -23,7 +23,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { FilteringComponent } from '../app/filtering/filtering.component';
 import { CompleteProfileComponent } from '../app/complete-profile/complete-profile.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-
+import { TripDetailsComponent } from '../app/trip-details/trip-details.component';
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -62,7 +62,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ProfileComponent,
     RatingComponent,
     FilteringComponent,
-    CompleteProfileComponent
+    CompleteProfileComponent,
+    TripDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -93,6 +94,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       { path: 'rating', component: RatingComponent },
       { path: 'filtering', component: FilteringComponent },
       { path: 'complete-profile', component: CompleteProfileComponent },
+      { path: 'trip-details', component: TripDetailsComponent },
     ])
   ],
   providers: [

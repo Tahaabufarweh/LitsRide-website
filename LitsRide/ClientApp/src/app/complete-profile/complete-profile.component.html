@@ -1,14 +1,56 @@
-﻿
+
 <div class="container w-100">
 
   <mat-card-header>
-    <h4 class="card-title">{{ 'HOME.completeprofileinfo' | translate }}</h4>
+    <h4 class="card-title">{{ 'HOME.editprofileinfo' | translate }}</h4>
   </mat-card-header>
 
 
+  <div class="row">
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.FullName' | translate }}" >
+
+      <mat-error>
+        {{ 'HOME.FullNameRequired' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="m-2">
+      <input matInput placeholder=" {{ 'HOME.Username' | translate }}" >
+
+      <mat-error>
+        {{ 'HOME.usernameisrequired' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+  </div>
 
   <div class="row">
-    <mat-form-field class="w-100">
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.Email' | translate }}" >
+
+      <mat-error>
+        {{ 'HOME.EmailRequired' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.password' | translate }}" >
+
+      <mat-error>
+        {{ 'HOME.passwordisrequired' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.repassword' | translate }}" >
+      <mat-error>
+        {{ 'HOME.PasswordNotMatch' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="m-2">
       <mat-select placeholder="{{ 'HOME.country' | translate }}">
         <mat-option *ngFor="let countr of countries" [value]="countr.code">
           {{countr.viewValue}}
@@ -16,9 +58,8 @@
       </mat-select>
     </mat-form-field>
   </div>
-
   <div class="row">
-    <mat-form-field class="w-100">
+    <mat-form-field class="m-2">
       <mat-select placeholder="{{ 'HOME.Gender' | translate }}">
         <mat-option value="F">
           {{ 'HOME.Female' | translate }}
@@ -29,39 +70,27 @@
       </mat-select>
     </mat-form-field>
 
-  </div>
- 
 
-
-  <div class="row">
-    <mat-form-field class="w-100">
-      <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" formControlName="CarInfo" required>
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.carInfo' | translate }}"  required>
       <mat-error>
         {{ 'HOME.carInfo' | translate }}
       </mat-error>
     </mat-form-field>
   </div>
-
-
-
-
   <div class="row">
-    <mat-form-field class="w-100">
-      <input matInput placeholder="{{ 'HOME.carNo' | translate }}" formControlName="carNo" required>
-     
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.carNo' | translate }}"  required>
+
       <mat-error>
         {{ 'HOME.carNorequired' | translate }}
       </mat-error>
     </mat-form-field>
 
-  </div>
 
 
-
-
-  <div class="row">
-    <mat-form-field class="w-100">
-      <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}" formControlName="MobileNumber" required>
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}"  required>
 
       <mat-error>
         {{ 'HOME.MobileNumber' | translate }}
@@ -69,16 +98,11 @@
     </mat-form-field>
   </div>
 
+</div>
 
-
-
-
-
-
-
-  </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.Cancel' | translate }}</button>
   <button mat-button class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.submit' | translate }}</button>
 </mat-dialog-actions>
+
 

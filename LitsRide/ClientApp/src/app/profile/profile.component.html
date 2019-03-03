@@ -2,44 +2,56 @@
 
 
 <div class="row">
-  <mat-card class="col-md-12">
-    <div class="col">
-      <a href="#pablo">
-        <img class="rounded-circle w-50" src="./assets/img/faces/marc.jpg" />
-      </a>
-    </div>
-    <div class="col-6">
-      <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-      <h4 class="card-title">Alec Thompson</h4>
-      <p class="card-description">
-        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-      </p>
 
-    </div>
-    <div class="col">
 
-      <button class="btn btn-danger btn-round mt-lg-5" mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
-      <button class="btn btn-danger btn-round mt-lg-5 m-2" mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.completeprofileinfo' | translate }}</button>
-    </div>
-  </mat-card>
+
+
+  <div class="col">
+
+    <mat-card class="col-md-12">
+      <mat-tab-group>
+        <mat-tab label="{{ 'HOME.ProfileInfo' | translate }}">
+
+        </mat-tab>
+        <mat-tab label="{{ 'HOME.TripsLabel' | translate }}"> Content 2 </mat-tab>
+        <mat-tab label="{{ 'HOME.Requests' | translate }}"> Content 3 </mat-tab>
+        <mat-tab label="{{ 'HOME.Ratings' | translate }}"> Content 3 </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+
+
+  </div>
+  <div class="col">
+    <mat-card class="text-center">
+      <mat-card-header>
+        <div class="avatar-upload">
+          <div class="avatar-edit">
+            <input type='file' id="imageUpload" (change)=readUrl($event) accept=".png, .jpg, .jpeg" />
+            <label for="imageUpload"></label>
+          </div>
+          <div class="avatar-preview">
+            <img class="imgpreview" [src]=url/>
+           </div>   
+           
+          
+          </div>
+
+</mat-card-header>
+        <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+      
+          <h4 class="card-title">Alec Thompson</h4>
+        
+            <p class="card-description">
+              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            </p>
+
+         
+          <div class="row text-center">
+
+            <button class="btn btn-danger btn-round mt-lg-5 " mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
+            <button class="btn btn-danger btn-round mt-lg-5 ml-2" mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
+          </div>
+</mat-card>
+  </div>
 
 </div>
-  <br />
-
-    <div class="row">
-
-      <mat-card class="col-md-12">
-        <mat-tab-group>
-          <mat-tab label="{{ 'HOME.ProfileInfo' | translate }}">
-
-          </mat-tab>
-          <mat-tab label="{{ 'HOME.TripsLabel' | translate }}"> Content 2 </mat-tab>
-          <mat-tab label="{{ 'HOME.Requests' | translate }}"> Content 3 </mat-tab>
-          <mat-tab label="{{ 'HOME.Ratings' | translate }}"> Content 3 </mat-tab>
-        </mat-tab-group>
-      </mat-card>
-
-
-    </div>
-
-

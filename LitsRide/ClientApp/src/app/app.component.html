@@ -43,15 +43,22 @@
             <span>{{ 'HOME.MyProfile' | translate }}</span>
           </a>
         </mat-menu>
-       
-        <div>
+
+        <div class="ml-3">
+
           <label>
-            {{ 'HOME.Language' | translate }}
-            <select #langSelect (change)="translate.use(langSelect.value); setPrefLang(langSelect.value)">
-              <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+            <!--{{ 'HOME.Language' | translate }}-->
+
+            <select class="form-control form-control-sm" matNativeControl #langSelect (change)="translate.use(langSelect.value); setPrefLang(langSelect.value)">
+              <option class="form-control form-control-sm" *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
             </select>
           </label>
+
+
+
         </div>
+       
+       
       </mat-toolbar>
       <div class="container pad">
         <router-outlet></router-outlet>

@@ -60,7 +60,12 @@
     "country": "pays",
     "Gender": "Le sexe",
     "Female": "Femelle",
-    "Male": "Mâle"
+    "Male": "Mâle",
+    "TripID": "ID de voyage",
+    "DriverID": "Identifiant du conducteur",
+    "ArriveTime": "Heure d'arrivée",
+    "Status": "Statut",
+    "TripDetails": "Détails du voyage"
 
 
 
