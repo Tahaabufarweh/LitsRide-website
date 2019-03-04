@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { TripsService } from '../services/trips.service';
 
 
 @Component({
@@ -21,10 +22,16 @@ export class NewTripComponent {
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
   @ViewChild("placesRef") placesRef1: GooglePlaceDirective;
 
-  public handleAddressChange(address) {
-    console.log(address.formatted_address)
+  public handleFromAddressChange(address) {
+ 
+    this.fromDestination.setValue(address.formatted_address)
   }
-  constructor(public translate: TranslateService) {
+
+  public handleToAddressChange(address) {
+   
+    this.toDestination.setValue(address.formatted_address)
+  }
+  constructor(public translate: TranslateService, private tripsService: TripsService) {
 
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
@@ -73,16 +80,21 @@ export class NewTripComponent {
     return this.TripsForm.get('carNo') as FormControl
   }
 
-  submitTrip() {
-    console.log(this.TripsForm.value)
-  }
+
   settings = {
-    bigBanner: false,
+    bigBanner: true,
+    timePicker: true,
     format: 'dd-MMM-yyyy hh:mm a',
-    timePicker: true
+    defaultOpen: false
   }
   changeDate() {
     console.log("angular")
     console.log(this.TripsForm)
+  }
+
+  submitTrip() {
+    this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
+      console.log(response);
+    })
   }
 }

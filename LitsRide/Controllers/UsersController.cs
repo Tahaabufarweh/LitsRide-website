@@ -5,6 +5,12 @@
     using System.Linq;
     using Microsoft.AspNetCore.Mvc;
     using LitsRide.Models;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.IdentityModel.Tokens;
+    using System.Text;
+    using System.IdentityModel.Tokens.Jwt;
+    using System;
+    using System.Security.Claims;
     #endregion
 
     [Route("api/[controller]")]
@@ -37,16 +43,53 @@
             return CreateNewUser(NewUser);
         }
 
+        // GET api/values
+        [HttpPost, Route("login")]
+        public IActionResult Login([FromBody]User user)
+        {
+            if (user == null)
+            {
+                return BadRequest("Invalid client request");
+            }
+            var userInDb = _context.User.Where(u => u.Username.Trim().ToLower() == user.Username.Trim().ToLower() && u.Password == user.Password).FirstOrDefault();
+            if (userInDb != null)
+            {
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("LitsRideSecurity@hasanDaaja"));
+                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var claims = new List<Claim>
+                    {
+                      new Claim(ClaimTypes.Name, userInDb.Username),
+                      new Claim(ClaimTypes.Sid, userInDb.Id.ToString()),
+                      new Claim(ClaimTypes.Email , userInDb.Email)
+                    };
+                var tokeOptions = new JwtSecurityToken(
+                    issuer: "https://localhost:44390",
+                    audience: "https://localhost:44390",
+                    claims: new List<Claim>(claims),
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: signinCredentials
+                );
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                return Ok(new { Token = tokenString });
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
         /// <summary>
         /// Get User info by UserId
         /// </summary>
         /// <param name="UsernameOrEmail"> string </param>
         /// <returns>Object of user type</returns>
         [HttpGet]
-        [Route("SignIn")]
-        public User SignIn(string UsernameOrEmail)
+        [Route("SignIn/{UsernameOrEmail}")]
+        [Authorize]
+        public string SignIn(string UsernameOrEmail)
         {
-            return GetUser(UsernameOrEmail);
+
+            return UsernameOrEmail;
         }
 
         /// <summary>
@@ -139,10 +182,10 @@
             return NewUser;
         }
 
-        private User GetUser(string UsernameOrEmail)
+        private User GetUser(User user)
         {
-            List<User> UsersList = _context.User.Where(user => user.Username.Trim().ToLower() == UsernameOrEmail.Trim().ToLower() ||
-                                  user.Username.Trim().ToLower() == UsernameOrEmail.Trim().ToLower()).ToList();
+            List<User> UsersList = _context.User.Where(u => u.Email.Trim().ToLower() == user.Email.Trim().ToLower() ||
+                                  u.Username.Trim().ToLower() == user.Username.Trim().ToLower() && u.Password == u.Password).ToList();
             return UsersList.FirstOrDefault();
         }
 

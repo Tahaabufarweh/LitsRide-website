@@ -13,6 +13,8 @@
     "passwordisrequired": "الرقم السري مطلوب",
     "Language": "اللغة",
     "TripsLabel": "الرحلات",
+    "detailsHint": "اكتب تفاصيلك عن الرحلة",
+    "carInfoHint": "اكتب معلومات سيارتك",
     "newTripLabel": "رحلة جديدة",
     "startTrip": "ابدأ رحلتك ",
     "fromDest": " من",

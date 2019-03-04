@@ -10,6 +10,9 @@
     "Usernameoremail": "Username or Email",
     "usernameisrequired": "Username is Required",
     "password": "Password",
+    "detailsHint": "Write your details about the trip",
+    "carInfoHint": "Write your car info",
+
     "passwordisrequired": "Password is Required",
     "Language": "Language",
     "TripsLabel": "Trips",

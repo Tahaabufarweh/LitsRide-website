@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions, Headers } from '@angular/http';
+import { Router } from '@angular/router';
+import { error } from 'util';
 //import { User } from 'app/ModelInterfaces/ModelInterface';
 
 const baseUrl = 'api/Users/'
@@ -15,7 +17,7 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-    constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
 
     }
     getUserById(id) {
@@ -26,8 +28,9 @@ export class UserService {
     //    return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
     //}
 
-    login(user) {
-        return this.httpClient.post(baseUrl, JSON.stringify(user), httpOptions);
+  login(user) {
+    return this.httpClient.post(baseUrl + "Login", JSON.stringify(user), httpOptions)
+        
          }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InternationalizationService } from './services/internationalization.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 declare interface RouteInfo {
   path: string;
@@ -24,28 +26,25 @@ export class AppComponent implements OnInit {
   
   @Input() themeColor = '';
 
-  constructor(public translate: TranslateService, private internationalizationService: InternationalizationService) {
-    translate.addLangs(['en', 'fr', 'ar']);
-    this.translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== undefined ? localStorage.getItem('lang') : 'en');
+  constructor(public translate: TranslateService, private authService: AuthService, private router: Router , private langService : InternationalizationService) {
 
-   }
-  changelang(value) {
-    console.log(value)
+    this.langService.getLanguage()
+    this.authService.checkLogin();
   }
+  
+
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
 
   }
 
   setPrefLang(value) {
-    localStorage.setItem('lang', value);
+    this.langService.setLang(value)
   }
 
   title = 'app';
   isRtl() {
-    
-    return localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== undefined ?
-      (localStorage.getItem('lang') !== "ar"? "ltr" : "rtl") : "ltr" ;
+    return this.langService.isRtl();
   }
   
 }

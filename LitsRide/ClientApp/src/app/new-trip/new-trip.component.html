@@ -11,7 +11,7 @@
           <ng-template matStepLabel>{{ 'HOME.startTrip' | translate }}</ng-template>
           <mat-form-field class="col-md-6">
           
-            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder="{{ 'HOME.fromDest' | translate }}" formControlName="fromDestination">
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleFromAddressChange($event)" placeholder="{{ 'HOME.fromDest' | translate }}" formControlName="fromDestination">
             <!--<mat-hint><b>Example:</b> exm@abc.com </mat-hint>-->
             <mat-error *ngIf="fromDestination.touched && fromDestination.invalid">
               {{ 'HOME.enterPlace' | translate }}
@@ -19,7 +19,7 @@
           </mat-form-field>
           <br />
           <mat-form-field class="col-md-6">
-            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef1="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder= "{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef1="ngx-places" (onAddressChange)="handleToAddressChange($event)" placeholder= "{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
             <mat-error *ngIf="toDestination.touched && toDestination.invalid">
               {{ 'HOME.enterPlace' | translate }}
             </mat-error>
@@ -33,7 +33,8 @@
 
           <ng-template matStepLabel>   {{ 'HOME.completeTrip' | translate }}</ng-template>
           <br />
-          <angular2-date-picker formControlName="StartTime" [settings]="settings"></angular2-date-picker>
+          <angular2-date-picker formControlName="StartTime"
+                                style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
 
 
           <br />
@@ -42,7 +43,8 @@
           <br />
 
 
-          <angular2-date-picker formControlName="ExpectedArrivalTime" [settings]="settings"></angular2-date-picker>
+          <angular2-date-picker formControlName="ExpectedArrivalTime"
+                                style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
           <br />
           <br />
           <hr />
@@ -59,7 +61,7 @@
           <ng-template matStepLabel>{{ 'HOME.finishTrip' | translate }}</ng-template>
           <div class="row">
             <div class="col-md-6">
-              <mat-form-field>
+              <mat-form-field class="col-md-12">
                 <input matInput placeholder="{{ 'HOME.price' | translate }}" formControlName="Price">
                 <mat-hint>{{ 'HOME.priceHint' | translate }} </mat-hint>
 
@@ -67,7 +69,7 @@
 
             </div>
             <div class="col-md-4">
-              <mat-form-field>
+              <mat-form-field class="col-md-12">
                 <input matInput placeholder="{{ 'HOME.carNo' | translate }}" formControlName="carNo">
                 <!--<mat-hint>For free rides type '0' in this field or leave it empty </mat-hint>-->
                 <mat-error *ngIf="carNo.touched && carNo.invalid">
@@ -76,7 +78,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-2">
-              <mat-form-field>
+              <mat-form-field class="col-md-12">
                 <input matInput placeholder="{{ 'HOME.seatsNo' | translate }}" formControlName="seatsNo">
                 <!--<mat-hint>For free rides type '0' in this field or leave it empty </mat-hint>-->
                 <mat-error *ngIf="seatsNo.touched && seatsNo.invalid">
@@ -87,15 +89,19 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <mat-form-field>
-                <input matInput placeholder="{{ 'HOME.details' | translate }}" formControlName="Details">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="{{ 'HOME.details' | translate }}" formControlName="Details" matTextareaAutosize maxlength="500">
+                <mat-hint align="start"><strong>{{ 'HOME.detailsHint' | translate }}</strong> </mat-hint>
+                <mat-hint align="end">{{Details.value.length}} / 500</mat-hint>
               </mat-form-field>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <mat-form-field>
-                <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" formControlName="CarInfo">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" formControlName="CarInfo" matTextareaAutosize maxlength="500">
+                <mat-hint align="start"><strong>{{ 'HOME.carInfoHint' | translate }}</strong> </mat-hint>
+                <mat-hint align="end">{{CarInfo.value.length}} / 500</mat-hint>
                 <mat-error *ngIf="CarInfo.touched && CarInfo.invalid">
                   {{ 'HOME.carInfoRequired' | translate }}
                 </mat-error>

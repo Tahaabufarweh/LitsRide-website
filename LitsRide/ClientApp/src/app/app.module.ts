@@ -23,14 +23,15 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { FilteringComponent } from '../app/filtering/filtering.component';
 import { CompleteProfileComponent } from '../app/complete-profile/complete-profile.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-
 import {
   SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
   FacebookLoginProvider,
+ 
 } from "angular-6-social-login";
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
 // Configs 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -45,11 +46,16 @@ export function getAuthServiceConfigs() {
 
   return config;
 }
+
+
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
-
+export function tokenGetter() {
+  return localStorage.getItem('jwt');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +78,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserAnimationsModule,
     MatNativeDateModule,
     SocialLoginModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
     ReactiveFormsModule,
     DemoMaterialModule,
     TranslateModule.forRoot({
@@ -102,6 +113,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
+    AuthService,
     UserService
   ],
   bootstrap: [AppComponent]

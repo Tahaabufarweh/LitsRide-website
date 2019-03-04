@@ -7,6 +7,8 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   })
 
-  constructor(public translate: TranslateService, private socialAuthService: AuthService ) {
+  constructor(public translate: TranslateService, private userService: UserService, private socialAuthService: AuthService, private router: Router) {
  
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
@@ -56,7 +58,7 @@ export class LoginComponent {
   }
   ngOnInit() {
 
-    console.log(localStorage.getItem('login'))
+
   }
 
   get username() {
@@ -69,5 +71,16 @@ export class LoginComponent {
 
 
 
-  login() { }
+  login() {
+    this.userService.login(this.loginForm.value).subscribe(response => {
+      let token = (<any>response).token;
+      localStorage.setItem("jwt", token);
+      console.log(token)
+      this.router.navigate(["/"]);
+    }, error => {
+      console.log(error)
+    });
+
+   
+  }
 }

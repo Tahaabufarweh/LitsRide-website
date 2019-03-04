@@ -7,7 +7,6 @@
     </mat-card-header>
     <div class="row d-flex justify-content-center p-1">
       <a href="#" class="btn btn-primary btn-circle btn-lg m-1"><i class="fa fa-facebook"></i></a>
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <a href="#" class="btn btn-danger btn-circle btn-lg m-1" (click)="socialSignIn('google')"><i class="fa fa-google"></i></a>
       <a href="#" class="btn btn-info btn-circle btn-lg m-1"><i class="fa fa-twitter"></i></a>
     </div>
@@ -54,7 +53,7 @@
       <div class="row">
         <div class="col-md-9"></div>
         <div class="col-md-2">
-          <button mat-raised-button color="primary" (click)="Login()">
+          <button mat-raised-button color="primary" (click)="login()">
             {{ 'HOME.Login' | translate }}
           </button>
         </div>

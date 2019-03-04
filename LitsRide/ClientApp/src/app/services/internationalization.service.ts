@@ -1,12 +1,35 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class InternationalizationService {
-  public static lang = 'en';
-  constructor() {
+
+  constructor(private translate: TranslateService) {
 
   }
+
   setLang(lang) {
-    InternationalizationService.lang = lang;
+    localStorage.setItem("lang" , lang)
+    this.translate.use(lang);
+  }
+
+  getLanguage() {
+    let langToken = localStorage.getItem("lang")
+    if (!langToken)
+      this.translate.use('en')
+    this.translate.use(langToken)
+  }
+
+  isRtl() {
+    let langToken = localStorage.getItem("lang")
+    if (!langToken)
+      return "ltr";
+
+    if (langToken == 'ar') {
+      return "rtl";
+    }
+    else {
+      return "ltr";
+    }
   }
 }

@@ -33,25 +33,31 @@
           <mat-icon class="example-icon mr-3">account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <a mat-menu-item routerLink="/login">
+          <a mat-menu-item routerLink="/login" *ngIf="!this.authService.isLoggedin()">
             <span>{{ 'HOME.Login' | translate }}</span>
           </a>
-          <a mat-menu-item routerLink="/register">
+          <a mat-menu-item routerLink="/register" *ngIf="!this.authService.isLoggedin()">
             <span>{{ 'HOME.Signup' | translate }}</span>
           </a>
-          <a mat-menu-item routerLink="/profile">
+          <a mat-menu-item routerLink="/profile" *ngIf="this.authService.isLoggedin()">
             <span>{{ 'HOME.MyProfile' | translate }}</span>
           </a>
         </mat-menu>
-       
-        <div>
-          <label>
-            {{ 'HOME.Language' | translate }}
-            <select #langSelect (change)="translate.use(langSelect.value); setPrefLang(langSelect.value)">
-              <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-            </select>
-          </label>
-        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menuLang">
+          <mat-icon class="example-icon mr-3">language</mat-icon>
+        </button>
+        <mat-menu #menuLang="matMenu">
+          <button mat-menu-item (click)="translate.use('ar'); setPrefLang('ar')">
+            <span>العربية</span>
+          </button>
+          <button mat-menu-item (click)="translate.use('fr'); setPrefLang('fr')">
+            <span>Française</span>
+          </button>
+          <button mat-menu-item (click)="translate.use('en'); setPrefLang('en')">
+            <span>English</span>
+          </button>
+        </mat-menu>
+
       </mat-toolbar>
       <div class="container pad">
         <router-outlet></router-outlet>

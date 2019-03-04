@@ -1,8 +1,8 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const baseUrl = 'api/Users/'
-const getTaskAssigneesByGroupIdRoute = 'GetTaskAssigneesByGroupId/';
+const baseUrl = 'api/Trips/'
+const getAllTripsRoute = 'GetAllTrips/';
 const getTaskAssigneesByIdRoute = 'GetTaskAssigneesById/';
 const createTaskAssigneeRoute = 'CreateTaskAssignee';
 const deleteTaskAssigneeRoute = 'DeleteTaskAssignee/'
@@ -18,8 +18,8 @@ export class TripsService {
 
     }
 
-    getAllTrips() {
-        return this.httpClient.get(baseUrl)
+  getAllTrips() {
+    return this.httpClient.get(baseUrl + getAllTripsRoute)
     }
 
     getAllTripsBySearchParams(params) {
