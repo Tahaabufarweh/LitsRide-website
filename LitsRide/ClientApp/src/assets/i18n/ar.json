@@ -58,11 +58,17 @@
     "repassword": "اعادة كلمة المرور",
     "PasswordNotMatch": "كلمات المرور غير متطابقة ",
     "MobileNumber": "رقم الهاتف",
-    "completeprofileinfo": "اكمال معلومات الحساب",
+    "editprofileinfo": "تعديل الحساب",
     "country": "البلد",
     "Gender": "الجنس",
     "Female": "انثى",
-    "Male": "ذكر"
+    "Male": "ذكر",
+    "TripID": "رقم الرحلة",
+    "DriverID": "رقم السائق",
+    "ArriveTime": "وقت الوصول",
+    "Status": "الحالة",
+    "TripDetails": "تفاصيل الرحلة"
+
 
 
 

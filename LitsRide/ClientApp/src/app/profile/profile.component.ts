@@ -4,6 +4,7 @@ import { RatingComponent } from '../rating/rating.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
 import { CompleteProfileComponent } from '../complete-profile/complete-profile.component';
+import { $ } from 'protractor';
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
@@ -13,6 +14,8 @@ import { CompleteProfileComponent } from '../complete-profile/complete-profile.c
 
 /** profile component*/
 export class ProfileComponent {
+  url: string = "http://i.pravatar.cc/500?img=7";
+  
     /** profile ctor */
   RatingDialogRef: MatDialogRef<RatingComponent>;
   CompleteDialogRef: MatDialogRef<CompleteProfileComponent>;
@@ -32,8 +35,19 @@ export class ProfileComponent {
 
 
   }
-  
+  readUrl(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
+      reader.onload = (event: ProgressEvent) => {
+        this.url = (<FileReader>event.target).result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+ 
   ngOnInit() {
   }
 }

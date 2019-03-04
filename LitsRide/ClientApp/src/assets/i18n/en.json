@@ -59,11 +59,16 @@
     "repassword": "Repeat Password",
     "PasswordNotMatch": "Password Not Match",
     "MobileNumber": "Mobile Number",
-    "completeprofileinfo": "Complete profile info",
+    "editprofileinfo": "Edit Profile",
     "country": "Country",
     "Gender": "Gender",
     "Female": "Female",
-    "Male": "Male"
+    "Male": "Male",
+    "TripID": "Trip ID",
+    "DriverID": "Driver ID",
+    "ArriveTime": "Arrive Time",
+    "Status": "Status",
+    "TripDetails": "Trip Details"
 
 
 
