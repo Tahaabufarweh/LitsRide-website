@@ -33,15 +33,18 @@
           <mat-icon class="example-icon mr-3">account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <a mat-menu-item routerLink="/login" *ngIf="!this.authService.isLoggedin()">
+          <button mat-menu-item routerLink="/login" *ngIf="!this.authService.isLoggedin()">
             <span>{{ 'HOME.Login' | translate }}</span>
-          </a>
-          <a mat-menu-item routerLink="/register" *ngIf="!this.authService.isLoggedin()">
+          </button>
+          <button mat-menu-item routerLink="/register" *ngIf="!this.authService.isLoggedin()">
             <span>{{ 'HOME.Signup' | translate }}</span>
-          </a>
-          <a mat-menu-item routerLink="/profile" *ngIf="this.authService.isLoggedin()">
+          </button>
+          <button mat-menu-item routerLink="/profile" *ngIf="this.authService.isLoggedin()">
             <span>{{ 'HOME.MyProfile' | translate }}</span>
-          </a>
+          </button>
+          <button mat-menu-item (click)="this.authService.Logout()" *ngIf="this.authService.isLoggedin()">
+            <span>{{ 'HOME.Logout' | translate }}</span>
+          </button>
         </mat-menu>
         <button mat-icon-button [matMenuTriggerFor]="menuLang">
           <mat-icon class="example-icon mr-3">language</mat-icon>

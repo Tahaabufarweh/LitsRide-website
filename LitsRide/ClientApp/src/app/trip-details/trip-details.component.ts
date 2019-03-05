@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-trip-details',
   templateUrl: './trip-details.component.html',
@@ -8,9 +9,8 @@ import { InternationalizationService } from '../services/internationalization.se
 })
 export class TripDetailsComponent implements OnInit {
 
-  constructor(public translate: TranslateService) {
-
-    translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
+  constructor(public translate: TranslateService, private authService: AuthService) {
+    this.authService.checkLogin()
 
   }
 

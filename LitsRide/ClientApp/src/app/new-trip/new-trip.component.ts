@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { TripsService } from '../services/trips.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -31,8 +32,8 @@ export class NewTripComponent {
    
     this.toDestination.setValue(address.formatted_address)
   }
-  constructor(public translate: TranslateService, private tripsService: TripsService) {
-
+  constructor(public translate: TranslateService, private tripsService: TripsService, private authService: AuthService) {
+    this.authService.checkLogin();
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
   }
@@ -93,8 +94,9 @@ export class NewTripComponent {
   }
 
   submitTrip() {
-    this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
-      console.log(response);
-    })
+    console.log(this.TripsForm);
+    //this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
+    //  console.log(response);
+    //})
   }
 }

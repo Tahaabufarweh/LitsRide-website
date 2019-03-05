@@ -33,6 +33,9 @@ import {
 } from "angular-6-social-login";
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NotificationService } from './services/notification.service';
+
 // Configs 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -95,6 +98,7 @@ export function tokenGetter() {
       }
     }),
     FormsModule,
+    SimpleNotificationsModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: TripsComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
@@ -116,6 +120,7 @@ export function tokenGetter() {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
+    NotificationService,
     AuthService,
     UserService
   ],

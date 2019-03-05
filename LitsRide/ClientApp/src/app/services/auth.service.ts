@@ -34,7 +34,6 @@ export class AuthService {
 
   isLoggedin() {
     let token = localStorage.getItem("jwt");
-
     if (!token)
       return false;
 
@@ -48,5 +47,6 @@ export class AuthService {
 
   Logout() {
     localStorage.removeItem("jwt");
+    this.router.navigate(["login"])
   }
 }

@@ -68,8 +68,8 @@
     "DriverID": "Identifiant du conducteur",
     "ArriveTime": "Heure d'arrivée",
     "Status": "Statut",
-    "TripDetails": "Détails du voyage"
-
+    "TripDetails": "Détails du voyage",
+    "Logout": "Se déconnecter"
 
 
 

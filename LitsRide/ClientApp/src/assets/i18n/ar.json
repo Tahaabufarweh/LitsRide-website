@@ -67,7 +67,8 @@
     "DriverID": "رقم السائق",
     "ArriveTime": "وقت الوصول",
     "Status": "الحالة",
-    "TripDetails": "تفاصيل الرحلة"
+    "TripDetails": "تفاصيل الرحلة",
+    "Logout":  "تسجيل الخروج"
 
 
 

@@ -5,21 +5,24 @@ import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
 import { CompleteProfileComponent } from '../complete-profile/complete-profile.component';
 import { $ } from 'protractor';
+import { AuthService } from '../services/auth.service';
+
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
 
 
 /** profile component*/
 export class ProfileComponent {
   url: string = "http://i.pravatar.cc/500?img=7";
-  
-    /** profile ctor */
+
+  /** profile ctor */
   RatingDialogRef: MatDialogRef<RatingComponent>;
   CompleteDialogRef: MatDialogRef<CompleteProfileComponent>;
-  constructor(public dialog: MatDialog, public translate: TranslateService) {
+  constructor(public dialog: MatDialog, public translate: TranslateService, private authService: AuthService) {
+    this.authService.checkLogin();
 
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 

@@ -41,10 +41,27 @@
           <br />
           <br />
           <br />
+               <br />
+
 
 
           <angular2-date-picker formControlName="ExpectedArrivalTime"
                                 style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
+          <br />
+          <br />
+                    <br />
+          <br />
+          <br />
+               <br />
+          <br />
+          <br />
+          <br />
+               <br />
+          <br />
+          <br />
+          <br />
+               <br />
+          <br />
           <br />
           <br />
           <hr />
@@ -114,7 +131,7 @@
           <hr />
           <div class="text-right">
             <button mat-raised-button color="primary" style="margin-right:2px" matStepperPrevious> {{ 'HOME.backButton' | translate }}</button>
-            <button mat-raised-button color="primary" (click)="submitTrip()"> {{ 'HOME.submit' | translate }}</button>
+            <button mat-raised-button color="primary" (click)="submitTrip()" [disabled]="TripsForm.invalid"> {{ 'HOME.submit' | translate }}</button>
           </div>
           <div>
 

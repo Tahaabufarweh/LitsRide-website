@@ -68,7 +68,8 @@
     "DriverID": "Driver ID",
     "ArriveTime": "Arrive Time",
     "Status": "Status",
-    "TripDetails": "Trip Details"
+    "TripDetails": "Trip Details",
+    "Logout": "Logout"
 
 
 

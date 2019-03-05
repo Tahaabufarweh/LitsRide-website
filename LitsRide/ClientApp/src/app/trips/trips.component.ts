@@ -24,7 +24,6 @@ export class TripsComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private tripsService: TripsService, public translate: TranslateService, private authService: AuthService, private router: Router) {
     this.authService.checkLogin();
-    console.log(this.authService.getLoggedInUserId());
   }
 
 

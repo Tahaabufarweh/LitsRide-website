@@ -9,6 +9,8 @@ import {
 } from 'angular-6-social-login';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { NotificationsService } from 'angular2-notifications';
+import { NotificationService } from '../services/notification.service';
 
 
 @Component({
@@ -26,7 +28,12 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   })
 
-  constructor(public translate: TranslateService, private userService: UserService, private socialAuthService: AuthService, private router: Router) {
+  constructor(public translate: TranslateService,
+              private userService: UserService,
+              private socialAuthService: AuthService,
+    private router: Router,
+    private notificationService: NotificationService 
+             ) {
  
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
@@ -78,7 +85,7 @@ export class LoginComponent {
       console.log(token)
       this.router.navigate(["/"]);
     }, error => {
-      console.log(error)
+        this.notificationService.createNotificationService('error', 'Login Failed', 'Username or password is wrong');
     });
 
    
