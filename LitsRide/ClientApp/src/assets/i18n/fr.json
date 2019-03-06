@@ -13,7 +13,7 @@
     "detailsHint": "Ecrivez vos détails sur le voyage",
     "carInfoHint": "Écrivez vos infos de voiture",
 
-    "passwordisrequired": "Mot de passe requis",
+    "passwordisrequired": "Le mot de passe doit comporter au moins 8 caractères.",
     "Language": "langue",
     "TripsLabel": "Voyages",
     "newTripLabel": "Nouveau voyage",
@@ -69,7 +69,8 @@
     "ArriveTime": "Heure d'arrivée",
     "Status": "Statut",
     "TripDetails": "Détails du voyage",
-    "Logout": "Se déconnecter"
+    "Logout": "Se déconnecter",
+    "usernameHint": "Le nom d'utilisateur doit comporter au moins 6 caractères."
 
 
 

@@ -40,7 +40,9 @@
         [Route("SignUp")]
         public User SignUp([FromBody] User NewUser)
         {
+
             return CreateNewUser(NewUser);
+             
         }
 
         // GET api/values
@@ -177,6 +179,7 @@
         #region Users
         private User CreateNewUser(User NewUser)
         {
+            
             _context.User.Add(NewUser);
             _context.SaveChanges();
             return NewUser;

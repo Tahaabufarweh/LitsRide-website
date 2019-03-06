@@ -51,8 +51,8 @@
     </mat-form-field>
 
     <mat-form-field class="m-2">
-      <mat-select placeholder="{{ 'HOME.country' | translate }}">
-        <mat-option *ngFor="let countr of countries" [value]="countr.code">
+      <mat-select placeholder="{{ 'HOME.country' | translate }}" #country name="country">
+        <mat-option *ngFor="let countr of countries" [value]="countr.PhoneCode">
           {{countr.viewValue}}
         </mat-option>
       </mat-select>
@@ -90,7 +90,10 @@
 
 
     <mat-form-field class="m-2">
+      <span matPrefix>{{country.value}} &nbsp;</span>
       <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}"  required>
+
+
 
       <mat-error>
         {{ 'HOME.MobileNumber' | translate }}
