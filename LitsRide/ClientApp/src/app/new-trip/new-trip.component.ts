@@ -5,6 +5,8 @@ import { InternationalizationService } from '../services/internationalization.se
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { TripsService } from '../services/trips.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification.service';
 
 
 @Component({
@@ -32,7 +34,7 @@ export class NewTripComponent {
    
     this.toDestination.setValue(address.formatted_address)
   }
-  constructor(public translate: TranslateService, private tripsService: TripsService, private authService: AuthService) {
+  constructor(public translate: TranslateService, private tripsService: TripsService, private authService: AuthService, private route: Router, private notificationService: NotificationService) {
     this.authService.checkLogin();
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
@@ -48,9 +50,10 @@ export class NewTripComponent {
     ExpectedArrivalTime: new FormControl(new Date()),
     Details: new FormControl(''),
     CarInfo: new FormControl('', Validators.required),
-    Price: new FormControl(),
+    Price: new FormControl(''),
     seatsNo: new FormControl('', Validators.required),
-    carNo: new FormControl('', Validators.required)
+    carNo: new FormControl('', Validators.required),
+    driverId: new FormControl('')
   })
 
   get fromDestination() {
@@ -80,12 +83,14 @@ export class NewTripComponent {
   get carNo() {
     return this.TripsForm.get('carNo') as FormControl
   }
-
+  get driverId() {
+    return this.TripsForm.get('driverId') as FormControl
+  }
 
   settings = {
     bigBanner: true,
     timePicker: true,
-    format: 'dd-MMM-yyyy hh:mm a',
+    format: 'short',
     defaultOpen: false
   }
   changeDate() {
@@ -93,10 +98,21 @@ export class NewTripComponent {
     console.log(this.TripsForm)
   }
 
+  //setStartTime(event: Date) {
+
+  //}
+
+  //setExpectedArrivalTime(event: Date) {
+
+  //}
   submitTrip() {
-    console.log(this.TripsForm);
-    //this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
-    //  console.log(response);
-    //})
+    this.driverId.setValue(this.authService.getLoggedInUserId());
+    this.StartTime.setValue(this.StartTime.value)
+    console.log(JSON.stringify(this.TripsForm.value))
+    this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
+      console.log(response);
+      this.notificationService.createNotificationService('success', 'Trip added', '');
+      this.route.navigate(["/Trips"]);
+    })
   }
 }

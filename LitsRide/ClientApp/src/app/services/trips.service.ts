@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const baseUrl = 'api/Trips/'
 const getAllTripsRoute = 'GetAllTrips/';
 const getTaskAssigneesByIdRoute = 'GetTaskAssigneesById/';
-const createTaskAssigneeRoute = 'CreateTaskAssignee';
+const createNewTripRoute = 'CreateNewTrip';
 const deleteTaskAssigneeRoute = 'DeleteTaskAssignee/'
 const httpOptions = {
     headers: new HttpHeaders({
@@ -31,7 +31,7 @@ export class TripsService {
     }
 
     createNewTrip(trip) {
-        return this.httpClient.post(baseUrl, JSON.stringify(trip), httpOptions);
+      return this.httpClient.post(baseUrl + createNewTripRoute, JSON.stringify(trip), httpOptions);
     }
 
     editTrip(trip) {

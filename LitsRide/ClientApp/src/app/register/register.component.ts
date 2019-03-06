@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RegisterComponent {
   })
 
   /** signup ctor */
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private userService: UserService) {
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
   }
@@ -44,5 +45,9 @@ export class RegisterComponent {
 
   get email() {
     return this.signUpForm.get('email') as FormControl;
+  }
+
+  registerNewUser() {
+    this.userService
   }
 }

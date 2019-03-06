@@ -11,6 +11,7 @@ export class AuthService {
 
   getLoggedInUserId() {
     let token = localStorage.getItem("jwt")
+    console.log(this.jwtService.decodeToken(token)[tokenSoapLink + "sid"])
     return this.jwtService.decodeToken(token)[tokenSoapLink + "sid"]
 
   }

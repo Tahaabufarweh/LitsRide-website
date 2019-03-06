@@ -1,6 +1,6 @@
 <body>
   <mat-sidenav-container [dir]="isRtl()" class="example-container" autosize>
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" *ngIf="!isLoginOrSignUp()">
       <mat-nav-list>
         <mat-list-item>
           <button mat-icon-button (click)="isExpanded = !isExpanded">
@@ -27,7 +27,7 @@
 
     <div class="example-sidenav-content">
       <mat-toolbar color="primary" style="margin-bottom:10px;">
-        Lit's Ride
+        Lets ridein
         <span class="example-spacer"></span>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon class="example-icon mr-3">account_circle</mat-icon>

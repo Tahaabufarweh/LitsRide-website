@@ -24,9 +24,9 @@ export class UserService {
         return this.httpClient.get(baseUrl + id);
     }
 
-    //createUser(user: User) {
-    //    return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
-    //}
+    createUser(user) {
+        return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
+    }
 
   login(user) {
     return this.httpClient.post(baseUrl + "Login", JSON.stringify(user), httpOptions)

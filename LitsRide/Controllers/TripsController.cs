@@ -23,10 +23,11 @@ namespace LitsRide.Controllers
         // GET: api/Trips
         [HttpGet]
         [Route("GetAllTrips")]
-        public async Task<ActionResult<IEnumerable<Trip>>> GetTrip()
+        public ActionResult GetTrip()
         {
-            return await _context.Trip.Include(x=>x.Driver).ToListAsync();
+            return Ok(_context.Trip.Include(x=>x.Driver).OrderByDescending(y => y.Id).ToList());
         }
+
 
         // GET: api/Trips/5
         [HttpGet("{id}")]
@@ -74,7 +75,8 @@ namespace LitsRide.Controllers
 
         // POST: api/Trips
         [HttpPost]
-        public async Task<ActionResult<Trip>> PostTrip(Trip trip)
+        [Route("CreateNewTrip")]
+        public async Task<ActionResult<Trip>> PostTrip([FromBody]Trip trip)
         {
 
             _context.Trip.Add(trip);
