@@ -26,8 +26,10 @@ export class UserService {
     }
 
     createUser(user: User) {
-        return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
-    }
+      return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
+      
+  }
+  
 
   login(user) {
     return this.httpClient.post(baseUrl + "Login", JSON.stringify(user), httpOptions)

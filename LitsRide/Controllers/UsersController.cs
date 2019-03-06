@@ -40,7 +40,9 @@
         [Route("SignUp")]
         public User SignUp([FromBody] User NewUser)
         {
+
             return CreateNewUser(NewUser);
+             
         }
 
         // GET api/values

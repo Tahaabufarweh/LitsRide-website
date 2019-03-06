@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { NotificationService } from '../services/notification.service';
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 export interface Country {
@@ -27,8 +28,9 @@ export class RegisterComponent {
     password: new FormControl('', Validators.minLength(8)),
     username: new FormControl('', Validators.minLength(6)),
     MobileNumber: new FormControl('', Validators.required),
-     
-   
+    rePass: new FormControl('', Validators.required),
+    Country: new FormControl(),
+    
   })
 
   
@@ -60,9 +62,20 @@ export class RegisterComponent {
   }
   
   get MobileNumber() {
-    return this.signUpForm.get('MobileNumber') as FormControl;
+
+    return this.signUpForm.get('MobileNumber.value') as FormControl;
   }
 
+  get Country() {
+    return this.signUpForm.get('Country') as FormControl;
+  }
+  
+
+  
+
+  get rePass() {
+    return this.signUpForm.get('rePass') as FormControl;
+  }
   CreateNewUser() {
     
     this.userService.createUser(this.signUpForm.value).subscribe(response => {
@@ -1283,4 +1296,15 @@ export class RegisterComponent {
       code: 'ZW'
     }
   ];
+  filterItemsOfType(viewvalue) {
+
+    for (let item of this.countries) {
+      if (item.viewValue == viewvalue) {
+        return item.PhoneCode;
+      }
+    } 
+
+   
+  }
+  
 }
