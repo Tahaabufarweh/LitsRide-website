@@ -177,6 +177,7 @@
         #region Users
         private User CreateNewUser(User NewUser)
         {
+            
             _context.User.Add(NewUser);
             _context.SaveChanges();
             return NewUser;

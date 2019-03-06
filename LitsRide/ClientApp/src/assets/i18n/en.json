@@ -13,7 +13,7 @@
     "detailsHint": "Write your details about the trip",
     "carInfoHint": "Write your car info",
 
-    "passwordisrequired": "Password is Required",
+    "passwordisrequired": "Password Should be at least 8 characters",
     "Language": "Language",
     "TripsLabel": "Trips",
     "newTripLabel": "New Trip",
@@ -69,7 +69,8 @@
     "ArriveTime": "Arrive Time",
     "Status": "Status",
     "TripDetails": "Trip Details",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "usernameHint": "Username should be at least 6 characters"
 
 
 

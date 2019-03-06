@@ -4,6 +4,7 @@ import { InternationalizationService } from '../services/internationalization.se
 export interface Country {
   code: string;
   viewValue: string;
+  PhoneCode: string;
 }
 @Component({
   selector: 'app-complete-profile',
@@ -22,252 +23,1210 @@ export class CompleteProfileComponent implements OnInit {
 
   }
   countries: Country[] = [
-
-    { viewValue: 'Afghanistan', code: 'AF' },
-    { viewValue: 'land Islands', code: 'AX' },
-    { viewValue: 'Albania', code: 'AL' },
-    { viewValue: 'Algeria', code: 'DZ' },
-    { viewValue: 'American Samoa', code: 'AS' },
-    { viewValue: 'AndorrA', code: 'AD' },
-    { viewValue: 'Angola', code: 'AO' },
-    { viewValue: 'Anguilla', code: 'AI' },
-    { viewValue: 'Antarctica', code: 'AQ' },
-    { viewValue: 'Antigua and Barbuda', code: 'AG' },
-    { viewValue: 'Argentina', code: 'AR' },
-    { viewValue: 'Armenia', code: 'AM' },
-    { viewValue: 'Aruba', code: 'AW' },
-    { viewValue: 'Australia', code: 'AU' },
-    { viewValue: 'Austria', code: 'AT' },
-    { viewValue: 'Azerbaijan', code: 'AZ' },
-    { viewValue: 'Bahamas', code: 'BS' },
-    { viewValue: 'Bahrain', code: 'BH' },
-    { viewValue: 'Bangladesh', code: 'BD' },
-    { viewValue: 'Barbados', code: 'BB' },
-    { viewValue: 'Belarus', code: 'BY' },
-    { viewValue: 'Belgium', code: 'BE' },
-    { viewValue: 'Belize', code: 'BZ' },
-    { viewValue: 'Benin', code: 'BJ' },
-    { viewValue: 'Bermuda', code: 'BM' },
-    { viewValue: 'Bhutan', code: 'BT' },
-    { viewValue: 'Bolivia', code: 'BO' },
-    { viewValue: 'Bosnia and Herzegovina', code: 'BA' },
-    { viewValue: 'Botswana', code: 'BW' },
-    { viewValue: 'Bouvet Island', code: 'BV' },
-    { viewValue: 'Brazil', code: 'BR' },
-    { viewValue: 'British Indian Ocean Territory', code: 'IO' },
-    { viewValue: 'Brunei Darussalam', code: 'BN' },
-    { viewValue: 'Bulgaria', code: 'BG' },
-    { viewValue: 'Burkina Faso', code: 'BF' },
-    { viewValue: 'Burundi', code: 'BI' },
-    { viewValue: 'Cambodia', code: 'KH' },
-    { viewValue: 'Cameroon', code: 'CM' },
-    { viewValue: 'Canada', code: 'CA' },
-    { viewValue: 'Cape Verde', code: 'CV' },
-    { viewValue: 'Cayman Islands', code: 'KY' },
-    { viewValue: 'Central African Republic', code: 'CF' },
-    { viewValue: 'Chad', code: 'TD' },
-    { viewValue: 'Chile', code: 'CL' },
-    { viewValue: 'China', code: 'CN' },
-    { viewValue: 'Christmas Island', code: 'CX' },
-    { viewValue: 'Cocos (Keeling) Islands', code: 'CC' },
-    { viewValue: 'Colombia', code: 'CO' },
-    { viewValue: 'Comoros', code: 'KM' },
-    { viewValue: 'Congo', code: 'CG' },
-    { viewValue: 'Congo, The Democratic Republic of the', code: 'CD' },
-    { viewValue: 'Cook Islands', code: 'CK' },
-    { viewValue: 'Costa Rica', code: 'CR' },
-    { viewValue: 'Cote D"Ivoire', code: 'CI' },
-    { viewValue: 'Croatia', code: 'HR' },
-    { viewValue: 'Cuba', code: 'CU' },
-    { viewValue: 'Cyprus', code: 'CY' },
-    { viewValue: 'Czech Republic', code: 'CZ' },
-    { viewValue: 'Denmark', code: 'DK' },
-    { viewValue: 'Djibouti', code: 'DJ' },
-    { viewValue: 'Dominica', code: 'DM' },
-    { viewValue: 'Dominican Republic', code: 'DO' },
-    { viewValue: 'Ecuador', code: 'EC' },
-    { viewValue: 'Egypt', code: 'EG' },
-    { viewValue: 'El Salvador', code: 'SV' },
-    { viewValue: 'Equatorial Guinea', code: 'GQ' },
-    { viewValue: 'Eritrea', code: 'ER' },
-    { viewValue: 'Estonia', code: 'EE' },
-    { viewValue: 'Ethiopia', code: 'ET' },
-    { viewValue: 'Falkland Islands (Malvinas)', code: 'FK' },
-    { viewValue: 'Faroe Islands', code: 'FO' },
-    { viewValue: 'Fiji', code: 'FJ' },
-    { viewValue: 'Finland', code: 'FI' },
-    { viewValue: 'France', code: 'FR' },
-    { viewValue: 'French Guiana', code: 'GF' },
-    { viewValue: 'French Polynesia', code: 'PF' },
-    { viewValue: 'French Southern Territories', code: 'TF' },
-    { viewValue: 'Gabon', code: 'GA' },
-    { viewValue: 'Gambia', code: 'GM' },
-    { viewValue: 'Georgia', code: 'GE' },
-    { viewValue: 'Germany', code: 'DE' },
-    { viewValue: 'Ghana', code: 'GH' },
-    { viewValue: 'Gibraltar', code: 'GI' },
-    { viewValue: 'Greece', code: 'GR' },
-    { viewValue: 'Greenland', code: 'GL' },
-    { viewValue: 'Grenada', code: 'GD' },
-    { viewValue: 'Guadeloupe', code: 'GP' },
-    { viewValue: 'Guam', code: 'GU' },
-    { viewValue: 'Guatemala', code: 'GT' },
-    { viewValue: 'Guernsey', code: 'GG' },
-    { viewValue: 'Guinea', code: 'GN' },
-    { viewValue: 'Guinea-Bissau', code: 'GW' },
-    { viewValue: 'Guyana', code: 'GY' },
-    { viewValue: 'Haiti', code: 'HT' },
-    { viewValue: 'Heard Island and Mcdonald Islands', code: 'HM' },
-    { viewValue: 'Holy See (Vatican City State)', code: 'VA' },
-    { viewValue: 'Honduras', code: 'HN' },
-    { viewValue: 'Hong Kong', code: 'HK' },
-    { viewValue: 'Hungary', code: 'HU' },
-    { viewValue: 'Iceland', code: 'IS' },
-    { viewValue: 'India', code: 'IN' },
-    { viewValue: 'Indonesia', code: 'ID' },
-    { viewValue: 'Iran, Islamic Republic Of', code: 'IR' },
-    { viewValue: 'Iraq', code: 'IQ' },
-    { viewValue: 'Ireland', code: 'IE' },
-    { viewValue: 'Isle of Man', code: 'IM' },
-    { viewValue: 'Israel', code: 'IL' },
-    { viewValue: 'Italy', code: 'IT' },
-    { viewValue: 'Jamaica', code: 'JM' },
-    { viewValue: 'Japan', code: 'JP' },
-    { viewValue: 'Jersey', code: 'JE' },
-    { viewValue: 'Jordan', code: 'JO' },
-    { viewValue: 'Kazakhstan', code: 'KZ' },
-    { viewValue: 'Kenya', code: 'KE' },
-    { viewValue: 'Kiribati', code: 'KI' },
-    { viewValue: 'Korea, Democratic People"S Republic of', code: 'KP' },
-    { viewValue: 'Korea, Republic of', code: 'KR' },
-    { viewValue: 'Kuwait', code: 'KW' },
-    { viewValue: 'Kyrgyzstan', code: 'KG' },
-    { viewValue: 'Lao People"S Democratic Republic', code: 'LA' },
-    { viewValue: 'Latvia', code: 'LV' },
-    { viewValue: 'Lebanon', code: 'LB' },
-    { viewValue: 'Lesotho', code: 'LS' },
-    { viewValue: 'Liberia', code: 'LR' },
-    { viewValue: 'Libyan Arab Jamahiriya', code: 'LY' },
-    { viewValue: 'Liechtenstein', code: 'LI' },
-    { viewValue: 'Lithuania', code: 'LT' },
-    { viewValue: 'Luxembourg', code: 'LU' },
-    { viewValue: 'Macao', code: 'MO' },
-    { viewValue: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' },
-    { viewValue: 'Madagascar', code: 'MG' },
-    { viewValue: 'Malawi', code: 'MW' },
-    { viewValue: 'Malaysia', code: 'MY' },
-    { viewValue: 'Maldives', code: 'MV' },
-    { viewValue: 'Mali', code: 'ML' },
-    { viewValue: 'Malta', code: 'MT' },
-    { viewValue: 'Marshall Islands', code: 'MH' },
-    { viewValue: 'Martinique', code: 'MQ' },
-    { viewValue: 'Mauritania', code: 'MR' },
-    { viewValue: 'Mauritius', code: 'MU' },
-    { viewValue: 'Mayotte', code: 'YT' },
-    { viewValue: 'Mexico', code: 'MX' },
-    { viewValue: 'Micronesia, Federated States of', code: 'FM' },
-    { viewValue: 'Moldova, Republic of', code: 'MD' },
-    { viewValue: 'Monaco', code: 'MC' },
-    { viewValue: 'Mongolia', code: 'MN' },
-    { viewValue: 'Montenegro', code: 'ME' },
-    { viewValue: 'Montserrat', code: 'MS' },
-    { viewValue: 'Morocco', code: 'MA' },
-    { viewValue: 'Mozambique', code: 'MZ' },
-    { viewValue: 'Myanmar', code: 'MM' },
-    { viewValue: 'Namibia', code: 'NA' },
-    { viewValue: 'Nauru', code: 'NR' },
-    { viewValue: 'Nepal', code: 'NP' },
-    { viewValue: 'Netherlands', code: 'NL' },
-    { viewValue: 'Netherlands Antilles', code: 'AN' },
-    { viewValue: 'New Caledonia', code: 'NC' },
-    { viewValue: 'New Zealand', code: 'NZ' },
-    { viewValue: 'Nicaragua', code: 'NI' },
-    { viewValue: 'Niger', code: 'NE' },
-    { viewValue: 'Nigeria', code: 'NG' },
-    { viewValue: 'Niue', code: 'NU' },
-    { viewValue: 'Norfolk Island', code: 'NF' },
-    { viewValue: 'Northern Mariana Islands', code: 'MP' },
-    { viewValue: 'Norway', code: 'NO' },
-    { viewValue: 'Oman', code: 'OM' },
-    { viewValue: 'Pakistan', code: 'PK' },
-    { viewValue: 'Palau', code: 'PW' },
-    { viewValue: 'Palestinian Territory, Occupied', code: 'PS' },
-    { viewValue: 'Panama', code: 'PA' },
-    { viewValue: 'Papua New Guinea', code: 'PG' },
-    { viewValue: 'Paraguay', code: 'PY' },
-    { viewValue: 'Peru', code: 'PE' },
-    { viewValue: 'Philippines', code: 'PH' },
-    { viewValue: 'Pitcairn', code: 'PN' },
-    { viewValue: 'Poland', code: 'PL' },
-    { viewValue: 'Portugal', code: 'PT' },
-    { viewValue: 'Puerto Rico', code: 'PR' },
-    { viewValue: 'Qatar', code: 'QA' },
-    { viewValue: 'Reunion', code: 'RE' },
-    { viewValue: 'Romania', code: 'RO' },
-    { viewValue: 'Russian Federation', code: 'RU' },
-    { viewValue: 'RWANDA', code: 'RW' },
-    { viewValue: 'Saint Helena', code: 'SH' },
-    { viewValue: 'Saint Kitts and Nevis', code: 'KN' },
-    { viewValue: 'Saint Lucia', code: 'LC' },
-    { viewValue: 'Saint Pierre and Miquelon', code: 'PM' },
-    { viewValue: 'Saint Vincent and the Grenadines', code: 'VC' },
-    { viewValue: 'Samoa', code: 'WS' },
-    { viewValue: 'San Marino', code: 'SM' },
-    { viewValue: 'Sao Tome and Principe', code: 'ST' },
-    { viewValue: 'Saudi Arabia', code: 'SA' },
-    { viewValue: 'Senegal', code: 'SN' },
-    { viewValue: 'Serbia', code: 'RS' },
-    { viewValue: 'Seychelles', code: 'SC' },
-    { viewValue: 'Sierra Leone', code: 'SL' },
-    { viewValue: 'Singapore', code: 'SG' },
-    { viewValue: 'Slovakia', code: 'SK' },
-    { viewValue: 'Slovenia', code: 'SI' },
-    { viewValue: 'Solomon Islands', code: 'SB' },
-    { viewValue: 'Somalia', code: 'SO' },
-    { viewValue: 'South Africa', code: 'ZA' },
-    { viewValue: 'South Georgia and the South Sandwich Islands', code: 'GS' },
-    { viewValue: 'Spain', code: 'ES' },
-    { viewValue: 'Sri Lanka', code: 'LK' },
-    { viewValue: 'Sudan', code: 'SD' },
-    { viewValue: 'Suriname', code: 'SR' },
-    { viewValue: 'Svalbard and Jan Mayen', code: 'SJ' },
-    { viewValue: 'Swaziland', code: 'SZ' },
-    { viewValue: 'Sweden', code: 'SE' },
-    { viewValue: 'Switzerland', code: 'CH' },
-    { viewValue: 'Syrian Arab Republic', code: 'SY' },
-    { viewValue: 'Taiwan, Province of China', code: 'TW' },
-    { viewValue: 'Tajikistan', code: 'TJ' },
-    { viewValue: 'Tanzania, United Republic of', code: 'TZ' },
-    { viewValue: 'Thailand', code: 'TH' },
-    { viewValue: 'Timor-Leste', code: 'TL' },
-    { viewValue: 'Togo', code: 'TG' },
-    { viewValue: 'Tokelau', code: 'TK' },
-    { viewValue: 'Tonga', code: 'TO' },
-    { viewValue: 'Trinidad and Tobago', code: 'TT' },
-    { viewValue: 'Tunisia', code: 'TN' },
-    { viewValue: 'Turkey', code: 'TR' },
-    { viewValue: 'Turkmenistan', code: 'TM' },
-    { viewValue: 'Turks and Caicos Islands', code: 'TC' },
-    { viewValue: 'Tuvalu', code: 'TV' },
-    { viewValue: 'Uganda', code: 'UG' },
-    { viewValue: 'Ukraine', code: 'UA' },
-    { viewValue: 'United Arab Emirates', code: 'AE' },
-    { viewValue: 'United Kingdom', code: 'GB' },
-    { viewValue: 'United States', code: 'US' },
-    { viewValue: 'United States Minor Outlying Islands', code: 'UM' },
-    { viewValue: 'Uruguay', code: 'UY' },
-    { viewValue: 'Uzbekistan', code: 'UZ' },
-    { viewValue: 'Vanuatu', code: 'VU' },
-    { viewValue: 'Venezuela', code: 'VE' },
-    { viewValue: 'Viet Nam', code: 'VN' },
-    { viewValue: 'Virgin Islands, British', code: 'VG' },
-    { viewValue: 'Virgin Islands, U.S.', code: 'VI' },
-    { viewValue: 'Wallis and Futuna', code: 'WF' },
-    { viewValue: 'Western Sahara', code: 'EH' },
-    { viewValue: 'Yemen', code: 'YE' },
-    { viewValue: 'Zambia', code: 'ZM' },
-    { viewValue: 'Zimbabwe', code: 'ZW' }
-
-  ];
+    {
+      viewValue: 'Afghanistan',
+    PhoneCode: '+93',
+    code: 'AF'
+},
+{
+  viewValue: 'Aland Islands',
+  PhoneCode: '+358',
+  code: 'AX'
+},
+{
+  viewValue: 'Albania',
+  PhoneCode: '+355',
+  code: 'AL'
+},
+{
+  viewValue: 'Algeria',
+  PhoneCode: '+213',
+  code: 'DZ'
+},
+{
+  viewValue: 'AmericanSamoa',
+  PhoneCode: '+1 684',
+  code: 'AS'
+},
+{
+  viewValue: 'Andorra',
+  PhoneCode: '+376',
+  code: 'AD'
+},
+{
+  viewValue: 'Angola',
+  PhoneCode: '+244',
+  code: 'AO'
+},
+{
+  viewValue: 'Anguilla',
+  PhoneCode: '+1 264',
+  code: 'AI'
+},
+{
+  viewValue: 'Antarctica',
+  PhoneCode: '+672',
+  code: 'AQ'
+},
+{
+  viewValue: 'Antigua and Barbuda',
+  PhoneCode: '+1268',
+  code: 'AG'
+},
+{
+  viewValue: 'Argentina',
+  PhoneCode: '+54',
+  code: 'AR'
+},
+{
+  viewValue: 'Armenia',
+  PhoneCode: '+374',
+  code: 'AM'
+},
+{
+  viewValue: 'Aruba',
+  PhoneCode: '+297',
+  code: 'AW'
+},
+{
+  viewValue: 'Australia',
+  PhoneCode: '+61',
+  code: 'AU'
+},
+{
+  viewValue: 'Austria',
+  PhoneCode: '+43',
+  code: 'AT'
+},
+{
+  viewValue: 'Azerbaijan',
+  PhoneCode: '+994',
+  code: 'AZ'
+},
+{
+  viewValue: 'Bahamas',
+  PhoneCode: '+1 242',
+  code: 'BS'
+},
+{
+  viewValue: 'Bahrain',
+  PhoneCode: '+973',
+  code: 'BH'
+},
+{
+  viewValue: 'Bangladesh',
+  PhoneCode: '+880',
+  code: 'BD'
+},
+{
+  viewValue: 'Barbados',
+  PhoneCode: '+1 246',
+  code: 'BB'
+},
+{
+  viewValue: 'Belarus',
+  PhoneCode: '+375',
+  code: 'BY'
+},
+{
+  viewValue: 'Belgium',
+  PhoneCode: '+32',
+  code: 'BE'
+},
+{
+  viewValue: 'Belize',
+  PhoneCode: '+501',
+  code: 'BZ'
+},
+{
+  viewValue: 'Benin',
+  PhoneCode: '+229',
+  code: 'BJ'
+},
+{
+  viewValue: 'Bermuda',
+  PhoneCode: '+1 441',
+  code: 'BM'
+},
+{
+  viewValue: 'Bhutan',
+  PhoneCode: '+975',
+  code: 'BT'
+},
+{
+  viewValue: 'Bolivia, Plurinational State of',
+  PhoneCode: '+591',
+  code: 'BO'
+},
+{
+  viewValue: 'Bosnia and Herzegovina',
+  PhoneCode: '+387',
+  code: 'BA'
+},
+{
+  viewValue: 'Botswana',
+  PhoneCode: '+267',
+  code: 'BW'
+},
+{
+  viewValue: 'Brazil',
+  PhoneCode: '+55',
+  code: 'BR'
+},
+{
+  viewValue: 'British Indian Ocean Territory',
+  PhoneCode: '+246',
+  code: 'IO'
+},
+{
+  viewValue: 'Brunei Darussalam',
+  PhoneCode: '+673',
+  code: 'BN'
+},
+{
+  viewValue: 'Bulgaria',
+  PhoneCode: '+359',
+  code: 'BG'
+},
+{
+  viewValue: 'Burkina Faso',
+  PhoneCode: '+226',
+  code: 'BF'
+},
+{
+  viewValue: 'Burundi',
+  PhoneCode: '+257',
+  code: 'BI'
+},
+{
+  viewValue: 'Cambodia',
+  PhoneCode: '+855',
+  code: 'KH'
+},
+{
+  viewValue: 'Cameroon',
+  PhoneCode: '+237',
+  code: 'CM'
+},
+{
+  viewValue: 'Canada',
+  PhoneCode: '+1',
+  code: 'CA'
+},
+{
+  viewValue: 'Cape Verde',
+  PhoneCode: '+238',
+  code: 'CV'
+},
+{
+  viewValue: 'Cayman Islands',
+  PhoneCode: '+ 345',
+  code: 'KY'
+},
+{
+  viewValue: 'Central African Republic',
+  PhoneCode: '+236',
+  code: 'CF'
+},
+{
+  viewValue: 'Chad',
+  PhoneCode: '+235',
+  code: 'TD'
+},
+{
+  viewValue: 'Chile',
+  PhoneCode: '+56',
+  code: 'CL'
+},
+{
+  viewValue: 'China',
+  PhoneCode: '+86',
+  code: 'CN'
+},
+{
+  viewValue: 'Christmas Island',
+  PhoneCode: '+61',
+  code: 'CX'
+},
+{
+  viewValue: 'Cocos(Keeling) Islands',
+  PhoneCode: '+61',
+  code: 'CC'
+},
+{
+  viewValue: 'Colombia',
+  PhoneCode: '+57',
+  code: 'CO'
+},
+{
+  viewValue: 'Comoros',
+  PhoneCode: '+269',
+  code: 'KM'
+},
+{
+  viewValue: 'Congo',
+  PhoneCode: '+242',
+  code: 'CG'
+},
+{
+  viewValue: 'Congo" The Democratic Republic of the Congo',
+  PhoneCode: '+243',
+  code: 'CD'
+},
+{
+  viewValue: 'Cook Islands',
+  PhoneCode: '+682',
+  code: 'CK'
+},
+{
+  viewValue: 'Costa Rica',
+  PhoneCode: '+506',
+  code: 'CR'
+},
+{
+  viewValue: 'Cote d"Ivoire',
+  PhoneCode: '+225',
+  code: 'CI'
+},
+{
+  viewValue: 'Croatia',
+  PhoneCode: '+385',
+  code: 'HR'
+},
+{
+  viewValue: 'Cuba',
+  PhoneCode: '+53',
+  code: 'CU'
+},
+{
+  viewValue: 'Cyprus',
+  PhoneCode: '+357',
+  code: 'CY'
+},
+{
+  viewValue: 'Czech Republic',
+  PhoneCode: '+420',
+  code: 'CZ'
+},
+{
+  viewValue: 'Denmark',
+  PhoneCode: '+45',
+  code: 'DK'
+},
+{
+  viewValue: 'Djibouti',
+  PhoneCode: '+253',
+  code: 'DJ'
+},
+{
+  viewValue: 'Dominica',
+  PhoneCode: '+1 767',
+  code: 'DM'
+},
+{
+  viewValue: 'Dominican Republic',
+  PhoneCode: '+1 849',
+  code: 'DO'
+},
+{
+  viewValue: 'Ecuador',
+  PhoneCode: '+593',
+  code: 'EC'
+},
+{
+  viewValue: 'Egypt',
+  PhoneCode: '+20',
+  code: 'EG'
+},
+{
+  viewValue: 'El Salvador',
+  PhoneCode: '+503',
+  code: 'SV'
+},
+{
+  viewValue: 'Equatorial Guinea',
+  PhoneCode: '+240',
+  code: 'GQ'
+},
+{
+  viewValue: 'Eritrea',
+  PhoneCode: '+291',
+  code: 'ER'
+},
+{
+  viewValue: 'Estonia',
+  PhoneCode: '+372',
+  code: 'EE'
+},
+{
+  viewValue: 'Ethiopia',
+  PhoneCode: '+251',
+  code: 'ET'
+},
+{
+  viewValue: 'Falkland Islands(Malvinas) ',
+  PhoneCode: '+500',
+  code: 'FK'
+},
+{
+  viewValue: 'Faroe Islands',
+  PhoneCode: '+298',
+  code: 'FO'
+},
+{
+  viewValue: 'Fiji',
+  PhoneCode: '+679',
+  code: 'FJ'
+},
+{
+  viewValue: 'Finland',
+  PhoneCode: '+358',
+  code: 'FI'
+},
+{
+  viewValue: 'France',
+  PhoneCode: '+33',
+  code: 'FR'
+},
+{
+  viewValue: 'French Guiana',
+  PhoneCode: '+594',
+  code: 'GF'
+},
+{
+  viewValue: 'French Polynesia',
+  PhoneCode: '+689',
+  code: 'PF'
+},
+{
+  viewValue: 'Gabon',
+  PhoneCode: '+241',
+  code: 'GA'
+},
+{
+  viewValue: 'Gambia',
+  PhoneCode: '+220',
+  code: 'GM'
+},
+{
+  viewValue: 'Georgia',
+  PhoneCode: '+995',
+  code: 'GE'
+},
+{
+  viewValue: 'Germany',
+  PhoneCode: '+49',
+  code: 'DE'
+},
+{
+  viewValue: 'Ghana',
+  PhoneCode: '+233',
+  code: 'GH'
+},
+{
+  viewValue: 'Gibraltar',
+  PhoneCode: '+350',
+  code: 'GI'
+},
+{
+  viewValue: 'Greece',
+  PhoneCode: '+30',
+  code: 'GR'
+},
+{
+  viewValue: 'Greenland',
+  PhoneCode: '+299',
+  code: 'GL'
+},
+{
+  viewValue: 'Grenada',
+  PhoneCode: '+1 473',
+  code: 'GD'
+},
+{
+  viewValue: 'Guadeloupe',
+  PhoneCode: '+590',
+  code: 'GP'
+},
+{
+  viewValue: 'Guam',
+  PhoneCode: '+1 671',
+  code: 'GU'
+},
+{
+  viewValue: 'Guatemala',
+  PhoneCode: '+502',
+  code: 'GT'
+},
+{
+  viewValue: 'Guernsey',
+  PhoneCode: '+44',
+  code: 'GG'
+},
+{
+  viewValue: 'Guinea',
+  PhoneCode: '+224',
+  code: 'GN'
+},
+{
+  viewValue: 'Guinea - Bissau',
+  PhoneCode: '+245',
+  code: 'GW'
+},
+{
+  viewValue: 'Guyana',
+  PhoneCode: '+595',
+  code: 'GY'
+},
+{
+  viewValue: 'Haiti',
+  PhoneCode: '+509',
+  code: 'HT'
+},
+{
+  viewValue: 'Holy See(Vatican City State) ',
+  PhoneCode: '+379',
+  code: 'VA'
+},
+{
+  viewValue: 'Honduras',
+  PhoneCode: '+504',
+  code: 'HN'
+},
+{
+  viewValue: 'Hong Kong',
+  PhoneCode: '+852',
+  code: 'HK'
+},
+{
+  viewValue: 'Hungary',
+  PhoneCode: '+36',
+  code: 'HU'
+},
+{
+  viewValue: 'Iceland',
+  PhoneCode: '+354',
+  code: 'IS'
+},
+{
+  viewValue: 'India',
+  PhoneCode: '+91',
+  code: 'IN'
+},
+{
+  viewValue: 'Indonesia',
+  PhoneCode: '+62',
+  code: 'ID'
+},
+{
+  viewValue: 'Iran, Islamic Republic of Persian Gulf',
+  PhoneCode: '+98',
+  code: 'IR'
+},
+{
+  viewValue: 'Iraq',
+  PhoneCode: '+964',
+  code: 'IQ'
+},
+{
+  viewValue: 'Ireland',
+  PhoneCode: '+353',
+  code: 'IE'
+},
+{
+  viewValue: 'Isle of Man',
+  PhoneCode: '+44',
+  code: 'IM'
+},
+{
+  viewValue: 'Israel',
+  PhoneCode: '+972',
+  code: 'IL'
+},
+{
+  viewValue: 'Italy',
+  PhoneCode: '+39',
+  code: 'IT'
+},
+{
+  viewValue: 'Jamaica',
+  PhoneCode: '+1 876',
+  code: 'JM'
+},
+{
+  viewValue: 'Japan',
+  PhoneCode: '+81',
+  code: 'JP'
+},
+{
+  viewValue: 'Jersey',
+  PhoneCode: '+44',
+  code: 'JE'
+},
+{
+  viewValue: 'Jordan',
+  PhoneCode: '+962',
+  code: 'JO'
+},
+{
+  viewValue: 'Kazakhstan',
+  PhoneCode: '+7 7',
+  code: 'KZ'
+},
+{
+  viewValue: 'Kenya',
+  PhoneCode: '+254',
+  code: 'KE'
+},
+{
+  viewValue: 'Kiribati',
+  PhoneCode: '+686',
+  code: 'KI'
+},
+{
+  viewValue: 'Korea, Democratic People"s Republic of Korea',
+  PhoneCode: '+850',
+  code: 'KP'
+},
+{
+  viewValue: 'Korea, Republic of South Korea',
+  PhoneCode: '+82',
+  code: 'KR'
+},
+{
+  viewValue: 'Kuwait',
+  PhoneCode: '+965',
+  code: 'KW'
+},
+{
+  viewValue: 'Kyrgyzstan',
+  PhoneCode: '+996',
+  code: 'KG'
+},
+{
+  viewValue: 'Laos',
+  PhoneCode: '+856',
+  code: 'LA'
+},
+{
+  viewValue: 'Latvia',
+  PhoneCode: '+371',
+  code: 'LV'
+},
+{
+  viewValue: 'Lebanon',
+  PhoneCode: '+961',
+  code: 'LB'
+},
+{
+  viewValue: 'Lesotho',
+  PhoneCode: '+266',
+  code: 'LS'
+},
+{
+  viewValue: 'Liberia',
+  PhoneCode: '+231',
+  code: 'LR'
+},
+{
+  viewValue: 'Libyan Arab Jamahiriya',
+  PhoneCode: '+218',
+  code: 'LY'
+},
+{
+  viewValue: 'Liechtenstein',
+  PhoneCode: '+423',
+  code: 'LI'
+},
+{
+  viewValue: 'Lithuania',
+  PhoneCode: '+370',
+  code: 'LT'
+},
+{
+  viewValue: 'Luxembourg',
+  PhoneCode: '+352',
+  code: 'LU'
+},
+{
+  viewValue: 'Macao',
+  PhoneCode: '+853',
+  code: 'MO'
+},
+{
+  viewValue: 'Macedonia',
+  PhoneCode: '+389',
+  code: 'MK'
+},
+{
+  viewValue: 'Madagascar',
+  PhoneCode: '+261',
+  code: 'MG'
+},
+{
+  viewValue: 'Malawi',
+  PhoneCode: '+265',
+  code: 'MW'
+},
+{
+  viewValue: 'Malaysia',
+  PhoneCode: '+60',
+  code: 'MY'
+},
+{
+  viewValue: 'Maldives',
+  PhoneCode: '+960',
+  code: 'MV'
+},
+{
+  viewValue: 'Mali',
+  PhoneCode: '+223',
+  code: 'ML'
+},
+{
+  viewValue: 'Malta',
+  PhoneCode: '+356',
+  code: 'MT'
+},
+{
+  viewValue: 'Marshall Islands',
+  PhoneCode: '+692',
+  code: 'MH'
+},
+{
+  viewValue: 'Martinique',
+  PhoneCode: '+596',
+  code: 'MQ'
+},
+{
+  viewValue: 'Mauritania',
+  PhoneCode: '+222',
+  code: 'MR'
+},
+{
+  viewValue: 'Mauritius',
+  PhoneCode: '+230',
+  code: 'MU'
+},
+{
+  viewValue: 'Mayotte',
+  PhoneCode: '+262',
+  code: 'YT'
+},
+{
+  viewValue: 'Mexico',
+  PhoneCode: '+52',
+  code: 'MX'
+},
+{
+  viewValue: 'Micronesia, Federated States of Micronesia',
+  PhoneCode: '+691',
+  code: 'FM'
+},
+{
+  viewValue: 'Moldova',
+  PhoneCode: '+373',
+  code: 'MD'
+},
+{
+  viewValue: 'Monaco',
+  PhoneCode: '+377',
+  code: 'MC'
+},
+{
+  viewValue: 'Mongolia',
+  PhoneCode: '+976',
+  code: 'MN'
+},
+{
+  viewValue: 'Montenegro',
+  PhoneCode: '+382',
+  code: 'ME'
+},
+{
+  viewValue: 'Montserrat',
+  PhoneCode: '+1664',
+  code: 'MS'
+},
+{
+  viewValue: 'Morocco',
+  PhoneCode: '+212',
+  code: 'MA'
+},
+{
+  viewValue: 'Mozambique',
+  PhoneCode: '+258',
+  code: 'MZ'
+},
+{
+  viewValue: 'Myanmar',
+  PhoneCode: '+95',
+  code: 'MM'
+},
+{
+  viewValue: 'Namibia',
+  PhoneCode: '+264',
+  code: 'NA'
+},
+{
+  viewValue: 'Nauru',
+  PhoneCode: '+674',
+  code: 'NR'
+},
+{
+  viewValue: 'Nepal',
+  PhoneCode: '+977',
+  code: 'NP'
+},
+{
+  viewValue: 'Netherlands',
+  PhoneCode: '+31',
+  code: 'NL'
+},
+{
+  viewValue: 'Netherlands Antilles',
+  PhoneCode: '+599',
+  code: 'AN'
+},
+{
+  viewValue: 'New Caledonia',
+  PhoneCode: '+687',
+  code: 'NC'
+},
+{
+  viewValue: 'New Zealand',
+  PhoneCode: '+64',
+  code: 'NZ'
+},
+{
+  viewValue: 'Nicaragua',
+  PhoneCode: '+505',
+  code: 'NI'
+},
+{
+  viewValue: 'Niger',
+  PhoneCode: '+227',
+  code: 'NE'
+},
+{
+  viewValue: 'Nigeria',
+  PhoneCode: '+234',
+  code: 'NG'
+},
+{
+  viewValue: 'Niue',
+  PhoneCode: '+683',
+  code: 'NU'
+},
+{
+  viewValue: 'Norfolk Island',
+  PhoneCode: '+672',
+  code: 'NF'
+},
+{
+  viewValue: 'Northern Mariana Islands',
+  PhoneCode: '+1 670',
+  code: 'MP'
+},
+{
+  viewValue: 'Norway',
+  PhoneCode: '+47',
+  code: 'NO'
+},
+{
+  viewValue: 'Oman',
+  PhoneCode: '+968',
+  code: 'OM'
+},
+{
+  viewValue: 'Pakistan',
+  PhoneCode: '+92',
+  code: 'PK'
+},
+{
+  viewValue: 'Palau',
+  PhoneCode: '+680',
+  code: 'PW'
+},
+{
+  viewValue: 'Palestinian Territory, Occupied',
+  PhoneCode: '+970',
+  code: 'PS'
+},
+{
+  viewValue: 'Panama',
+  PhoneCode: '+507',
+  code: 'PA'
+},
+{
+  viewValue: 'Papua New Guinea',
+  PhoneCode: '+675',
+  code: 'PG'
+},
+{
+  viewValue: 'Paraguay',
+  PhoneCode: '+595',
+  code: 'PY'
+},
+{
+  viewValue: 'Peru',
+  PhoneCode: '+51',
+  code: 'PE'
+},
+{
+  viewValue: 'Philippines',
+  PhoneCode: '+63',
+  code: 'PH'
+},
+{
+  viewValue: 'Pitcairn',
+  PhoneCode: '+872',
+  code: 'PN'
+},
+{
+  viewValue: 'Poland',
+  PhoneCode: '+48',
+  code: 'PL'
+},
+{
+  viewValue: 'Portugal',
+  PhoneCode: '+351',
+  code: 'PT'
+},
+{
+  viewValue: 'Puerto Rico',
+  PhoneCode: '+1 939',
+  code: 'PR'
+},
+{
+  viewValue: 'Qatar',
+  PhoneCode: '+974',
+  code: 'QA'
+},
+{
+  viewValue: 'Romania',
+  PhoneCode: '+40',
+  code: 'RO'
+},
+{
+  viewValue: 'Russia',
+  PhoneCode: '+7',
+  code: 'RU'
+},
+{
+  viewValue: 'Rwanda',
+  PhoneCode: '+250',
+  code: 'RW'
+},
+{
+  viewValue: 'Reunion',
+  PhoneCode: '+262',
+  code: 'RE'
+},
+{
+  viewValue: 'Saint Barthelemy',
+  PhoneCode: '+590',
+  code: 'BL'
+},
+{
+  viewValue: 'Saint Helena, Ascension and Tristan Da Cunha',
+  PhoneCode: '+290',
+  code: 'SH'
+},
+{
+  viewValue: 'Saint Kitts and Nevis',
+  PhoneCode: '+1 869',
+  code: 'KN'
+},
+{
+  viewValue: 'Saint Lucia',
+  PhoneCode: '+1 758',
+  code: 'LC'
+},
+{
+  viewValue: 'Saint Martin',
+  PhoneCode: '+590',
+  code: 'MF'
+},
+{
+  viewValue: 'Saint Pierre and Miquelon',
+  PhoneCode: '+508',
+  code: 'PM'
+},
+{
+  viewValue: 'Saint Vincent and the Grenadines',
+  PhoneCode: '+1 784',
+  code: 'VC'
+},
+{
+  viewValue: 'Samoa',
+  PhoneCode: '+685',
+  code: 'WS'
+},
+{
+  viewValue: 'San Marino',
+  PhoneCode: '+378',
+  code: 'SM'
+},
+{
+  viewValue: 'Sao Tome and Principe',
+  PhoneCode: '+239',
+  code: 'ST'
+},
+{
+  viewValue: 'Saudi Arabia',
+  PhoneCode: '+966',
+  code: 'SA'
+},
+{
+  viewValue: 'Senegal',
+  PhoneCode: '+221',
+  code: 'SN'
+},
+{
+  viewValue: 'Serbia',
+  PhoneCode: '+381',
+  code: 'RS'
+},
+{
+  viewValue: 'Seychelles',
+  PhoneCode: '+248',
+  code: 'SC'
+},
+{
+  viewValue: 'Sierra Leone',
+  PhoneCode: '+232',
+  code: 'SL'
+},
+{
+  viewValue: 'Singapore',
+  PhoneCode: '+65',
+  code: 'SG'
+},
+{
+  viewValue: 'Slovakia',
+  PhoneCode: '+421',
+  code: 'SK'
+},
+{
+  viewValue: 'Slovenia',
+  PhoneCode: '+386',
+  code: 'SI'
+},
+{
+  viewValue: 'Solomon Islands',
+  PhoneCode: '+677',
+  code: 'SB'
+},
+{
+  viewValue: 'Somalia',
+  PhoneCode: '+252',
+  code: 'SO'
+},
+{
+  viewValue: 'South Africa',
+  PhoneCode: '+27',
+  code: 'ZA'
+},
+{
+  viewValue: 'South Georgia and the South Sandwich Islands',
+  PhoneCode: '+500',
+  code: 'GS'
+},
+{
+  viewValue: 'Spain',
+  PhoneCode: '+34',
+  code: 'ES'
+},
+{
+  viewValue: 'Sri Lanka',
+  PhoneCode: '+94',
+  code: 'LK'
+},
+{
+  viewValue: 'Sudan',
+  PhoneCode: '+249',
+  code: 'SD'
+},
+{
+  viewValue: 'Suriname',
+  PhoneCode: '+597',
+  code: 'SR'
+},
+{
+  viewValue: 'Svalbard and Jan Mayen',
+  PhoneCode: '+47',
+  code: 'SJ'
+},
+{
+  viewValue: 'Swaziland',
+  PhoneCode: '+268',
+  code: 'SZ'
+},
+{
+  viewValue: 'Sweden',
+  PhoneCode: '+46',
+  code: 'SE'
+},
+{
+  viewValue: 'Switzerland',
+  PhoneCode: '+41',
+  code: 'CH'
+},
+{
+  viewValue: 'Syrian Arab Republic',
+  PhoneCode: '+963',
+  code: 'SY'
+},
+{
+  viewValue: 'Taiwan',
+  PhoneCode: '+886',
+  code: 'TW'
+},
+{
+  viewValue: 'Tajikistan',
+  PhoneCode: '+992',
+  code: 'TJ'
+},
+{
+  viewValue: 'Tanzania, United Republic of Tanzania',
+  PhoneCode: '+255',
+  code: 'TZ'
+},
+{
+  viewValue: 'Thailand',
+  PhoneCode: '+66',
+  code: 'TH'
+},
+{
+  viewValue: 'Timor - Leste',
+  PhoneCode: '+670',
+  code: 'TL'
+},
+{
+  viewValue: 'Togo',
+  PhoneCode: '+228',
+  code: 'TG'
+},
+{
+  viewValue: 'Tokelau',
+  PhoneCode: '+690',
+  code: 'TK'
+},
+{
+  viewValue: 'Tonga',
+  PhoneCode: '+676',
+  code: 'TO'
+},
+{
+  viewValue: 'Trinidad and Tobago',
+  PhoneCode: '+1 868',
+  code: 'TT'
+},
+{
+  viewValue: 'Tunisia',
+  PhoneCode: '+216',
+  code: 'TN'
+},
+{
+  viewValue: 'Turkey',
+  PhoneCode: '+90',
+  code: 'TR'
+},
+{
+  viewValue: 'Turkmenistan',
+  PhoneCode: '+993',
+  code: 'TM'
+},
+{
+  viewValue: 'Turks and Caicos Islands',
+  PhoneCode: '+1 649',
+  code: 'TC'
+},
+{
+  viewValue: 'Tuvalu',
+  PhoneCode: '+688',
+  code: 'TV'
+},
+{
+  viewValue: 'Uganda',
+  PhoneCode: '+256',
+  code: 'UG'
+},
+{
+  viewValue: 'Ukraine',
+  PhoneCode: '+380',
+  code: 'UA'
+},
+{
+  viewValue: 'United Arab Emirates',
+  PhoneCode: '+971',
+  code: 'AE'
+},
+{
+  viewValue: 'United Kingdom',
+  PhoneCode: '+44',
+  code: 'GB'
+},
+{
+  viewValue: 'United States',
+  PhoneCode: '+1',
+  code: 'US'
+},
+{
+  viewValue: 'Uruguay',
+  PhoneCode: '+598',
+  code: 'UY'
+},
+{
+  viewValue: 'Uzbekistan',
+  PhoneCode: '+998',
+  code: 'UZ'
+},
+{
+  viewValue: 'Vanuatu',
+  PhoneCode: '+678',
+  code: 'VU'
+},
+{
+  viewValue: 'Venezuela, Bolivarian Republic of Venezuela',
+  PhoneCode: '+58',
+  code: 'VE'
+},
+{
+  viewValue: 'Vietnam',
+  PhoneCode: '+84',
+  code: 'VN'
+},
+{
+  viewValue: 'Virgin Islands, British',
+  PhoneCode: '+1 284',
+  code: 'VG'
+},
+{
+  viewValue: 'Virgin Islands, U.S.',
+  PhoneCode: '+1 340',
+  code: 'VI'
+},
+{
+  viewValue: 'Wallis and Futuna',
+  PhoneCode: '+681',
+  code: 'WF'
+},
+{
+  viewValue: 'Yemen',
+  PhoneCode: '+967',
+  code: 'YE'
+},
+{
+  viewValue: 'Zambia',
+  PhoneCode: '+260',
+  code: 'ZM'
+},
+{  viewValue: 'Zimbabwe',
+  PhoneCode: '+263',
+  code: 'ZW'
+}
+];
 
 }
