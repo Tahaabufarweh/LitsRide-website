@@ -14,6 +14,7 @@
     "carInfoHint": "Write your car info",
 
     "passwordisrequired": "Password Should be at least 8 characters",
+    "passwordrequired": "Password is required",
     "Language": "Language",
     "TripsLabel": "Trips",
     "newTripLabel": "New Trip",
@@ -70,7 +71,9 @@
     "Status": "Status",
     "TripDetails": "Trip Details",
     "Logout": "Logout",
-    "usernameHint": "Username should be at least 6 characters"
+    "usernameHint": "Username should be at least 6 characters",
+    "Countryisrequired": "Country is required",
+    "MobileNumberrequired": "Mobile Number is required"
 
 
 

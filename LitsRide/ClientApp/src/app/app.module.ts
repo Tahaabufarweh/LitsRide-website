@@ -36,6 +36,7 @@ import { AuthService } from './services/auth.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationService } from './services/notification.service';
 
+
 // Configs 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -82,6 +83,7 @@ export function tokenGetter() {
     AngularDateTimePickerModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
+    
     SocialLoginModule,
     JwtModule.forRoot({
       config: {
@@ -90,6 +92,7 @@ export function tokenGetter() {
     }),
     ReactiveFormsModule,
     DemoMaterialModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
