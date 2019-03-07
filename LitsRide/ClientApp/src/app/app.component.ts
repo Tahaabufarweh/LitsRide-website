@@ -32,7 +32,12 @@ export class AppComponent implements OnInit {
     this.authService.checkLogin();
   }
   
-
+  isLoginOrSignUp() {
+    if (this.router.url == "/register" || this.router.url == "/login") {
+      return true;
+    }
+    return false;
+  }
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
 

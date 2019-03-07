@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
     <h4 class="card-title">  {{ 'HOME.newTripLabel' | translate }}</h4>
-  
+
   </mat-card-header>
   <form [formGroup]="TripsForm">
     <div class="card-body">
@@ -10,7 +10,7 @@
 
           <ng-template matStepLabel>{{ 'HOME.startTrip' | translate }}</ng-template>
           <mat-form-field class="col-md-6">
-          
+
             <input matInput ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleFromAddressChange($event)" placeholder="{{ 'HOME.fromDest' | translate }}" formControlName="fromDestination">
             <!--<mat-hint><b>Example:</b> exm@abc.com </mat-hint>-->
             <mat-error *ngIf="fromDestination.touched && fromDestination.invalid">
@@ -19,7 +19,7 @@
           </mat-form-field>
           <br />
           <mat-form-field class="col-md-6">
-            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef1="ngx-places" (onAddressChange)="handleToAddressChange($event)" placeholder= "{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
+            <input matInput ngx-google-places-autocomplete [options]='options' #placesRef1="ngx-places" (onAddressChange)="handleToAddressChange($event)" placeholder="{{ 'HOME.toDest' | translate }}" formControlName="toDestination">
             <mat-error *ngIf="toDestination.touched && toDestination.invalid">
               {{ 'HOME.enterPlace' | translate }}
             </mat-error>
@@ -33,7 +33,7 @@
 
           <ng-template matStepLabel>   {{ 'HOME.completeTrip' | translate }}</ng-template>
           <br />
-          <angular2-date-picker formControlName="StartTime"
+          <angular2-date-picker formControlName="StartTime" (change)="setStartTime($event)"
                                 style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
 
 
@@ -41,7 +41,7 @@
           <br />
           <br />
           <br />
-               <br />
+          <br />
 
 
 
@@ -49,18 +49,18 @@
                                 style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
           <br />
           <br />
-                    <br />
-          <br />
-          <br />
-               <br />
           <br />
           <br />
           <br />
-               <br />
           <br />
           <br />
           <br />
-               <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <br />
           <br />
           <br />
@@ -141,6 +141,6 @@
 
     </div>
   </form>
-  
+  <simple-notifications></simple-notifications>
 </mat-card>
 
