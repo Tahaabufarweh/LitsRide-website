@@ -25,7 +25,7 @@
           </mat-card>
         </mat-tab>
         <mat-tab label="{{ 'HOME.TripsLabel' | translate }}">
-          <mat-card *ngFor="let trip of user.trips">
+          <mat-card *ngFor="let trip of user.trip">
             <p> {{ trip.fromDestination }} </p>
             <p> {{ trip.toDestination }} </p>
             <p> {{ trip.startTime }} </p>
@@ -87,8 +87,8 @@
          
           <div class="row text-center">
 
-            <button class="btn btn-danger btn-round mt-lg-5 " mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
-            <button class="btn btn-danger btn-round mt-lg-5 ml-2" mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
+            <button  mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
+            <button  mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
           </div>
     </mat-card>
   </div>

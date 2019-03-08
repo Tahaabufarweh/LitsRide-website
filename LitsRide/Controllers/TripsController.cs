@@ -162,13 +162,16 @@ namespace LitsRide.Controllers
         /// <returns>list of trips </returns>
         [HttpGet]
         [Route("GetTripsSearch")]
-        public async Task<ActionResult<IEnumerable<Trip>>> GetTripsSearch(FilterTripsResource Search)
+        public async Task<ActionResult<IEnumerable<Trip>>> GetTripsSearch(FilterTripsResource Search , int PageNo = 1, int PageSize = 10)
         {
             var trip = await _context.Trip.Where(x => (string.IsNullOrEmpty(Search.FromDest) || x.FromDestination.Contains(Search.FromDest))
                                                     && (string.IsNullOrEmpty(Search.ToDest) || x.FromDestination.Contains(Search.ToDest))
                                                     && (Search.StartTime == null || x.StartTime >= Search.StartTime)
                                                     && (Search.PriceMin == null || x.Price >= Search.PriceMin)
-                                                    && (Search.PriceMax == null || x.Price <= Search.PriceMax)).ToListAsync();
+                                                    && (Search.PriceMax == null || x.Price <= Search.PriceMax))
+                                                    .Include(x=>x.Driver)
+                                                    .OrderByDescending(y => y.StartTime).Skip((PageNo - 1) * PageSize).Take(PageSize)
+                                                    .ToListAsync();
 
             if (trip == null)
             {
