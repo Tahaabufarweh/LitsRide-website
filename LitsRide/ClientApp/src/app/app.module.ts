@@ -35,6 +35,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationService } from './services/notification.service';
+import { PaginationComponent } from './trips/pagination.component';
 
 
 // Configs 
@@ -72,6 +73,7 @@ export function tokenGetter() {
     TripsComponent,
     ProfileComponent,
     RatingComponent,
+    PaginationComponent,
     FilteringComponent,
     CompleteProfileComponent,
     TripDetailsComponent

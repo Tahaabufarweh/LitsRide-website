@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LitsRide.Models;
@@ -14,20 +12,42 @@ namespace LitsRide.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly LetsRideinContext _context;
-
         public ReportsController(LetsRideinContext context)
         {
             _context = context;
         }
-
-        // GET: api/Reports
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Report>>> GetReport()
+        
+        /// <summary>
+        /// Insert new report for specific user
+        /// </summary>
+        /// <param name="NewReport">object of Rating</param>
+        /// <returns>Report Object</returns>
+        [HttpPost]
+        [Route("InsertNewReport")]
+        public async Task<ActionResult<Report>> InsertNewReport([FromBody] Report NewReport)
         {
-            return await _context.Report.OrderByDescending(x=>x.Id).ToListAsync();
+            _context.Report.Add(NewReport);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetReport", new { id = NewReport.Id }, NewReport);
         }
 
-        // GET: api/Reports/5
+        /// <summary>
+        /// Get All Report By User Id
+        /// </summary>
+        /// <param name="UserId">int variable</param>
+        /// <returns>Report List</returns>
+        [HttpGet]
+        [Route("GetAllReportByUserId/{UserId}")]
+        public async Task<ActionResult<IEnumerable<Rating>>> GetAllReportByUserId(int UserId)
+        {
+            return await _context.Rating.Where(x => x.Id == UserId).Include(x => x.User).OrderByDescending(x => x.Id).ToListAsync();
+        }
+
+        /// <summary>
+        /// Get Report
+        /// </summary>
+        /// <param name="Id">int variable</param>
+        /// <returns>Report object</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Report>> GetReport(int id)
         {
@@ -41,32 +61,10 @@ namespace LitsRide.Controllers
             return report;
         }
 
-
-        // POST: api/Reports
-        [HttpPost]
-        public async Task<ActionResult<Report>> PostReport(Report report)
-        {
-            _context.Report.Add(report);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ReportExists(report.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetReport", new { id = report.Id }, report);
-        }
-
-        // DELETE: api/Reports/5
+        /// <summary>
+        /// Delete Report
+        /// </summary>
+        /// <param name="Id">int variable</param>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Report>> DeleteReport(int id)
         {
@@ -82,9 +80,6 @@ namespace LitsRide.Controllers
             return report;
         }
 
-        private bool ReportExists(int id)
-        {
-            return _context.Report.Any(e => e.Id == id);
-        }
     }
 }
+

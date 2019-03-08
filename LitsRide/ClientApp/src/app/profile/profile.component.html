@@ -11,11 +11,50 @@
     <mat-card class="col-md-12">
       <mat-tab-group>
         <mat-tab label="{{ 'HOME.ProfileInfo' | translate }}">
-
+          <mat-card>
+            <mat-grid-list cols="1" rowHeight="2:1">
+              <mat-grid-tile>
+                <p>{{user.country}}</p>
+              </mat-grid-tile>
+              <mat-card><b> Gender :</b>{{user.gender}}</mat-card>
+              <mat-card><b>Full Name :</b>{{user.fullname}}</mat-card>
+              <mat-card><b>Email :</b> {{user.email}}</mat-card>
+              <mat-card><b>Mobile</b> {{ user.mobileNumber }} </mat-card>
+              <mat-card> {{ user.birthDate | date }} </mat-card>
+            </mat-grid-list>
+          </mat-card>
         </mat-tab>
-        <mat-tab label="{{ 'HOME.TripsLabel' | translate }}"> Content 2 </mat-tab>
-        <mat-tab label="{{ 'HOME.Requests' | translate }}"> Content 3 </mat-tab>
-        <mat-tab label="{{ 'HOME.Ratings' | translate }}"> Content 3 </mat-tab>
+        <mat-tab label="{{ 'HOME.TripsLabel' | translate }}">
+          <mat-card *ngFor="let trip of user.trip">
+            <p> {{ trip.fromDestination }} </p>
+            <p> {{ trip.toDestination }} </p>
+            <p> {{ trip.startTime }} </p>
+            <p> {{ trip.isArrived }} </p>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="{{ 'HOME.Requests' | translate }}">
+          <mat-card *ngFor="let request of user.requests">
+            <p> {{ request.requestDate }} </p>
+            <p> {{ request.status }} </p>
+            <p> {{ request.passengerNote }} </p>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="{{ 'HOME.Ratings' | translate }}">
+          <mat-card>
+            <div class="row">
+              <div class="col-md-3"> Rated by </div>
+              <div class="col-md-3"> Rate </div>
+              <div class="col-md-3"> Note </div>
+            </div>
+          </mat-card>
+          <mat-card *ngFor="let request of user.ratingUser">
+            <div class="row">
+              <div class="col-md-3"> {{ request.userId }} </div>
+              <div class="col-md-3"> {{ request.rating1 }} </div>
+              <div class="col-md-3"> {{ request.note }} </div>
+            </div>
+          </mat-card>
+        </mat-tab>
       </mat-tab-group>
     </mat-card>
 
@@ -36,7 +75,7 @@
           
           </div>
 
-</mat-card-header>
+      </mat-card-header>
         <h6 class="card-category text-gray">CEO / Co-Founder</h6>
       
           <h4 class="card-title">Alec Thompson</h4>
@@ -48,10 +87,10 @@
          
           <div class="row text-center">
 
-            <button class="btn btn-danger btn-round mt-lg-5 " mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
-            <button class="btn btn-danger btn-round mt-lg-5 ml-2" mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
+            <button  mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
+            <button  mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
           </div>
-</mat-card>
+    </mat-card>
   </div>
 
 </div>

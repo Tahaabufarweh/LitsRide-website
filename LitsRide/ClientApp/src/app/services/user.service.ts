@@ -3,9 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { error } from 'util';
+import { User } from '../modelInterfaces';
 //import { User } from 'app/ModelInterfaces/ModelInterface';
 
 const baseUrl = 'api/Users/'
+const getUserRoute = 'GetUser/';
 const signupRoute = 'SignUp';
 const signinRoute = 'signin';
 
@@ -20,17 +22,16 @@ export class UserService {
   constructor(private httpClient: HttpClient, private router: Router) {
 
     }
-    getUserById(id) {
-        return this.httpClient.get(baseUrl + id);
+  getUserDetialsById(id) {
+    return this.httpClient.get(baseUrl + getUserRoute + id);
     }
 
-    createUser(user) {
+    createUser(user: User) {
         return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
     }
 
-  login(user) {
+    login(user) {
     return this.httpClient.post(baseUrl + "Login", JSON.stringify(user), httpOptions)
-        
-         }
+     }
 
 }
