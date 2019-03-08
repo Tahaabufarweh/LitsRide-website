@@ -81,9 +81,9 @@ export class RegisterComponent {
   
   CreateNewUser() {
     
-    let MN = this.filterItemsOfType(this.Country.value) + this.MobileNumber.value;
+    let MobileNo = this.filterItemsOfType(this.Country.value) + this.MobileNumber.value;
     
-    this.signUpForm.controls['MobileNumber'].setValue(MN);
+    this.signUpForm.controls['MobileNumber'].setValue(MobileNo);
     
     this.userService.createUser(this.signUpForm.value).subscribe(response => {
       
