@@ -30,7 +30,6 @@
 
         #region Public API
 
-        #region Users
         /// <summary>
         /// Create New User 
         /// </summary>
@@ -117,66 +116,11 @@
         {
             return CheckUniqueEmail(Email);
         }
-        #endregion
-
-        #region Rating
-
-        /// <summary>
-        /// Insert new rate for specific user
-        /// </summary>
-        /// <param name="NewRate">object of Rating</param>
-        /// <returns>Rating Object</returns>
-        [HttpPost]
-        [Route("InsertNewRate")]
-        public Rating InsertNewRate([FromBody] Rating NewRate)
-        {
-            return InsertRate(NewRate);
-        }
-
-        /// <summary>
-        /// Get All Ratings By User Id
-        /// </summary>
-        /// <param name="UserId">int variable</param>
-        /// <returns>Rating List</returns>
-        [HttpGet]
-        [Route("GetAllRatingsByUserId")]
-        public List<Rating> GetAllRatingsByUserId(int UserId)
-        {
-            return _context.Rating.Where(rate => rate.UserId == UserId).ToList();
-        }
-        #endregion
-
-        #region Reporting
-        /// <summary>
-        /// Insert new report for specific user
-        /// </summary>
-        /// <param name="NewReport">object of Rating</param>
-        /// <returns>Report Object</returns>
-        [HttpPost]
-        [Route("InsertNewReport")]
-        public Report InsertNewReport([FromBody] Report NewReport)
-        {
-            return InsertReport(NewReport);
-        }
-
-        /// <summary>
-        /// Get All Report By User Id
-        /// </summary>
-        /// <param name="UserId">int variable</param>
-        /// <returns>Report List</returns>
-        [HttpGet]
-        [Route("GetAllReportByUserId")]
-        public List<Report> GetAllReportByUserId(int UserId)
-        {
-            return _context.Report.Where(rate => rate.UserId == UserId).ToList();
-        }
-        #endregion
 
         #endregion
 
         #region Private Methods
 
-        #region Users
         private User CreateNewUser(User NewUser)
         {
             
@@ -203,27 +147,6 @@
             List<User> UsersList = _context.User.Where(user => user.Email.Trim().ToLower() == Email.Trim().ToLower()).ToList();
             return UsersList.Count() > 0;
         }
-        #endregion
-
-        #region Rating
-        private Rating InsertRate(Rating NewRate)
-        {
-            _context.Rating.Add(NewRate);
-            _context.SaveChanges();
-            return NewRate;
-        }
-        #endregion
-
-        #region Reporting
-        private Report InsertReport(Report NewReport)
-        {
-            _context.Report.Add(NewReport);
-            _context.SaveChanges();
-            return NewReport;
-        }
-
-        #endregion
-
         #endregion
     }
 }

@@ -19,32 +19,44 @@ namespace LitsRide.Controllers
         {
             _context = context;
         }
+        #region Rating
 
-        // GET: api/Ratings
-        [HttpGet]
-        [Route("GetUserRating/{userId}")]
-        public async Task<ActionResult<IEnumerable<Rating>>> GetUserRating(int userId)
-        {
-            return await _context.Rating.Where(x=>x.Id == userId).Include(x=>x.User).OrderByDescending(x=>x.Id).ToListAsync();
-        }
-
-        // POST: api/Ratings
+        /// <summary>
+        /// Insert new rate for specific user
+        /// </summary>
+        /// <param name="NewRate">object of Rating</param>
+        /// <returns>Rating Object</returns>
         [HttpPost]
-        [Route("CreateNewRate")]
-        public async Task<ActionResult<Rating>> PostRating(Rating rating)
+        [Route("InsertNewRate")]
+        public async Task<ActionResult<Rating>> InsertNewRate([FromBody] Rating NewRate)
         {
-            _context.Rating.Add(rating);
+            _context.Rating.Add(NewRate);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRating", new { id = rating.Id }, rating);
+            return CreatedAtAction("GetRating", new { id = NewRate.Id }, NewRate);
         }
 
-        // DELETE: api/Ratings/5
-        [HttpDelete]
-        [Route("DeleteRate/{id}")]
-        public async Task<ActionResult<Rating>> DeleteRating(int id)
+        /// <summary>
+        /// Get All Ratings By User Id
+        /// </summary>
+        /// <param name="UserId">int variable</param>
+        /// <returns>Rating List</returns>
+        [HttpGet]
+        [Route("GetAllRatingsByUserId/{UserId}")]
+        public async Task<ActionResult<IEnumerable<Rating>>> GetAllRatingsByUserId(int UserId)
         {
-            var rating = await _context.Rating.FindAsync(id);
+            return await _context.Rating.Where(x => x.Id == UserId).Include(x => x.User).OrderByDescending(x => x.Id).ToListAsync();
+        }
+
+        /// <summary>
+        /// Delete Rating
+        /// </summary>
+        /// <param name="Id">int variable</param>
+        [HttpDelete]
+        [Route("DeleteRating/{Id}")]
+        public async Task<ActionResult<Rating>> DeleteRating(int Id)
+        {
+            var rating = await _context.Rating.FindAsync(Id);
             if (rating == null)
             {
                 return NotFound();
@@ -56,9 +68,23 @@ namespace LitsRide.Controllers
             return rating;
         }
 
-        private bool RatingExists(int id)
+        /// <summary>
+        /// Get Rating
+        /// </summary>
+        /// <param name="Id">int variable</param>
+        /// <returns>Rating object</returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Rating>> GetRating(int id)
         {
-            return _context.Rating.Any(e => e.Id == id);
+            var Rating = await _context.Rating.FindAsync(id);
+
+            if (Rating == null)
+            {
+                return NotFound();
+            }
+
+            return Rating;
         }
+        #endregion
     }
 }
