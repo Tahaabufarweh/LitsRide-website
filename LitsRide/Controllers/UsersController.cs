@@ -12,6 +12,7 @@
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     #endregion
 
     [Route("api/[controller]")]
@@ -66,8 +67,11 @@
 
             return User;
         }
-
-
+        [HttpGet]
+        [Route("GetUser/{id}")]
+        public IActionResult getUser(int id) {
+            return Ok(_context.User.Where(x => x.Id == id).Include(x=>x.RatingUser).FirstOrDefault());
+        }
         // GET api/values
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]User user)
