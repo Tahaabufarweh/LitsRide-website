@@ -11,6 +11,7 @@
     using System.IdentityModel.Tokens.Jwt;
     using System;
     using System.Security.Claims;
+    using Microsoft.EntityFrameworkCore;
     #endregion
 
     [Route("api/[controller]")]
@@ -43,7 +44,11 @@
             return CreateNewUser(NewUser);
              
         }
-
+        [HttpGet]
+        [Route("GetUser/{id}")]
+        public IActionResult getUser(int id) {
+            return Ok(_context.User.Where(x => x.Id == id).Include(x=>x.RatingUser).FirstOrDefault());
+        }
         // GET api/values
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]User user)

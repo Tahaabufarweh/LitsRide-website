@@ -104,7 +104,16 @@
           </div>
           <hr />
 
-
+          <mat-card *ngFor="let request of requests">
+            <p>{{request.user.username}}</p>
+            <p>{{request.passengerNote}}</p>
+            <p>{{request.status}}</p>
+            <p>{{request.paymentMethod}}</p>
+            <p>{{request.requestDate}}</p>
+            <button mat-raised-button color="primary">Accept</button>
+            <button mat-raised-button color="danger">Reject</button>
+            <button mat-raised-button color="warning">Cancel</button>
+          </mat-card>
         </mat-card-content>
         <mat-card-actions class="text-center">
           

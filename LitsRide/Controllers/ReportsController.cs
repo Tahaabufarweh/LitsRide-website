@@ -17,7 +17,6 @@ namespace LitsRide.Controllers
             _context = context;
         }
 
-        #region Reporting
         /// <summary>
         /// Insert new report for specific user
         /// </summary>
@@ -28,23 +27,8 @@ namespace LitsRide.Controllers
         public async Task<ActionResult<Report>> InsertNewReport([FromBody] Report NewReport)
         {
             _context.Report.Add(NewReport);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ReportExists(NewReport.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetReport", new { id = report.Id }, report);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetReport", new { id = NewReport.Id }, NewReport);
         }
 
         /// <summary>
