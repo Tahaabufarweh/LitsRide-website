@@ -11,6 +11,7 @@
     using System.IdentityModel.Tokens.Jwt;
     using System;
     using System.Security.Claims;
+    using System.Threading.Tasks;
     #endregion
 
     [Route("api/[controller]")]
@@ -37,12 +38,35 @@
         /// <returns>user </returns>
         [HttpPost]
         [Route("SignUp")]
-        public User SignUp([FromBody] User NewUser)
+        public async Task<ActionResult<User>> SignUp([FromBody] User NewUser)
         {
-
-            return CreateNewUser(NewUser);
-             
+            if (CheckUniqueUsername(NewUser.Username))
+            {
+                return BadRequest("Username is exist!");
+            }
+            else if (CheckUniqueEmail(NewUser.Email))
+            {
+                return BadRequest("Email is exist!");
+            }
+            NewUser.Password = Encrypt(NewUser.Password);
+            _context.User.Add(NewUser);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetUser", new { id = NewUser.Id }, NewUser);
         }
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+            var User = await _context.User.FindAsync(id);
+
+            if (User == null)
+            {
+                return NotFound();
+            }
+
+            return User;
+        }
+
 
         // GET api/values
         [HttpPost, Route("login")]
@@ -52,7 +76,7 @@
             {
                 return BadRequest("Invalid client request");
             }
-            var userInDb = _context.User.Where(u => u.Username.Trim().ToLower() == user.Username.Trim().ToLower() && u.Password == user.Password).FirstOrDefault();
+            var userInDb = _context.User.Where(u => u.Username.Trim().ToLower() == user.Username.Trim().ToLower() && Decrypt(u.Password) == user.Password).FirstOrDefault();
             if (userInDb != null)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("LitsRideSecurity@hasanDaaja"));
@@ -79,6 +103,7 @@
                 return Unauthorized();
             }
         }
+
         /// <summary>
         /// Get User info by UserId
         /// </summary>
@@ -91,6 +116,28 @@
         {
 
             return UsernameOrEmail;
+        }
+
+        /// <summary>
+        /// Update user infomation 
+        /// </summary>
+        /// <param name="NewUserInfo"></param>
+        /// <returns>user </returns>
+        [HttpPost]
+        [Route("UpdateUserInfo")]
+        public async Task<IActionResult> UpdateUserInfo([FromBody] User NewUserInfo)
+        {
+            User OldUser = _context.User.Where(user => user.Id == NewUserInfo.Id).FirstOrDefault();
+            if (OldUser == null)
+            {
+                return BadRequest("Invalid client request");
+            }
+            OldUser.FullName = NewUserInfo.FullName;
+            OldUser.Gender = NewUserInfo.Gender;
+            OldUser.CarInfo = NewUserInfo.CarInfo;
+            OldUser.Country = NewUserInfo.Country;
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
         /// <summary>
@@ -120,10 +167,40 @@
         #endregion
 
         #region Private Methods
+        private User UpdateInfo(User NewUserInfo)
+        {
+            User OldUser = _context.User.Where(user => user.Id == NewUserInfo.Id).FirstOrDefault();
+            OldUser.FullName = NewUserInfo.FullName;
+            OldUser.Gender = NewUserInfo.Gender;
+            OldUser.CarInfo = NewUserInfo.CarInfo;
+            OldUser.Country = NewUserInfo.Country;
+            _context.SaveChanges();
+            return OldUser;
+        }
 
+        private static string Encrypt(string data)
+        {
+            byte[] encData_byte = new byte[data.Length];
+            encData_byte = System.Text.Encoding.UTF8.GetBytes(data);
+            string encodedData = Convert.ToBase64String(encData_byte);
+            return encodedData;
+
+        }
+
+        private static string Decrypt(string sData)
+        {
+            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+            System.Text.Decoder utf8Decode = encoder.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(sData);
+            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            string result = new String(decoded_char);
+            return result;
+        }
         private User CreateNewUser(User NewUser)
         {
-            
+
             _context.User.Add(NewUser);
             _context.SaveChanges();
             return NewUser;
