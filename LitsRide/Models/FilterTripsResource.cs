@@ -7,10 +7,12 @@ namespace LitsRide.Models
 {
     public class FilterTripsResource
     {
+
         public string FromDest { get; set; }
         public string ToDest { get; set; }
         public DateTime StartTime { get; set; }
         public float PriceMin { get; set; }
         public float PriceMax { get; set; } 
+
     }
 }

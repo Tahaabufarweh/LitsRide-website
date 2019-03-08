@@ -34,9 +34,15 @@ export class TripsComponent implements OnInit {
       console.log(error)
       })
   }
-  
+
+  fillTable() {
+
+  }
   openDialog() {
     this.fileNameDialogRef = this.dialog.open(FilteringComponent);
+    this.fileNameDialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );    
   }
     
 }
