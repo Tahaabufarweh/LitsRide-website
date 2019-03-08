@@ -164,7 +164,9 @@ namespace LitsRide.Controllers
         [Route("GetTripsSearch")]
         public async Task<ActionResult<IEnumerable<Trip>>> GetTripsSearch(FilterTripsResource Search)
         {
-            var trip = await _context.Trip.Where(x => (Search.StartTime == null || x.StartTime >= Search.StartTime)
+            var trip = await _context.Trip.Where(x => (string.IsNullOrEmpty(Search.FromDest) || x.FromDestination.Contains(Search.FromDest))
+                                                    && (string.IsNullOrEmpty(Search.ToDest) || x.FromDestination.Contains(Search.ToDest))
+                                                    && (Search.StartTime == null || x.StartTime >= Search.StartTime)
                                                     && (Search.PriceMin == null || x.Price >= Search.PriceMin)
                                                     && (Search.PriceMax == null || x.Price <= Search.PriceMax)).ToListAsync();
 
