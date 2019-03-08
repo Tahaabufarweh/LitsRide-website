@@ -70,7 +70,13 @@
         [HttpGet]
         [Route("GetUser/{id}")]
         public IActionResult getUser(int id) {
-            return Ok(_context.User.Where(x => x.Id == id).Include(x=>x.RatingUser).FirstOrDefault());
+            return Ok(_context.User.Where(x => x.Id == id)
+                      .Include(x=>x.RatingRatedUserNavigation)
+                      .Include("RatingRatedUserNavigation.User")
+                      .Include(x=>x.TripRequest)
+                      .Include("TripRequest.Passenger")
+                      .Include(x=>x.Trip)
+                      .FirstOrDefault());
         }
         // GET api/values
         [HttpPost, Route("login")]
