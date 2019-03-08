@@ -5,11 +5,17 @@ using System.Threading.Tasks;
 
 namespace LitsRide.Models.Enum
 {
-    public class TripStatus
+    public enum TripStatus
     {
+        Opened = 1,
+        Closed = 2,
+        FullBoard = 3,
+        Deleted = 4
     }
 
-    public class TripRequestStatus
+    public enum TripRequestStatus
     {
+        Approved = 1,
+        Reject = 2
     }
 }
