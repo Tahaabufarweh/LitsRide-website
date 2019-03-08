@@ -16,7 +16,7 @@ namespace LitsRide.Controllers
         {
             _context = context;
         }
-
+        
         /// <summary>
         /// Insert new report for specific user
         /// </summary>
@@ -82,3 +82,4 @@ namespace LitsRide.Controllers
 
     }
 }
+
