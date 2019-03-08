@@ -15,7 +15,8 @@ namespace LitsRide.Models.Enum
 
     public enum TripRequestStatus
     {
-        Approved = 1,
-        Reject = 2
+        New=1,
+        Approved = 2,
+        Reject = 3
     }
 }
