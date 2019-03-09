@@ -29,12 +29,12 @@ export class RegisterComponent {
   signUpForm = new FormGroup({
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)] ),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     username: new FormControl('', Validators.minLength(6)),
     MobileNumber: new FormControl('', Validators.required),
     rePass: new FormControl('', Validators.required),
     Country: new FormControl('', Validators.required)
-   
+
   }, { validators: this.passValidator })
 
   
@@ -100,6 +100,7 @@ export class RegisterComponent {
 
    
   }
+  
 
   countries: Country[] = [
     {
