@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
 
 const baseUrl = 'api/Trips/'
-const getAllTripsRoute = 'GetAllTrips/';
+const getAllTripsRoute = 'GetTripsSearch';
 const getTaskAssigneesByIdRoute = 'GetTaskAssigneesById/';
 const createNewTripRoute = 'CreateNewTrip';
 const deleteTaskAssigneeRoute = 'DeleteTaskAssignee/'
@@ -18,8 +19,9 @@ export class TripsService {
 
     }
 
-  getAllTrips() {
-    return this.httpClient.get(baseUrl + getAllTripsRoute)
+  getAllTrips(filter, pageNo, pageSize) {
+
+    return this.httpClient.post(baseUrl + getAllTripsRoute + "?PageNo=" + pageNo + "&PageSize=" + pageSize, JSON.stringify(filter), httpOptions)
     }
 
     getAllTripsBySearchParams(params) {

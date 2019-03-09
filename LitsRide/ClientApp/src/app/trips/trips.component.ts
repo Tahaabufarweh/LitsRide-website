@@ -28,7 +28,7 @@ export class TripsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.tripsService.getAllTrips().subscribe(response => {
+    this.tripsService.getAllTrips({} ,1 ,3).subscribe(response => {
       this.allTrips = response;
     }, error => {
       console.log(error)

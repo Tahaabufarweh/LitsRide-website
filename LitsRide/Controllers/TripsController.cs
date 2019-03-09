@@ -160,9 +160,9 @@ namespace LitsRide.Controllers
         /// </summary>
         /// <param name="Search">FilterTripsResource object</param>
         /// <returns>list of trips </returns>
-        [HttpGet]
+        [HttpPost]
         [Route("GetTripsSearch")]
-        public async Task<ActionResult<IEnumerable<Trip>>> GetTripsSearch(FilterTripsResource Search , int PageNo = 1, int PageSize = 10)
+        public async Task<ActionResult<IEnumerable<Trip>>> GetTripsSearch([FromBody]FilterTripsResource Search , int PageNo = 1, int PageSize = 10)
         {
             var trip = await _context.Trip.Where(x => (string.IsNullOrEmpty(Search.FromDest) || x.FromDestination.Contains(Search.FromDest))
                                                     && (string.IsNullOrEmpty(Search.ToDest) || x.FromDestination.Contains(Search.ToDest))

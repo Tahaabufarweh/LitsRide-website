@@ -79,7 +79,7 @@
                       .FirstOrDefault());
         }
         // GET api/values
-        [HttpPost, Route("login")]
+        [HttpPost, Route("Login")]
         public IActionResult Login([FromBody]User user)
         {
             if (user == null)
