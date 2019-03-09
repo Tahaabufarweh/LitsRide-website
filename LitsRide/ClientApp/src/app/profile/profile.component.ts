@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatTableDataSource } from '@angular/material';
 import { RatingComponent } from '../rating/rating.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
@@ -8,6 +8,10 @@ import { $ } from 'protractor';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
+import { DataSource, ArrayDataSource } from '@angular/cdk/collections';
+import { Observable } from 'rxjs';
+import { User } from '../modelInterfaces';
+import { Response } from '@angular/http';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,8 +21,11 @@ import { UserService } from '../services/user.service';
 
 /** profile component*/
 export class ProfileComponent implements OnInit {
+ 
+  displayedColumns = ['fullName', 'username', 'email', 'password'];  
   url: string = "http://i.pravatar.cc/500?img=7";
   user = {} as any;
+ 
   /** profile ctor */
   RatingDialogRef: MatDialogRef<RatingComponent>;
   CompleteDialogRef: MatDialogRef<CompleteProfileComponent>;
@@ -31,14 +38,20 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserDetialsById(this.authService.getLoggedInUserId()).subscribe(response => {
       this.user = response;
       console.log(this.user);
-    })
 
+     
+    })
+   
   }
+ 
+  tripElements = ['From', 'To', 'Start Time', 'Status', 'Is Arrived'];
+  requestElements = ['Request Date', 'Passenger Note', 'Status', 'Payment Method'];
+  ratingElements = ['Username', 'Rate', 'Note'];
   openRatingDialog() {
     this.RatingDialogRef = this.dialog.open(RatingComponent);
-
-
+    
   }
+  
 
   openCompleteDialog() {
     this.CompleteDialogRef = this.dialog.open(CompleteProfileComponent);
@@ -57,7 +70,9 @@ export class ProfileComponent implements OnInit {
     }
   }
 
- 
+  
 
 }
 
+
+  

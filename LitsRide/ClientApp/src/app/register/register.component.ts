@@ -9,6 +9,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { ErrorStateMatcher } from '@angular/material';
 import { AbstractClassPart } from '@angular/compiler/src/output/output_ast';
 import { InternationalizationService } from '../services/internationalization.service';
+import { LoginComponent } from '../login/login.component';
 
 
 export interface Country {
@@ -43,6 +44,7 @@ export class RegisterComponent {
     private translate: TranslateService,
     private userService: UserService,
     private router: Router,
+    
     private notificationService: NotificationService) {
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
@@ -87,14 +89,16 @@ export class RegisterComponent {
     
     this.userService.createUser(this.signUpForm.value).subscribe(response => {
       
-      this.router.navigate(["/"]);
+      this.notificationService.createNotificationService('success', 'Signup Success', 'Your account has been created');
+      //this.router.navigate(["/"]);
       
-      this.notificationService.createNotificationService('error', 'Signup Success', 'Your account has been created');
+      
     }, error => {
-      this.notificationService.createNotificationService('error', 'Login Failed', 'Username or password is wrong');
+     
+      this.notificationService.createNotificationService('error', 'Signup Failed', 'Check Your Fields');
     });
 
-
+   
   }
 
   countries: Country[] = [

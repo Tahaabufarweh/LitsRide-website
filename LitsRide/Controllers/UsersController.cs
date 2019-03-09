@@ -49,10 +49,14 @@
             {
                 return BadRequest("Email is exist!");
             }
-            NewUser.Password = Encrypt(NewUser.Password);
-            _context.User.Add(NewUser);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetUser", new { id = NewUser.Id }, NewUser);
+
+            else
+            {
+                NewUser.Password = Encrypt(NewUser.Password);
+                _context.User.Add(NewUser);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetUser", new { id = NewUser.Id }, NewUser);
+            }
         }
         
         [HttpGet("{id}")]
@@ -78,6 +82,7 @@
                       .Include(x=>x.Trip)
                       .FirstOrDefault());
         }
+       
         // GET api/values
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]User user)
