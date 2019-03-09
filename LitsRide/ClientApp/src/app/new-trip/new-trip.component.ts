@@ -106,13 +106,14 @@ export class NewTripComponent {
 
   //}
   submitTrip() {
-    this.driverId.setValue(this.authService.getLoggedInUserId());
-    this.StartTime.setValue(this.StartTime.value)
-    console.log(JSON.stringify(this.TripsForm.value))
-    this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
-      console.log(response);
-      this.notificationService.createNotificationService('success', 'Trip added', '');
-      this.route.navigate(["/Trips"]);
-    })
+    console.log(this.TripsForm.value);
+    //this.driverId.setValue(this.authService.getLoggedInUserId());
+    //this.StartTime.setValue(this.StartTime.value)
+    //console.log(JSON.stringify(this.TripsForm.value))
+    //this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
+    //  console.log(response);
+    //  this.notificationService.createNotificationService('success', 'Trip added', '');
+    //  this.route.navigate(["/Trips"]);
+    //})
   }
 }

@@ -36,6 +36,7 @@ import { AuthService } from './services/auth.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationService } from './services/notification.service';
 import { PaginationComponent } from './trips/pagination.component';
+import { RatingService } from './services/rating.service';
 
 
 
@@ -66,7 +67,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    
+    PaginationComponent,
     AdminComponent,
     LoginComponent,
     RegisterComponent,
@@ -113,7 +114,7 @@ export function tokenGetter() {
       { path: 'register', component: RegisterComponent },
       { path: 'new-trip', component: NewTripComponent },
       { path: 'trips', component: TripsComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent },
       { path: 'rating', component: RatingComponent },
       { path: 'filtering', component: FilteringComponent },
       { path: 'complete-profile', component: CompleteProfileComponent },
@@ -129,6 +130,7 @@ export function tokenGetter() {
     },
     NotificationService,
     AuthService,
+    RatingService,
     UserService
   ],
   bootstrap: [AppComponent]

@@ -73,7 +73,7 @@
                 <tr *ngFor="let T of user.trip">
                   <th scope="row">{{T.fromDestination}}</th>
                   <td>{{T.toDestination}}</td>
-                  <td>{{T.startTime}}</td>
+                  <td>{{T.startTime | date}}</td>
                   <td>{{T.status}}</td>
                   <td>{{T.isArrived}}</td>
                 </tr>

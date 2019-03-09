@@ -72,7 +72,8 @@
     "Logout": "تسجيل الخروج",
     "usernameHint": "اسم المستخدم يجب ان لا يقل عن 6 رموز",
     "Countryisrequired": "البلد مطلوب ",
-    "MobileNumberrequired": "رقم الهاتف مطلوب"
+    "MobileNumberrequired": "رقم الهاتف مطلوب",
+    "Search":  "بحث"
 
 
 

@@ -7,7 +7,12 @@ import { OnChanges } from '@angular/core';
 
 @Component({
 	selector: 'pagination',
-    template: `
+  template: `
+<mat-paginator [length]="100"
+              [pageSize]=""
+              [pageSizeOptions]="">
+</mat-paginator>
+
     <nav *ngIf="totalItems > pageSize">
         <ul class="pagination">
             <li [class.disabled]="currentPage == 1">

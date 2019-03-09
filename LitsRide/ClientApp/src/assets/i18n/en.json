@@ -73,7 +73,8 @@
     "Logout": "Logout",
     "usernameHint": "Username should be at least 6 characters",
     "Countryisrequired": "Country is required",
-    "MobileNumberrequired": "Mobile Number is required"
+    "MobileNumberrequired": "Mobile Number is required",
+    "Search": "Search"
 
 
 

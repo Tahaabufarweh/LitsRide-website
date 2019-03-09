@@ -162,8 +162,9 @@ namespace LitsRide.Controllers
         /// <returns>list of trips </returns>
         [HttpPost]
         [Route("GetTripsSearch")]
-        public async Task<ActionResult<IEnumerable<Trip>>> GetTripsSearch([FromBody]FilterTripsResource Search , int PageNo = 1, int PageSize = 10)
+        public async Task<ActionResult<TripsPageModel>> GetTripsSearch([FromBody]FilterTripsResource Search , int PageNo = 1, int PageSize = 10)
         {
+            var totalItems = _context.Trip.Count();
             var trip = await _context.Trip.Where(x => (string.IsNullOrEmpty(Search.FromDest) || x.FromDestination.Contains(Search.FromDest))
                                                     && (string.IsNullOrEmpty(Search.ToDest) || x.FromDestination.Contains(Search.ToDest))
                                                     && (Search.StartTime == null || x.StartTime >= Search.StartTime)
@@ -178,7 +179,10 @@ namespace LitsRide.Controllers
                 return NotFound();
             }
 
-            return trip;
+            return new TripsPageModel() {
+                Trips = trip ,
+                TotalTrips = totalItems
+            };
         }
 
         /// <summary>

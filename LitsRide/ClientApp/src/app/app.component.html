@@ -39,7 +39,7 @@
           <button mat-menu-item routerLink="/register" *ngIf="!this.authService.isLoggedin()">
             <span>{{ 'HOME.Signup' | translate }}</span>
           </button>
-          <button mat-menu-item routerLink="/profile" *ngIf="this.authService.isLoggedin()">
+          <button mat-menu-item routerLink="/profile/{{authService.getLoggedInUserId()}}" *ngIf="this.authService.isLoggedin()">
             <span>{{ 'HOME.MyProfile' | translate }}</span>
           </button>
           <button mat-menu-item (click)="this.authService.Logout()" *ngIf="this.authService.isLoggedin()">

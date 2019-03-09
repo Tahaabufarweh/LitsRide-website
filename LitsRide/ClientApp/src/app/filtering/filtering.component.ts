@@ -19,8 +19,8 @@ export class FilteringComponent implements OnInit {
   FilterForm = new FormGroup({
     FromDest: new FormControl(''),
     ToDest: new FormControl(''),
-    PriceMax: new FormControl(''),
-    PriceMin: new FormControl(''),
+    PriceMax: new FormControl(null),
+    PriceMin: new FormControl(null),
     StartTime: new FormControl('')
   })
 

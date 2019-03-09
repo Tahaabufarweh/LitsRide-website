@@ -28,7 +28,7 @@
   <br />
   <div class="row">
     <br />
-    <div class="col-md-6" *ngFor="let trip of allTrips" style="margin-top:10px">
+    <div class="col-md-6" *ngFor="let trip of allTrips?.trips" style="margin-top:10px">
 
       <mat-card class="example-card">
         <mat-card-header>
@@ -44,14 +44,18 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button> {{ 'HOME.details' | translate }}</button>
-          <button mat-button>{{ 'HOME.rideButton' | translate }}</button>
+          <button mat-button (click)="navigateToDetails(trip.id)"> {{ 'HOME.details' | translate }}</button>
+          <button mat-button (click)="rideTrip(trip.id)">{{ 'HOME.rideButton' | translate }}</button>
         </mat-card-actions>
       </mat-card>
     </div>
 
-
   </div>
+  <mat-paginator [length]="allTrips?.totalTrips"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="onPageChanged($event)">
+  </mat-paginator>
   <simple-notifications></simple-notifications>
 </mat-card>
 

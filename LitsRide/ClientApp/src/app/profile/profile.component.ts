@@ -12,6 +12,7 @@ import { DataSource, ArrayDataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { User } from '../modelInterfaces';
 import { Response } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -29,19 +30,18 @@ export class ProfileComponent implements OnInit {
   /** profile ctor */
   RatingDialogRef: MatDialogRef<RatingComponent>;
   CompleteDialogRef: MatDialogRef<CompleteProfileComponent>;
-  constructor(public dialog: MatDialog, private userService :UserService, public translate: TranslateService, private authService: AuthService) {
+  constructor(public dialog: MatDialog, private userService: UserService, public translate: TranslateService, private authService: AuthService, private router: ActivatedRoute) {
     this.authService.checkLogin();
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
   }
 
   ngOnInit() {
-    this.userService.getUserDetialsById(this.authService.getLoggedInUserId()).subscribe(response => {
+    this.router.params.subscribe(param => { 
+      this.userService.getUserDetialsById(param.id).subscribe(response => {
       this.user = response;
       console.log(this.user);
-
-     
     })
-   
+    })
   }
  
   tripElements = ['From', 'To', 'Start Time', 'Status', 'Is Arrived'];

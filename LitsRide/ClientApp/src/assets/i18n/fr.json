@@ -73,7 +73,9 @@
     "Logout": "Se déconnecter",
     "usernameHint": "Le nom d'utilisateur doit comporter au moins 6 caractères.",
     "Countryisrequired": "Le pays est requis",
-    "MobileNumberrequired": "Numéro de portable requis"
+    "MobileNumberrequired": "Numéro de portable requis",
+    "Search": "chercher"
+
 
 
 

@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
 
   }
-
+  
   setPrefLang(value) {
     this.langService.setLang(value)
   }

@@ -1,6 +1,5 @@
 <mat-dialog-content>
   <form [formGroup]="FilterForm">
-    <h1>{{ 'HOME.filterResult' | translate }}</h1>
     <div class="row">
       <mat-form-field class="w-100">
         <input matInput disabled value="{{ 'HOME.Destination' | translate }}">
@@ -46,7 +45,7 @@
 
 
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close class="btn btn-danger btn-round mt-lg-5">{{ 'HOME.Cancel' | translate }}</button>
-    <button mat-button class="btn btn-danger btn-round mt-lg-5" (click)="close()">{{ 'HOME.submit' | translate }}</button>
+    <button mat-button mat-dialog-close>{{ 'HOME.Cancel' | translate }}</button>
+    <button mat-button (click)="close()">{{ 'HOME.Search' | translate }}</button>
   </mat-dialog-actions>
   </mat-dialog-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, PageEvent } from '@angular/material';
 import { FilteringComponent } from '../filtering/filtering.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InternationalizationService } from '../services/internationalization.service';
@@ -19,6 +19,7 @@ import { TripsService } from '../services/trips.service';
 export class TripsComponent implements OnInit {
 
   public allTrips;
+  public filter;
     /** trips ctor */
   fileNameDialogRef: MatDialogRef<FilteringComponent>;
 
@@ -28,20 +29,30 @@ export class TripsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.tripsService.getAllTrips({} ,1 ,3).subscribe(response => {
+    this.fillTable({}, 1, 10);
+  }
+
+  fillTable(filter = {} as any, pageNo , pageSize) {
+    this.tripsService.getAllTrips(filter, pageNo, pageSize).subscribe(response => {
       this.allTrips = response;
     }, error => {
       console.log(error)
-      })
+    })
   }
 
-  fillTable() {
+  navigateToDetails(id) { }
+  rideTrip(id) { }
 
+  onPageChanged(page: PageEvent) {
+    console.log(page);
+    this.fillTable({}, page.pageIndex + 1, page.pageSize)
   }
+
+
   openDialog() {
     this.fileNameDialogRef = this.dialog.open(FilteringComponent);
     this.fileNameDialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      data => this.fillTable(data , 1 , 10)
     );    
   }
     

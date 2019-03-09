@@ -140,7 +140,7 @@
         /// <returns>user </returns>
         [HttpPost]
         [Route("UpdateUserInfo")]
-        public async Task<IActionResult> UpdateUserInfo([FromBody] User NewUserInfo)
+        public async Task<IActionResult> UpdateUserInfo( int id, [FromBody] User NewUserInfo)
         {
             User OldUser = _context.User.Where(user => user.Id == NewUserInfo.Id).FirstOrDefault();
             if (OldUser == null)
