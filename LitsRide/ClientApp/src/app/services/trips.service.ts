@@ -4,7 +4,7 @@ import { RequestOptions } from '@angular/http';
 
 const baseUrl = 'api/Trips/'
 const getAllTripsRoute = 'GetTripsSearch';
-const getTaskAssigneesByIdRoute = 'GetTaskAssigneesById/';
+const getTripByIdRoute = 'GetTripById/';
 const createNewTripRoute = 'CreateNewTrip';
 const deleteTaskAssigneeRoute = 'DeleteTaskAssignee/'
 const httpOptions = {
@@ -30,7 +30,7 @@ export class TripsService {
     }
 
     getTripById(id) {
-        return this.httpClient.get(baseUrl + id);
+      return this.httpClient.get(baseUrl + getTripByIdRoute + id);
     }
 
     createNewTrip(trip) {

@@ -26,6 +26,7 @@ export class FilteringComponent implements OnInit {
 
   ngOnInit() {
   }
+
   close() {
     this.dialogRef.close(this.FilterForm.value);
   }

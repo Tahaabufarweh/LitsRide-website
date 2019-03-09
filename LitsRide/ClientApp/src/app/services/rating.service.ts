@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-const baseUrl = 'api/Rates/'
+const baseUrl = 'api/Ratings/'
 const createRate = 'InsertNewRate/';
 const httpOptions = {
   headers: new HttpHeaders({

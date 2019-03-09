@@ -34,34 +34,23 @@ namespace LitsRide.Controllers
         /// <returns>Trip </returns>
         [HttpPost]
         [Route("CreateNewTrip")]
-        public async Task<IActionResult> CreateNewTrip(int id, Trip trip)
+        public async Task<IActionResult> CreateNewTrip([FromBody]Trip trip)
         {
-            if (id != trip.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(trip).State = EntityState.Modified;
-
+         
+           
             try
             {
                 trip.Status = (int)TripStatus.Opened;
+                trip.IsArrived = false;
                 _context.Trip.Add(trip);
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!TripExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw e;
             }
 
-            return NoContent();
+            return Ok("Created");
         }
 
         /// <summary>
@@ -191,17 +180,21 @@ namespace LitsRide.Controllers
         /// <param name="TripId">integer variable</param>
         /// <returns>object of trips </returns>
         [HttpGet]
-        [Route("GetTripByTripId")]
-        public async Task<ActionResult<Trip>> GetTripByTripId(int TripId)
+        [Route("GetTripById/{TripId}")]
+        public IActionResult GetTripByTripId(int TripId)
         {
-            var trip = await _context.Trip.Where(x => x.Id == TripId).FirstAsync();
+            var trip = _context.Trip.Where(x => x.Id == TripId)
+                        .Include(x=>x.Driver)
+                        .Include(x=>x.TripRequest)
+                        .Include("TripRequest.Passenger")
+                        .FirstOrDefault();
 
             if (trip == null)
             {
                 return NotFound();
             }
 
-            return trip;
+            return Ok(trip);
         }
 
         /// <summary>
