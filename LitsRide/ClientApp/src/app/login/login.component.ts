@@ -20,8 +20,7 @@ import { NotificationService } from '../services/notification.service';
 })
 /** login component*/
 export class LoginComponent {
-
-
+  
     /** login ctor */
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -36,7 +35,7 @@ export class LoginComponent {
              ) {
  
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
-
+   
   }
   onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();

@@ -16,7 +16,7 @@
     </div>
     <form [formGroup]="signUpForm">
       <br />
-      
+
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-4">
@@ -35,111 +35,119 @@
         <div class="col-md-4">
           <mat-form-field>
             <input matInput placeholder=" {{ 'HOME.Username' | translate }}" formControlName="username" required>
-            <mat-hint>
-              {{ 'HOME.Username' | translate }}
-            </mat-hint>
+
             <mat-error *ngIf="username.touched && username.invalid">
               {{ 'HOME.usernameisrequired' | translate }}
             </mat-error>
           </mat-form-field>
         </div>
       </div>
-          <br />
-       
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-9">
-              <mat-form-field class="w-75">
-                <input matInput placeholder="{{ 'HOME.Email' | translate }}" formControlName="email">
-                <mat-hint>
-                  {{ 'HOME.Email' | translate }}
-                </mat-hint>
-                <mat-error *ngIf="email.touched && email.invalid">
-                  {{ 'HOME.EmailRequired' | translate }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          <br />
+      <br />
 
-        
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-              <mat-form-field>
-                <input matInput placeholder="{{ 'HOME.password' | translate }}" formControlName="password" [type]="hide ? 'password' : 'text'" required>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-hint>
-                  {{ 'HOME.password' | translate }}
-                </mat-hint>
-                <mat-error *ngIf="password.touched && password.invalid">
-                  {{ 'HOME.passwordisrequired' | translate }}
-                </mat-error>
-              </mat-form-field>
-            </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-9">
+          <mat-form-field class="w-75">
+            <input matInput placeholder="{{ 'HOME.Email' | translate }}" formControlName="email">
 
-            <br />
+            <mat-error *ngIf="email.touched && email.invalid">
+              {{ 'HOME.EmailRequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <br />
 
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput placeholder="{{ 'HOME.password' | translate }}" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <mat-error *ngIf="password.touched && password.invalid">
+              {{ 'HOME.passwordisrequired' | translate }}
+            </mat-error>
+            <mat-error *ngIf="password.hasError('required')">
+              {{ 'HOME.passwordrequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <br />
 
 
 
-            <div class="col-md-4">
-              <mat-form-field>
-                <input matInput placeholder="{{ 'HOME.repassword' | translate }}" formControlName="rePass" [type]="hide ? 'password' : 'text'" required>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-error *ngIf="rePass.touched && rePass.value ==password.value">
-                  {{ 'HOME.PasswordNotMatch' | translate }}
-                </mat-error>
-              </mat-form-field>
-            </div>
 
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-              <mat-form-field>
-                <mat-select placeholder="{{ 'HOME.country' | translate }}" #country [formControl]="Country">
-                  <mat-option *ngFor="let countr of countries" [value]="countr.viewValue">
-                    {{countr.viewValue}}
-                    
-                  </mat-option>
-                  
-                </mat-select>
-                
-              </mat-form-field>
-            </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput placeholder="{{ 'HOME.repassword' | translate }}" formControlName="rePass" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <mat-error *ngIf="rePass?.errors?.MatchPassword">
+              {{ 'HOME.PasswordNotMatch' | translate }}
+            </mat-error>
+            <mat-error *ngIf="rePass.hasError('required')">
+              {{ 'HOME.passwordrequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
 
 
-            <div class="col-md-4">
-              <mat-form-field>
-                <span matPrefix>{{filterItemsOfType(country.value)}} &nbsp;</span>
-                <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}" formControlName="MobileNumber"  required>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-select placeholder="{{ 'HOME.country' | translate }}" #country [formControl]="Country">
+              <mat-option *ngFor="let countr of countries" [value]="countr.viewValue">
+                {{countr.viewValue}}
 
-                <mat-icon matSuffix>phone</mat-icon>
+              </mat-option>
 
-                <mat-error>
-                  {{ 'HOME.MobileNumber' | translate }}
-                </mat-error>
-              </mat-form-field>
-             
-            </div>
-          </div>
+            </mat-select>
+
+            <mat-error *ngIf="Country.hasError('required')">
+              {{ 'HOME.Countryisrequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <br />
+
+        <div class="col-md-4">
+          <mat-form-field>
+            <span matPrefix>{{filterItemsOfType(country.value)}} &nbsp;</span>
+
+            <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}" formControlName="MobileNumber" required>
+
+            <mat-icon matSuffix>phone</mat-icon>
+
+            <mat-error>
+              {{ 'HOME.MobileNumberrequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+      </div>
 
 
 
-        
-      
+
       <hr />
       <div class="row">
         <div class="col-md-9"></div>
         <div class="col-md-2">
-          <button mat-raised-button color="primary" (click)="CreateNewUser()">
+          <button mat-raised-button color="primary" [disabled]="signUpForm.invalid" (click)="CreateNewUser()">
             {{ 'HOME.Signup' | translate }}
           </button>
         </div>
       </div>
+     
       <br />
     </form>
 
   </mat-card>
-  </div>
+  <simple-notifications></simple-notifications>
+</div>

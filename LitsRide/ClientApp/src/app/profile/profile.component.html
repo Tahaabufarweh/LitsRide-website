@@ -6,6 +6,37 @@
 
 
 
+
+  <div class="col">
+    <mat-card class="text-center">
+      <mat-card-header>
+        <div class="avatar-upload">
+          <div class="avatar-edit">
+            <input type='file' id="imageUpload" (change)=readUrl($event) accept=".png, .jpg, .jpeg" />
+            <label for="imageUpload"></label>
+          </div>
+          <div class="avatar-preview">
+            <img class="imgpreview" [src]=url />
+          </div>
+
+
+        </div>
+
+      </mat-card-header>
+      <h4 class="card-category text-gray">{{user.username}}</h4>
+
+      <h6 class="card-title">{{user.country}}</h6>
+
+     
+
+
+      <div class="row text-center">
+
+        <button mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
+      </div>
+    </mat-card>
+  </div>
   <div class="col">
 
     <mat-card class="col-md-12">
@@ -16,81 +47,86 @@
               <mat-grid-tile>
                 <p>{{user.country}}</p>
               </mat-grid-tile>
-              <mat-card><b> Gender :</b>{{user.gender}}</mat-card>
               <mat-card><b>Full Name :</b>{{user.fullname}}</mat-card>
+              <mat-card><b> Gender :</b>{{user.gender}}</mat-card>
+              <mat-card><b>Country :</b>{{user.country}}</mat-card>
+              <mat-card><b>Username :</b>{{user.username}}</mat-card>
               <mat-card><b>Email :</b> {{user.email}}</mat-card>
               <mat-card><b>Mobile</b> {{ user.mobileNumber }} </mat-card>
+              <mat-card><b>Car Info :</b>{{user.carinfo}}</mat-card>
+              <mat-card><b>Car Info :</b>{{user.carnumber}}</mat-card>
               <mat-card> {{ user.birthDate | date }} </mat-card>
             </mat-grid-list>
           </mat-card>
         </mat-tab>
         <mat-tab label="{{ 'HOME.TripsLabel' | translate }}">
-          <mat-card *ngFor="let trip of user.trip">
-            <p> {{ trip.fromDestination }} </p>
-            <p> {{ trip.toDestination }} </p>
-            <p> {{ trip.startTime }} </p>
-            <p> {{ trip.isArrived }} </p>
-          </mat-card>
-        </mat-tab>
+         
+          <mat-card>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th *ngFor="let head of tripElements" scope="col">{{head}} </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let T of user.trip">
+                  <th scope="row">{{T.fromDestination}}</th>
+                  <td>{{T.toDestination}}</td>
+                  <td>{{T.startTime}}</td>
+                  <td>{{T.status}}</td>
+                  <td>{{T.isArrived}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+</mat-card>
+
+</mat-tab>
         <mat-tab label="{{ 'HOME.Requests' | translate }}">
-          <mat-card *ngFor="let request of user.requests">
-            <p> {{ request.requestDate }} </p>
-            <p> {{ request.status }} </p>
-            <p> {{ request.passengerNote }} </p>
-          </mat-card>
+          <table class="table">
+            <thead>
+              <tr>
+                <th *ngFor="let head of requestElements" scope="col">{{head}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let R of user.request">
+                <th scope="row">{{ R.requestDate }}</th>
+                <td> {{ R.passengerNote }}</td>
+                <td>{{ R.status }}</td>
+                
+                <td>{{ R.paymentMethod }}</td>
+              </tr>
+            </tbody>
+          </table>
+       
         </mat-tab>
         <mat-tab label="{{ 'HOME.Ratings' | translate }}">
+        
           <mat-card>
-            <div class="row">
-              <div class="col-md-3"> Rated by </div>
-              <div class="col-md-3"> Rate </div>
-              <div class="col-md-3"> Note </div>
-            </div>
-          </mat-card>
-          <mat-card *ngFor="let request of user.ratingUser">
-            <div class="row">
-              <div class="col-md-3"> {{ request.userId }} </div>
-              <div class="col-md-3"> {{ request.rating1 }} </div>
-              <div class="col-md-3"> {{ request.note }} </div>
-            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th *ngFor="let head of ratingElements" scope="col">{{head}} </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let R of user.ratingUser">
+                  <th scope="row"><a href="" >{{R.userId}}</a></th>
+                  <td> {{ R.rating1 }}<i class="material-icons">star_rate</i></td>
+                  <td>{{ R.note }}</td>
+   
+                </tr>
+              </tbody>
+            </table>
+           
           </mat-card>
         </mat-tab>
       </mat-tab-group>
     </mat-card>
 
 
-  </div>
-  <div class="col">
-    <mat-card class="text-center">
-      <mat-card-header>
-        <div class="avatar-upload">
-          <div class="avatar-edit">
-            <input type='file' id="imageUpload" (change)=readUrl($event) accept=".png, .jpg, .jpeg" />
-            <label for="imageUpload"></label>
-          </div>
-          <div class="avatar-preview">
-            <img class="imgpreview" [src]=url/>
-           </div>   
-           
-          
-          </div>
-
-      </mat-card-header>
-        <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-      
-          <h4 class="card-title">Alec Thompson</h4>
-        
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-
-         
-          <div class="row text-center">
-
-            <button  mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
-            <button  mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
-          </div>
-    </mat-card>
   </div>
 
 </div>

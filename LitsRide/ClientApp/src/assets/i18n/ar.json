@@ -11,6 +11,7 @@
     "usernameisrequired": "اسم المستخدم مطلوب",
     "password": "الرقم السري",
     "passwordisrequired": "يجب ان تكون كلمة المرور على الأقل 8 رموز",
+    "passwordrequired": "كلمة المرور مطلوبة",
     "Language": "اللغة",
     "TripsLabel": "الرحلات",
     "detailsHint": "اكتب تفاصيلك عن الرحلة",
@@ -68,8 +69,10 @@
     "ArriveTime": "وقت الوصول",
     "Status": "الحالة",
     "TripDetails": "تفاصيل الرحلة",
-    "Logout":  "تسجيل الخروج",
-    "usernameHint": "اسم المستخدم يجب ان لا يقل عن 6 رموز"
+    "Logout": "تسجيل الخروج",
+    "usernameHint": "اسم المستخدم يجب ان لا يقل عن 6 رموز",
+    "Countryisrequired": "البلد مطلوب ",
+    "MobileNumberrequired": "رقم الهاتف مطلوب"
 
 
 

@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { DemoMaterialModule } from './material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule, MatTableModule, MatToolbarModule, MatMenuModule, MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -36,6 +36,8 @@ import { AuthService } from './services/auth.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationService } from './services/notification.service';
 import { PaginationComponent } from './trips/pagination.component';
+
+
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -84,6 +86,8 @@ export function tokenGetter() {
     AngularDateTimePickerModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
+    
+    MatToolbarModule, MatMenuModule, MatInputModule, MatTableModule, MatButtonModule, MatCardModule,
     SocialLoginModule,
     JwtModule.forRoot({
       config: {
@@ -92,6 +96,7 @@ export function tokenGetter() {
     }),
     ReactiveFormsModule,
     DemoMaterialModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

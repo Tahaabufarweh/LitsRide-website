@@ -1,11 +1,15 @@
 import { Component} from '@angular/core';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../services/user.service';
 import { NotificationService } from '../services/notification.service';
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
+import { ErrorStateMatcher } from '@angular/material';
+import { AbstractClassPart } from '@angular/compiler/src/output/output_ast';
+import { InternationalizationService } from '../services/internationalization.service';
+import { LoginComponent } from '../login/login.component';
 
 
 export interface Country {
@@ -25,27 +29,30 @@ export class RegisterComponent {
   signUpForm = new FormGroup({
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.minLength(8)),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     username: new FormControl('', Validators.minLength(6)),
     MobileNumber: new FormControl('', Validators.required),
     rePass: new FormControl('', Validators.required),
-    Country: new FormControl(),
-    
-  })
+    Country: new FormControl('', Validators.required)
+
+  }, { validators: this.passValidator })
+
+  
 
   
   constructor(
     private translate: TranslateService,
     private userService: UserService,
     private router: Router,
+    
     private notificationService: NotificationService) {
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
   }
-   
+
+ 
   
-  get fullName() {
-   
+  get fullName() {   
     return this.signUpForm.get('fullName') as FormControl;
   }
   
@@ -62,32 +69,38 @@ export class RegisterComponent {
   }
   
   get MobileNumber() {
-
-    return this.signUpForm.get('MobileNumber.value') as FormControl;
+    return this.signUpForm.get('MobileNumber') as FormControl;
+    
   }
 
   get Country() {
     return this.signUpForm.get('Country') as FormControl;
   }
   
-
-  
-
   get rePass() {
     return this.signUpForm.get('rePass') as FormControl;
   }
+  
   CreateNewUser() {
+    
+    let MobileNo = this.filterItemsOfType(this.Country.value) + this.MobileNumber.value;
+    
+    this.signUpForm.controls['MobileNumber'].setValue(MobileNo);
     
     this.userService.createUser(this.signUpForm.value).subscribe(response => {
       
-      this.router.navigate(["/"]);
       this.notificationService.createNotificationService('success', 'Signup Success', 'Your account has been created');
+      //this.router.navigate(["/"]);
+      
+      
     }, error => {
-      this.notificationService.createNotificationService('error', 'Login Failed', 'Username or password is wrong');
+     
+      this.notificationService.createNotificationService('error', 'Signup Failed', 'Check Your Fields');
     });
 
-
+   
   }
+  
 
   countries: Country[] = [
     {
@@ -1306,5 +1319,26 @@ export class RegisterComponent {
 
    
   }
+  pass = this.password.value;
+  passValidator(AC: AbstractControl) {
+    let password = AC.get('password').value; // to get value in input tag
+    let confirmPassword = AC.get('rePass').value; // to get value in input tag
+    if (password != confirmPassword)
+    {
+      
+      AC.get('rePass').setErrors({
+        "MatchPassword": true
+      });
+      
+    } else {
+      
+      return null
+    }
+  
+  }
+
   
 }
+
+
+

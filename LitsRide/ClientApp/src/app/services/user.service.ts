@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RequestOptions, Headers } from '@angular/http';
+
+import { Observable, Subscriber } from 'rxjs';
+import { Observer } from 'rxjs';  
+import { RequestOptions, Headers, Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { error } from 'util';
 import { User } from '../modelInterfaces';
+
+
 //import { User } from 'app/ModelInterfaces/ModelInterface';
 
 const baseUrl = 'api/Users/'
@@ -24,7 +29,10 @@ export class UserService {
     }
   getUserDetialsById(id) {
     return this.httpClient.get(baseUrl + getUserRoute + id);
-    }
+  }
+
+  
+
 
     createUser(user: User) {
         return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
