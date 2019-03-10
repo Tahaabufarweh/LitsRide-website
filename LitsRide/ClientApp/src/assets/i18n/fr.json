@@ -74,8 +74,16 @@
     "usernameHint": "Le nom d'utilisateur doit comporter au moins 6 caractères.",
     "Countryisrequired": "Le pays est requis",
     "MobileNumberrequired": "Numéro de portable requis",
-    "Search": "chercher"
-
+    "Search": "chercher",
+    "BirthDate": "Date de naissance",
+    "isArrived": "est arrivé",
+    "yes": "Oui",
+    "no": "non",
+    "RequestDate": "Date de la demande",
+    "PassengerNote": "Note passager",
+    "PaymentMethod": "Mode de paiement",
+    "Note": "Remarque",
+    "SavePhoto": "Enregistrer la photo"
 
 
 

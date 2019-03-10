@@ -12,7 +12,10 @@ import { DataSource, ArrayDataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { User } from '../modelInterfaces';
 import { Response } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RatingService } from '../services/rating.service';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { NotificationService } from '../services/notification.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -26,11 +29,19 @@ export class ProfileComponent implements OnInit {
   displayedColumns = ['fullName', 'username', 'email', 'password'];  
   url: string = "http://i.pravatar.cc/500?img=7";
   user = {} as any;
+  user2 = {} as any;
  
   /** profile ctor */
   RatingDialogRef: MatDialogRef<RatingComponent>;
   CompleteDialogRef: MatDialogRef<CompleteProfileComponent>;
-  constructor(public dialog: MatDialog, private userService: UserService, public translate: TranslateService, private authService: AuthService, private router: ActivatedRoute) {
+  constructor(public dialog: MatDialog,
+    private userService: UserService,
+    public translate: TranslateService,
+    private authService: AuthService,
+    private router: ActivatedRoute,
+    private route: Router,
+    private ratingService: RatingService,
+    private notificationService: NotificationService) {
     this.authService.checkLogin();
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
   }
@@ -44,13 +55,37 @@ export class ProfileComponent implements OnInit {
     })
   }
  
-  tripElements = ['From', 'To', 'Start Time', 'Status', 'Is Arrived'];
-  requestElements = ['Request Date', 'Passenger Note', 'Status', 'Payment Method'];
-  ratingElements = ['Username', 'Rate', 'Note'];
-  openRatingDialog() {
+  //getRatedUsername(id)
+  //{
+  //  this.userService.getUserDetialsById(id).subscribe(response => {
+  //    this.user2 = response;
+  //    console.log(this.user2);
+  //  });
+    
+  //}
+
+
+  openRatingDialog()
+  {
     this.RatingDialogRef = this.dialog.open(RatingComponent);
+    this.RatingDialogRef.afterClosed().subscribe(data => this.fillTable(data));    
+  }
+  fillTable(rate = {} as FormGroup) {
+
+    console.log(rate);
+    
+    this.ratingService.createRate(rate, Number(this.user.id)).subscribe(response => {
+
+      this.notificationService.createNotificationService('success', 'Rating Success', 'Your rate has been sent');
+      console.log("success");
+    
+    }, error => {
+      console.log("failed");
+     
+    });
     
   }
+  
   
 
   openCompleteDialog() {
@@ -70,6 +105,9 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  openUserProfile(id) {
+    this.route.navigate(["/profile/" + id]);
+  }
   
 
 }

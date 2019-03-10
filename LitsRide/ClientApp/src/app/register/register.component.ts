@@ -90,7 +90,8 @@ export class RegisterComponent {
     this.userService.createUser(this.signUpForm.value).subscribe(response => {
       
       this.notificationService.createNotificationService('success', 'Signup Success', 'Your account has been created');
-      //this.router.navigate(["/"]);
+
+      this.router.navigate(["/"]);
       
       
     }, error => {

@@ -73,7 +73,17 @@
     "usernameHint": "اسم المستخدم يجب ان لا يقل عن 6 رموز",
     "Countryisrequired": "البلد مطلوب ",
     "MobileNumberrequired": "رقم الهاتف مطلوب",
-    "Search":  "بحث"
+    "Search": "بحث",
+    "BirthDate": "تاريخ الميلاد",
+    "isArrived": "حالة الوصول",
+    "yes": "نعم",
+    "no": "لا",
+    "RequestDate": "تاريخ الطلب",
+    "PassengerNote": "ملاحظة الراكب",
+    "PaymentMethod": "طريقة الدفع",
+    "Note": "ملاحظة",
+    "SavePhoto": "حفظ الصورة"
+
 
 
 

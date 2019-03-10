@@ -28,8 +28,9 @@ namespace LitsRide.Controllers
         /// <returns>Rating Object</returns>
         [HttpPost]
         [Route("InsertNewRate")]
-        public async Task<ActionResult<Rating>> InsertNewRate([FromBody] Rating NewRate)
+        public async Task<ActionResult<Rating>> InsertNewRate([FromBody] Rating NewRate,int ratedUser)
         {
+            NewRate.RatedUser = ratedUser;
             _context.Rating.Add(NewRate);
             await _context.SaveChangesAsync();
 

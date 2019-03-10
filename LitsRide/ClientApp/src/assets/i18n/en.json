@@ -74,7 +74,16 @@
     "usernameHint": "Username should be at least 6 characters",
     "Countryisrequired": "Country is required",
     "MobileNumberrequired": "Mobile Number is required",
-    "Search": "Search"
+    "Search": "Search",
+    "BirthDate": "Birth Date",
+    "isArrived": "Is Arrived",
+    "yes": "Yes",
+    "no": "No",
+    "RequestDate": "Reequest Date",
+    "PassengerNote": "Passenger Note",
+    "PaymentMethod": "Payment Method",
+    "Note": "Note",
+    "SavePhoto": "Save Photo"
 
 
 

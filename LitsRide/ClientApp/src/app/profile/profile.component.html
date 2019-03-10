@@ -13,7 +13,7 @@
         <div class="avatar-upload">
           <div class="avatar-edit">
             <input type='file' id="imageUpload" (change)=readUrl($event) accept=".png, .jpg, .jpeg" />
-            <label for="imageUpload"></label>
+            <label for="imageUpload" *ngIf="user.id ==authService.getLoggedInUserId()"></label>
           </div>
           <div class="avatar-preview">
             <img class="imgpreview" [src]=url />
@@ -31,10 +31,14 @@
 
 
       <div class="row text-center">
-
-        <button mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
-        <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
-      </div>
+        <div class="col" *ngIf="user.id !=authService.getLoggedInUserId()"><button mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button></div>
+         
+        <div class="col" *ngIf="user.id ==authService.getLoggedInUserId()">
+          <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
+          <div class="m-2"></div>
+          <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.SavePhoto' | translate }}</button>
+        </div>
+        </div>
     </mat-card>
   </div>
   <div class="col">
@@ -47,15 +51,33 @@
               <mat-grid-tile>
                 <p>{{user.country}}</p>
               </mat-grid-tile>
-              <mat-card><b>Full Name :</b>{{user.fullname}}</mat-card>
-              <mat-card><b> Gender :</b>{{user.gender}}</mat-card>
-              <mat-card><b>Country :</b>{{user.country}}</mat-card>
-              <mat-card><b>Username :</b>{{user.username}}</mat-card>
-              <mat-card><b>Email :</b> {{user.email}}</mat-card>
-              <mat-card><b>Mobile</b> {{ user.mobileNumber }} </mat-card>
-              <mat-card><b>Car Info :</b>{{user.carinfo}}</mat-card>
-              <mat-card><b>Car Info :</b>{{user.carnumber}}</mat-card>
-              <mat-card> {{ user.birthDate | date }} </mat-card>
+              <div *ngIf="user.fullName !== null">
+              <mat-card><mat-icon matPrefix>person</mat-icon><b>{{ 'HOME.FullName' | translate }} </b>{{user.fullName}}</mat-card>
+              </div>
+              <div *ngIf="user.gender !== null"><mat-card *ngIf="user.gender==true ;else female">
+                <i class="material-icons">wc</i>
+                <b>{{ 'HOME.Gender' | translate }} </b>Male
+              </mat-card>
+              <ng-template #female>
+                <mat-card><i class="material-icons">wc</i>
+                <b>{{ 'HOME.Gender' | translate }} </b>Female</mat-card></ng-template>
+              </div>
+              <div *ngIf="user.country !== null">
+              <mat-card><i class="material-icons">language</i><b>{{ 'HOME.country' | translate }} </b>{{user.country}}</mat-card>
+              </div>
+              <div *ngIf="user.username !== null">
+              <mat-card><i class="material-icons">person_pin</i><b>{{ 'HOME.Username' | translate }} </b>{{user.username}}</mat-card>
+              </div>
+              <div *ngIf="user.email !== null">
+              <mat-card><i class="material-icons">email</i><b>{{ 'HOME.Email' | translate }} </b> {{user.email}}</mat-card>
+              </div>
+              <div *ngIf="user.mobileNumber !== null">
+              <mat-card><i class="material-icons">phone_iphone</i><b>{{ 'HOME.MobileNumber' | translate }} </b> {{ user.mobileNumber }} </mat-card>
+              </div>
+              <div *ngIf="user.birthDate !== null">
+              <mat-card><i class="material-icons">date_range</i><b>{{ 'HOME.BirthDate' | translate }} </b>{{ user.birthDate | date }}</mat-card>
+              </div>
+            
             </mat-grid-list>
           </mat-card>
         </mat-tab>
@@ -66,16 +88,21 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th *ngFor="let head of tripElements" scope="col">{{head}} </th>
+                  <th>{{ 'HOME.fromDest' | translate }} </th>
+                  <th>{{ 'HOME.toDest' | translate }} </th>
+                  <th>{{ 'HOME.StartTime' | translate }} </th>
+                  <th>{{ 'HOME.Status' | translate }} </th>
+                  <th>{{ 'HOME.isArrived' | translate }} </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let T of user.trip">
-                  <th scope="row">{{T.fromDestination}}</th>
+                  <td>{{T.fromDestination}}</td>
                   <td>{{T.toDestination}}</td>
                   <td>{{T.startTime | date}}</td>
                   <td>{{T.status}}</td>
-                  <td>{{T.isArrived}}</td>
+                  <td *ngIf="T.status == true;else no">{{ 'HOME.yes' | translate }}</td>
+                  <ng-template #no><td>{{ 'HOME.no' | translate }}</td></ng-template>
                 </tr>
               </tbody>
             </table>
@@ -87,15 +114,17 @@
           <table class="table">
             <thead>
               <tr>
-                <th *ngFor="let head of requestElements" scope="col">{{head}} </th>
+                <th>{{ 'HOME.RequestDate' | translate }} </th>
+                <th>{{ 'HOME.PassengerNote' | translate }} </th>
+                <th>{{ 'HOME.Status' | translate }} </th>
+                <th>{{ 'HOME.PaymentMethod' | translate }} </th>                
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let R of user.request">
-                <th scope="row">{{ R.requestDate }}</th>
-                <td> {{ R.passengerNote }}</td>
-                <td>{{ R.status }}</td>
-                
+                <td>{{ R.requestDate }}</td>
+                <td>{{ R.passengerNote }}</td>
+                <td>{{ R.status }}</td>                
                 <td>{{ R.paymentMethod }}</td>
               </tr>
             </tbody>
@@ -108,12 +137,15 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th *ngFor="let head of ratingElements" scope="col">{{head}} </th>
+                  <th>{{ 'HOME.Username' | translate }} </th>
+                  <th>{{ 'HOME.RateValue' | translate }} </th>
+                  <th>{{ 'HOME.Note' | translate }} </th>
+                  
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let R of user.ratingUser">
-                  <th scope="row"><a href="" >{{R.userId}}</a></th>
+                  <th scope="row"><a href="">{{R.ratedUser}}</a></th>
                   <td> {{ R.rating1 }}<i class="material-icons">star_rate</i></td>
                   <td>{{ R.note }}</td>
    
@@ -130,3 +162,4 @@
   </div>
 
 </div>
+<simple-notifications></simple-notifications>
