@@ -31,7 +31,7 @@ export class TripDetailsComponent implements OnInit {
     })
   }
 
-  rideTrip() {
-    this.tripRequestTrip.rideTrip(this.Trip.id).
-  }
+  //rideTrip() {
+  //  this.tripRequestTrip.rideTrip(this.Trip.id).
+  //}
 }

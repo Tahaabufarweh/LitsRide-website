@@ -16,6 +16,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RatingService } from '../services/rating.service';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { NotificationService } from '../services/notification.service';
+import { ProfileService } from '../services/profile.service';
+import { error } from 'util';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -27,7 +29,7 @@ import { NotificationService } from '../services/notification.service';
 export class ProfileComponent implements OnInit {
  
   displayedColumns = ['fullName', 'username', 'email', 'password'];  
-  url: string = "http://i.pravatar.cc/500?img=7";
+  url: string = "https://cdn2.iconfinder.com/data/icons/business-management-52/96/Artboard_20-512.png";
   user = {} as any;
   user2 = {} as any;
  
@@ -40,6 +42,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private router: ActivatedRoute,
     private route: Router,
+    private profileService: ProfileService,
     private ratingService: RatingService,
     private notificationService: NotificationService) {
     this.authService.checkLogin();
@@ -99,14 +102,20 @@ export class ProfileComponent implements OnInit {
 
       reader.onload = (event: ProgressEvent) => {
         this.url = (<FileReader>event.target).result;
+        console.log(this.url);
       }
 
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
-  openUserProfile(id) {
-    this.route.navigate(["/profile/" + id]);
+  saveUserPhoto(id) {
+    this.profileService.saveProfilePic(id, this.url).subscribe(response => {
+      console.log("success");
+    }, error => {
+      console.log("failed");
+
+    });
   }
   
 

@@ -36,7 +36,7 @@
         <div class="col" *ngIf="user.id ==authService.getLoggedInUserId()">
           <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
           <div class="m-2"></div>
-          <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.SavePhoto' | translate }}</button>
+          <button mat-raised-button color="primary" (click)="saveUserPhoto(user.id)">{{ 'HOME.SavePhoto' | translate }}</button>
         </div>
         </div>
     </mat-card>
