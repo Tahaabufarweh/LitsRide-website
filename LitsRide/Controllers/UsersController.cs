@@ -13,6 +13,9 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Http;
+    using System.IO;
+    using Microsoft.AspNetCore.Hosting;
     #endregion
 
     [Route("api/[controller]")]
@@ -20,11 +23,12 @@
     public class UsersController : ControllerBase
     {
         #region Variables
+        private IHostingEnvironment _hostingEnvironment;
         private readonly LetsRideinContext _context;
         #endregion
 
         #region Constructor
-        public UsersController(LetsRideinContext context)
+        public UsersController(LetsRideinContext context , IHostingEnvironment hostingEnvironment)
         {
             _context = context;
         }
@@ -165,6 +169,41 @@
         public bool IsUniqueUsername(string Username)
         {
             return CheckUniqueUsername(Username);
+        }
+
+        [HttpPost]
+        [Route("PostFile/{userId}")]
+        public async Task<IActionResult> PostFile(int userId, IFormFile File)
+        {
+            // full path to file in temp location
+            string path = _hostingEnvironment.WebRootPath + "\\ProfilePictures\\" + userId;
+            var User = _context.User.Find(userId);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string fullPath = Path.Combine(path, File.FileName);
+            if (File.Length > 0)
+            {
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    try
+                    {
+                        await File.CopyToAsync(stream);
+                        User.ProfileImageName = File.FileName;
+
+                        _context.Entry(User).State = EntityState.Modified;
+                        _context.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+            }
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+            return Ok();
         }
 
         /// <summary>

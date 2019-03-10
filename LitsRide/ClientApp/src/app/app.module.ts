@@ -118,7 +118,7 @@ export function tokenGetter() {
       { path: 'rating', component: RatingComponent },
       { path: 'filtering', component: FilteringComponent },
       { path: 'complete-profile', component: CompleteProfileComponent },
-      { path: 'trip-details', component: TripDetailsComponent },
+      { path: 'trip-details/:id', component: TripDetailsComponent },
     ])
   ],
   providers: [

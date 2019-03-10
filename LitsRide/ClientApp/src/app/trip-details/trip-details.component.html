@@ -1,109 +1,76 @@
-
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-sm-2"></div>
-    <div class="col-md-auto">
-      <mat-card class="p-3">
+      <mat-card>
         <mat-card-header class="text-center">
-          <h1>{{ 'HOME.TripDetails' | translate }}</h1>
+          <br /><br />
         </mat-card-header>
-
         <mat-card-content>
           <div class="row">
-            <mat-form-field class="w m-2">
-
-              <input matInput placeholder="{{ 'HOME.TripID' | translate }}" value="532DE4" disabled>
-            </mat-form-field>
-            <mat-form-field class="w m-2">
-
-              <mat-icon matPrefix>person_pin</mat-icon>
-              <input matInput placeholder="{{ 'HOME.DriverID' | translate }}" value="AR73JD4" disabled>
-
-            </mat-form-field>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.Username' | translate }} : <a [routerLink]="['/profile', Trip?.driver?.id ]"> {{ Trip?.driver?.fullName }}</a>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.toDest' | translate }} :
+            </div>
           </div>
           <hr />
           <div class="row">
-            <mat-form-field class="w m-2">
-
-              <mat-icon matPrefix>pin_drop</mat-icon>
-              <input matInput placeholder="{{ 'HOME.fromDest' | translate }}" value="Sushi" disabled>
-
-            </mat-form-field>
-            <mat-form-field class="w m-2">
-
-              <mat-icon matPrefix>pin_drop</mat-icon>
-              <input matInput placeholder="{{ 'HOME.toDest' | translate }}" value="Amman" disabled>
-
-            </mat-form-field>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.fromDest' | translate }} :
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.toDest' | translate }} :
+            </div>
           </div>
           <hr />
           <div class="row">
-            <mat-form-field class="mw-50 m-2">
-
-              <mat-icon matPrefix>alarm</mat-icon>
-              <input matInput placeholder="{{ 'HOME.StartTime' | translate }}" value="12:00 PM" disabled>
-
-            </mat-form-field>
-            <mat-form-field class="mw-50 m-2">
-
-              <mat-icon matPrefix>alarm</mat-icon>
-              <input matInput placeholder="{{ 'HOME.ArriveTime' | translate }}" value="1:30 PM" disabled>
-
-            </mat-form-field>
-            <mat-form-field class="mw-50 m-2">
-
-              <mat-icon matPrefix>alarm_on</mat-icon>
-              <input matInput placeholder="Expected Arrival Time" value="1:30 PM" disabled>
-
-            </mat-form-field>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.StartTime' | translate }} :
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.ArriveTime' | translate }} :
+            </div>
           </div>
           <hr />
           <div class="row">
-            <mat-form-field class="mw-50 m-2">
-
-              <mat-icon matPrefix>directions_car</mat-icon>
-              <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" value="Mitsubishi" disabled>
-
-            </mat-form-field>
-            <mat-form-field class="mw-50 m-2">
-
-              <mat-icon matPrefix>local_car_wash</mat-icon>
-              <input matInput placeholder="{{ 'HOME.carNo' | translate }}" value="52-34982" disabled>
-
-            </mat-form-field>
-            <mat-form-field class="mw-50 m-2">
-
-              <mat-icon matPrefix>supervisor_account</mat-icon>
-              <input matInput placeholder="{{ 'HOME.seatsNo' | translate }}" value="4 Seats" disabled>
-
-            </mat-form-field>
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              {{ 'HOME.carInfo' | translate }} :
+            </div>
+            <div class="col-md-3">
+              {{ 'HOME.carNo' | translate }} :
+            </div>
+            <div class="col-md-3">
+              {{ 'HOME.seatsNo' | translate }} :
+            </div>
+            <div class="col-md-1"></div>
           </div>
           <hr />
           <div class="row">
-            <mat-form-field class="w-100 m-2">
-
-              <mat-icon matPrefix>library_books</mat-icon>
-              <textarea matInput placeholder="{{ 'HOME.details' | translate }}" rows="5" value="" disabled></textarea>
-
-            </mat-form-field>
-
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              {{ 'HOME.details' | translate }} :
+            </div>
           </div>
           <hr />
           <div class="row">
-            <mat-form-field class="w m-2">
-              <mat-icon matPrefix>attach_money</mat-icon>
-              <input matInput placeholder="{{ 'HOME.price' | translate }}" value="10" disabled>
-            </mat-form-field>
-            <mat-form-field class="w m-2">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              {{ 'HOME.price' | translate }} :
+            </div>
 
-              <mat-icon matPrefix>mobile_friendly</mat-icon>
-              <input matInput placeholder="{{ 'HOME.Status' | translate }}" value="Available" disabled>
-
-            </mat-form-field>
-
+            <div class="col-md-3">
+              {{ 'HOME.Status' | translate }} :
+            </div>
+            <div class="col-md-1"></div>
           </div>
-          <hr />
 
+          <hr />
           <mat-card *ngFor="let request of requests">
             <p>{{request.user.username}}</p>
             <p>{{request.passengerNote}}</p>
@@ -115,13 +82,13 @@
             <button mat-raised-button color="warning">Cancel</button>
           </mat-card>
         </mat-card-content>
-        <mat-card-actions class="text-center">
-          
-          <button class="btn btn-danger btn-round m-2" mat-raised-button color="primary">{{ 'HOME.rideButton' | translate }}</button>
-          
-        </mat-card-actions>
+
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3">
+            <button class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="rideTrip()">{{ 'HOME.rideButton' | translate }}</button>
+          </div>
+        </div>
       </mat-card>
     </div>
-    <div class="col col-sm-2"></div>
-  </div>
-</div>
+

@@ -50,10 +50,10 @@ export class NewTripComponent {
     ExpectedArrivalTime: new FormControl(new Date()),
     Details: new FormControl(''),
     CarInfo: new FormControl('', Validators.required),
-    Price: new FormControl(''),
-    seatsNo: new FormControl('', Validators.required),
+    Price: new FormControl(0),
+    seatsNo: new FormControl(0, Validators.required),
     carNo: new FormControl('', Validators.required),
-    driverId: new FormControl('')
+    driverId: new FormControl(0)
   })
 
   get fromDestination() {
@@ -106,14 +106,18 @@ export class NewTripComponent {
 
   //}
   submitTrip() {
-    console.log(this.TripsForm.value);
-    //this.driverId.setValue(this.authService.getLoggedInUserId());
-    //this.StartTime.setValue(this.StartTime.value)
-    //console.log(JSON.stringify(this.TripsForm.value))
-    //this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
-    //  console.log(response);
-    //  this.notificationService.createNotificationService('success', 'Trip added', '');
-    //  this.route.navigate(["/Trips"]);
-    //})
+    
+  
+    this.driverId.setValue(this.authService.getLoggedInUserId());
+    this.StartTime.setValue(new Date(this.StartTime.value));
+    this.ExpectedArrivalTime.setValue(new Date(this.ExpectedArrivalTime.value));
+    console.log(this.StartTime.value);
+    console.log(this.ExpectedArrivalTime.value);
+    console.log(JSON.stringify(this.TripsForm.value));
+    this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
+      console.log(response);
+      this.notificationService.createNotificationService('success', 'Trip added', '');
+      this.route.navigate(["/Trips"]);
+    })
   }
 }
