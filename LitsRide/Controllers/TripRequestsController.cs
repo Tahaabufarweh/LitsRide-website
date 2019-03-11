@@ -71,10 +71,12 @@ namespace LitsRide.Controllers
         /// <returns>TripRequest </returns>
         [HttpPost]
         [Route("NewRequest")]
-        public async Task<IActionResult> NewRequest([FromBody] TripRequest NewTripRequest)
+        public async Task<IActionResult> NewRequest([FromBody] TripRequest NewTripRequest,int tripid)
         {
+            NewTripRequest.RequestDate = DateTime.Now;
+            NewTripRequest.TripId = tripid;
             List<TripRequest> list = _context.TripRequest.Where(request => request.TripId == NewTripRequest.TripId).ToList().ToList();
-            Trip TripObj = _context.Trip.Where(trip => trip.Id == NewTripRequest.Id).FirstOrDefault();
+            Trip TripObj = _context.Trip.Where(trip => trip.Id == NewTripRequest.TripId).FirstOrDefault();
             if (TripObj.StartTime < DateTime.Now)
             {
                 return BadRequest("This trip is expired!");
@@ -90,7 +92,9 @@ namespace LitsRide.Controllers
             else
             {
                 NewTripRequest.Status = (int)TripRequestStatus.New;
+                
                 await _context.TripRequest.AddAsync(NewTripRequest);
+                await _context.SaveChangesAsync();
             }
             return CreatedAtAction("GetTripRequest", new { id = NewTripRequest.Id }, NewTripRequest);
 

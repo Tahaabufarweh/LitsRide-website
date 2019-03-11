@@ -83,7 +83,15 @@
     "PassengerNote": "Passenger Note",
     "PaymentMethod": "Payment Method",
     "Note": "Note",
-    "SavePhoto": "Save Photo"
+    "SavePhoto": "Save Photo",
+    "LeaveNote": "Leave Note to driver",
+    "Opened": "Opened",
+    "Closed":"Closed",
+    "FullBoard":"Full",
+    "Deleted":"Deleted",
+    "New":"New",
+    "Approved":"Approved",
+    "Reject":"Rejected"
 
 
 

@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 import decode from 'jwt-decode';
 import { AuthService } from '../services/auth.service';
 import { TripsService } from '../services/trips.service';
+import { RideModalComponent } from '../ride-modal/ride-modal.component';
+import { TripRequestService } from '../services/trip-request.service';
+import { FormGroup } from '@angular/forms';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
     selector: 'app-trips',
@@ -20,10 +24,18 @@ export class TripsComponent implements OnInit {
 
   public allTrips;
   public filter;
+  RideDialogRef: MatDialogRef<RideModalComponent>;
     /** trips ctor */
   fileNameDialogRef: MatDialogRef<FilteringComponent>;
 
-  constructor(public dialog: MatDialog, private tripsService: TripsService, public translate: TranslateService, private authService: AuthService, private router: Router) {
+  constructor(
+    public dialog: MatDialog,
+    private tripsService: TripsService,
+    public translate: TranslateService,
+    private authService: AuthService,
+    private router: Router,
+    private rideService: TripRequestService,
+    private notificationService: NotificationService,) {
     this.authService.checkLogin();
   }
 
@@ -40,8 +52,30 @@ export class TripsComponent implements OnInit {
     })
   }
 
-  navigateToDetails(id) { }
-  rideTrip(id) { }
+  navigateToDetails(id)
+  {
+    this.router.navigate(["/trip-details/" + id]);
+  }
+  openRideDialog(id) {
+    this.RideDialogRef = this.dialog.open(RideModalComponent);
+    this.RideDialogRef.afterClosed().subscribe(data => this.fillRide(data, id));
+  }
+  fillRide(ride = {} as FormGroup ,tripid) {
+
+    console.log(ride);
+
+    this.rideService.createRate(ride, Number(tripid)).subscribe(response => {
+
+      this.notificationService.createNotificationService('success', 'Request Success', 'Your request has been sent');
+      console.log("success");
+
+    }, error => {
+      console.log("failed");
+
+    });
+
+  }
+
 
   onPageChanged(page: PageEvent) {
     console.log(page);

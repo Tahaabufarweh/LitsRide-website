@@ -37,6 +37,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationService } from './services/notification.service';
 import { PaginationComponent } from './trips/pagination.component';
 import { RatingService } from './services/rating.service';
+import { TripRequestService } from './services/trip-request.service';
+import { RideModalComponent } from './ride-modal/ride-modal.component';
 
 
 
@@ -78,7 +80,8 @@ export function tokenGetter() {
     PaginationComponent,
     FilteringComponent,
     CompleteProfileComponent,
-    TripDetailsComponent
+    TripDetailsComponent,
+    RideModalComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -119,6 +122,7 @@ export function tokenGetter() {
       { path: 'filtering', component: FilteringComponent },
       { path: 'complete-profile', component: CompleteProfileComponent },
       { path: 'trip-details/:id', component: TripDetailsComponent },
+      { path: 'ride', component: RideModalComponent }
     ])
   ],
   providers: [
@@ -131,7 +135,8 @@ export function tokenGetter() {
     NotificationService,
     AuthService,
     RatingService,
-    UserService
+    UserService,
+    TripRequestService
   ],
   bootstrap: [AppComponent]
 })

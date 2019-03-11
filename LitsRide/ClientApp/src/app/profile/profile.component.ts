@@ -14,7 +14,7 @@ import { User } from '../modelInterfaces';
 import { Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RatingService } from '../services/rating.service';
-import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { Validators, FormControl, FormGroup} from '@angular/forms';
 import { NotificationService } from '../services/notification.service';
 import { ProfileService } from '../services/profile.service';
 import { error } from 'util';
@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private router: ActivatedRoute,
     private route: Router,
+   
     private profileService: ProfileService,
     private ratingService: RatingService,
     private notificationService: NotificationService) {

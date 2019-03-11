@@ -46,7 +46,7 @@ namespace LitsRide.Controllers
         [Route("GetAllRatingsByUserId/{UserId}")]
         public async Task<ActionResult<IEnumerable<Rating>>> GetAllRatingsByUserId(int UserId)
         {
-            return await _context.Rating.Where(x => x.Id == UserId).Include(x => x.User).OrderByDescending(x => x.Id).ToListAsync();
+            return await _context.Rating.Where(x => x.RatedUser == UserId).Include(x => x.User).OrderByDescending(x => x.Id).ToListAsync();
         }
 
         /// <summary>
