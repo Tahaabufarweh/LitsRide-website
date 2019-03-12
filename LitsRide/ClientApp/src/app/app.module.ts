@@ -37,6 +37,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { NotificationService } from './services/notification.service';
 import { PaginationComponent } from './trips/pagination.component';
 import { RatingService } from './services/rating.service';
+import { TripRequestService } from './services/trip-request.service';
 
 
 
@@ -130,6 +131,7 @@ export function tokenGetter() {
     },
     NotificationService,
     AuthService,
+    TripRequestService,
     RatingService,
     UserService
   ],
