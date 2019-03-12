@@ -7,46 +7,46 @@
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              {{ 'HOME.Username' | translate }} : <a [routerLink]="['/profile', Trip?.driver?.id ]"> {{ Trip?.driver?.fullName }}</a>
+              {{ 'HOME.Username' | translate }} : <a [routerLink]="['/profile', Trip?.driver?.id ]"> {{ Trip.driver.username }}</a>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              {{ 'HOME.toDest' | translate }} :
+              {{ 'HOME.fromDest' | translate }} :{{Trip.fromDestination}}
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              {{ 'HOME.fromDest' | translate }} :
+              {{ 'HOME.fromDest' | translate }} : {{Trip.fromDestination}}
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              {{ 'HOME.toDest' | translate }} :
+              {{ 'HOME.toDest' | translate }} :{{Trip.toDestination}}
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              {{ 'HOME.StartTime' | translate }} :
+              {{ 'HOME.StartTime' | translate }} :{{Trip.startTime}}
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              {{ 'HOME.ArriveTime' | translate }} :
+              {{ 'HOME.ArriveTime' | translate }} :{{Trip.arriveTime}}
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-3">
-              {{ 'HOME.carInfo' | translate }} :
+              {{ 'HOME.carInfo' | translate }} :{{Trip.carInfo}}
             </div>
             <div class="col-md-3">
-              {{ 'HOME.carNo' | translate }} :
+              {{ 'HOME.carNo' | translate }} :{{Trip.carNo}}
             </div>
             <div class="col-md-3">
-              {{ 'HOME.seatsNo' | translate }} :
+              {{ 'HOME.seatsNo' | translate }} :{{Trip.seatsNo}}
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -54,20 +54,20 @@
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-              {{ 'HOME.details' | translate }} :
+              {{ 'HOME.details' | translate }} :{{Trip.details}}
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-3">
-              {{ 'HOME.price' | translate }} :
-            </div>
-
-            <div class="col-md-3">
-              {{ 'HOME.Status' | translate }} :
+            <div class="col-md-5">
+              {{ 'HOME.price' | translate }} :{{Trip.price}}
             </div>
             <div class="col-md-1"></div>
+            <div class="col-md-5">
+              {{ 'HOME.Status' | translate }} :{{Trip.status}}
+            </div>
+            
           </div>
 
           <hr />
@@ -86,7 +86,7 @@
         <div class="row">
           <div class="col-md-9"></div>
           <div class="col-md-3">
-            <button class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="rideTrip()">{{ 'HOME.rideButton' | translate }}</button>
+            <button class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="openRideDialog()">{{ 'HOME.rideButton' | translate }}</button>
           </div>
         </div>
       </mat-card>

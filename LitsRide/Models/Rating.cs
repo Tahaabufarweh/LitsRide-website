@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace LitsRide.Models
 {
+
     public partial class Rating
     {
         public int Id { get; set; }

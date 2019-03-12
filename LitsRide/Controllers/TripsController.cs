@@ -193,8 +193,10 @@ namespace LitsRide.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(trip);
+            else
+            {
+                return Ok(trip);
+            }
         }
 
         /// <summary>

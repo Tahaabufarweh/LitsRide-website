@@ -23,32 +23,14 @@
   <div class="row">
     <mat-form-field class="m-2">
       <input matInput placeholder="{{ 'HOME.Email' | translate }}" formControlName="email" [value]="user.email">
-      
+
+    </mat-form-field>
+    <mat-form-field class="m-2">
+      <input matInput [matDatepicker]="picker" placeholder="{{ 'HOME.BirthDate' | translate }}" formControlName="BirthDate" [value]="user.birthDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field class="m-2">
-      <input matInput placeholder="{{ 'HOME.password' | translate }}" formControlName="password" [value]="user.password">     
-      <mat-error *ngIf="password.touched && password.invalid">
-        {{ 'HOME.passwordisrequired' | translate }}
-      </mat-error>
-      
-    </mat-form-field>
-  </div>
-  <div class="row">
-    <mat-form-field class="m-2">
-      <input matInput placeholder="{{ 'HOME.repassword' | translate }}" formControlName="rePass" [value]="user.rePass">    
-      <mat-error *ngIf="rePass?.errors?.MatchPassword">
-        {{ 'HOME.PasswordNotMatch' | translate }}
-      </mat-error>
-     
-    </mat-form-field>
-
-    <mat-form-field class="m-2">
-      <mat-select placeholder="{{ 'HOME.country' | translate }}" #country [formControl]="Country" [value]="user.country">
-        <mat-option *ngFor="let countr of countries" [value]="countr.viewValue">{{countr.viewValue}}</mat-option>
-      </mat-select>
-     
-    </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field class="m-2">
@@ -56,30 +38,22 @@
         <mat-option *ngFor="let g of Genders">
           {{g}}
         </mat-option>
-       
+
       </mat-select>
     </mat-form-field>
-
-
     <mat-form-field class="m-2">
-      <input matInput placeholder="{{ 'HOME.carInfo' | translate }}"  formControlName="CarInfo" [value]="user.carInfo">
-      <mat-error>
-        {{ 'HOME.carInfo' | translate }}
-      </mat-error>
+      <mat-select placeholder="{{ 'HOME.country' | translate }}" #country [formControl]="Country" [value]="user.country">
+        <mat-option *ngFor="let countr of countries" [value]="countr.viewValue">{{countr.viewValue}}</mat-option>
+      </mat-select>
+
     </mat-form-field>
+   
+
+
+
   </div>
   <div class="row">
-    <mat-form-field class="m-2">
-      <input matInput placeholder="{{ 'HOME.carNo' | translate }}"  formControlName="CarNumber" [value]="user.carNo">
-
-      <mat-error>
-        {{ 'HOME.carNorequired' | translate }}
-      </mat-error>
-    </mat-form-field>
-
-
-
-    <mat-form-field class="m-2">
+    <mat-form-field class="m-2 w-100">
       <span matPrefix>{{filterItemsOfType(country.value)}} &nbsp;</span>
       <input matInput placeholder="{{ 'HOME.MobileNumber' | translate }}" formControlName="MobileNumber" [value]="user.mobileNumber">
       <mat-icon matSuffix>phone</mat-icon>
@@ -87,15 +61,27 @@
         {{ 'HOME.MobileNumberrequired' | translate }}
       </mat-error>
     </mat-form-field>
+
+   
   </div>
   <div class="row">
-    <mat-form-field class="m-2 w-100">
-      <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="BirthDate" [value]="user.birthDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
 
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.carNo' | translate }}" formControlName="CarNumber" [value]="user.carNo">
+
+      <mat-error>
+        {{ 'HOME.carNorequired' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="m-2">
+      <input matInput placeholder="{{ 'HOME.carInfo' | translate }}" formControlName="CarInfo" [value]="user.carInfo">
+      <mat-error>
+        {{ 'HOME.carInfo' | translate }}
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+  
 </div>
   </form>
 <mat-dialog-actions align="end">

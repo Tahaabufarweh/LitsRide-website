@@ -100,8 +100,11 @@
                   <td>{{T.fromDestination}}</td>
                   <td>{{T.toDestination}}</td>
                   <td>{{T.startTime | date}}</td>
-                  <td>{{T.status}}</td>
-                  <td *ngIf="T.status == true;else no">{{ 'HOME.yes' | translate }}</td>
+                  <td *ngIf="T.status==1">{{ 'HOME.Opened' | translate }}</td>
+                  <td *ngIf="T.status==2">{{ 'HOME.Closed' | translate }}</td>
+                  <td *ngIf="T.status==3">{{ 'HOME.FullBoard' | translate }}</td>
+                  <td *ngIf="T.status==4">{{ 'HOME.Deleted' | translate }}</td>
+                  <td *ngIf="T.isArrived == true;else no">{{ 'HOME.yes' | translate }}</td>
                   <ng-template #no><td>{{ 'HOME.no' | translate }}</td></ng-template>
                 </tr>
               </tbody>
@@ -110,7 +113,7 @@
 </mat-card>
 
 </mat-tab>
-        <mat-tab label="{{ 'HOME.Requests' | translate }}">
+        <mat-tab label="{{ 'HOME.Requests' | translate }}" *ngIf="user.id ==authService.getLoggedInUserId()">
           <table class="table">
             <thead>
               <tr>
@@ -121,10 +124,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let R of user.request">
+              <tr *ngFor="let R of user.tripRequest">
                 <td>{{ R.requestDate }}</td>
                 <td>{{ R.passengerNote }}</td>
-                <td>{{ R.status }}</td>                
+                <td *ngIf="R.status==1">{{ 'HOME.New' | translate }}</td>
+                <td *ngIf="R.status==2">{{ 'HOME.Approved' | translate }}</td>
+                <td *ngIf="R.status==3">{{ 'HOME.Reject' | translate }}</td>
                 <td>{{ R.paymentMethod }}</td>
               </tr>
             </tbody>
@@ -144,8 +149,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let R of user.ratingUser">
-                  <th scope="row"><a href="">{{R.ratedUser}}</a></th>
+                <tr *ngFor="let R of user.ratingRatedUserNavigation">
+                  <th scope="row"><a [routerLink]="['/profile',R.user.id ]">{{R.user.username}}</a></th>
                   <td> {{ R.rating1 }}<i class="material-icons">star_rate</i></td>
                   <td>{{ R.note }}</td>
    

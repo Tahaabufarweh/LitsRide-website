@@ -83,7 +83,15 @@
     "PassengerNote": "Note passager",
     "PaymentMethod": "Mode de paiement",
     "Note": "Remarque",
-    "SavePhoto": "Enregistrer la photo"
+    "SavePhoto": "Enregistrer la photo",
+    "LeaveNote": "Laisser la note au conducteur",
+    "Opened": "Ouvert",
+    "Closed": "Fermé",
+    "FullBoard": "Pension complète",
+    "Deleted": "Supprimé",
+    "New": "Nouveau",
+    "Approved": "Approved",
+    "Reject": "Rejeter"
 
 
 

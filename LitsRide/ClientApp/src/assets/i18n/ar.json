@@ -82,7 +82,16 @@
     "PassengerNote": "ملاحظة الراكب",
     "PaymentMethod": "طريقة الدفع",
     "Note": "ملاحظة",
-    "SavePhoto": "حفظ الصورة"
+    "SavePhoto": "حفظ الصورة",
+    "LeaveNote": "اكتب ملاحظة للسائق",
+    "Opened":"مفتوحة",
+    "Closed": "مغلقة",
+    "FullBoard": "ممتلئة",
+    "Deleted": "محذوفة",
+    "New":"جديد",
+    "Approved" :"مقبول",  
+    "Reject": "مرفوض"
+   
 
 
 
