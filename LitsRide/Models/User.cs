@@ -7,6 +7,7 @@ namespace LitsRide.Models
     {
         public User()
         {
+            Notification = new HashSet<Notification>();
             RatingRatedUserNavigation = new HashSet<Rating>();
             RatingUser = new HashSet<Rating>();
             ReportReportedUserNavigation = new HashSet<Report>();
@@ -28,6 +29,7 @@ namespace LitsRide.Models
         public string ProfileImageName { get; set; }
         public string CarNumber { get; set; }
 
+        public virtual ICollection<Notification> Notification { get; set; }
         public virtual ICollection<Rating> RatingRatedUserNavigation { get; set; }
         public virtual ICollection<Rating> RatingUser { get; set; }
         public virtual ICollection<Report> ReportReportedUserNavigation { get; set; }
