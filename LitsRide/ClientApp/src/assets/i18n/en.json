@@ -86,13 +86,20 @@
     "SavePhoto": "Save Photo",
     "LeaveNote": "Leave Note to driver",
     "Opened": "Opened",
-    "Closed":"Closed",
-    "FullBoard":"Full",
-    "Deleted":"Deleted",
-    "New":"New",
-    "Approved":"Approved",
-    "Reject":"Rejected"
-
+    "Closed": "Closed",
+    "FullBoard": "Full",
+    "Deleted": "Deleted",
+    "New": "New",
+    "Approved": "Approved",
+    "Reject": "Rejected",
+    "ExcpectedTime": "Excpected Arrival Time",
+    "#OfTrips": "# Of Trips :",
+    "#OfUsers": "# Of Users :",
+    "#OfReports": "# Of Reports :",
+    "Users": "Users",
+    "Reports": "Reports",
+    "id": "ID",
+    "DriverId": "Driver ID"
 
 
 

@@ -60,6 +60,18 @@ namespace LitsRide.Controllers
 
             return report;
         }
+        /// <summary>
+        /// Get All Report
+        /// </summary>
+        
+        /// <returns>Report object</returns>
+        [HttpGet]
+        [Route("AllReports")]
+        public IActionResult GetAllReports()
+        {
+            
+            return Ok(_context.Report.ToList());
+        }
 
         /// <summary>
         /// Delete Report

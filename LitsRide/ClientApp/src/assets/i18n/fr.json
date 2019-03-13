@@ -91,9 +91,15 @@
     "Deleted": "Supprimé",
     "New": "Nouveau",
     "Approved": "Approved",
-    "Reject": "Rejeter"
-
-
+    "Reject": "Rejeter",
+    "ExcpectedTime": "Heure d'arrivée prévue",
+    "#OfTrips": "# de voyages :",
+    "#OfUsers": "# de  Utilisateurs :",
+    "#OfReports": "# de Rapports :",
+    "Users": "Utilisateurs",
+    "Reports": "Rapports",
+    "id": "ID",
+    "DriverId": "chauffeur ID"
 
 
   }

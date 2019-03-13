@@ -35,8 +35,8 @@
           <div mat-card-avatar class="example-header-image">
 
           </div>
-          <mat-card-title>{{trip?.driver.username}}</mat-card-title>
-          <mat-card-subtitle>From {{trip?.fromDestination}} to {{trip?.toDestination}}</mat-card-subtitle>
+          <mat-card-title><a [routerLink]="['/profile',trip?.driver.id ]">{{trip?.driver.username}}</a></mat-card-title>
+          <mat-card-subtitle>{{ 'HOME.fromDest' | translate }}  {{trip?.fromDestination}}  {{ 'HOME.toDest' | translate }}  {{trip?.toDestination}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <p>

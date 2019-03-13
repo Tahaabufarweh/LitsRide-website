@@ -6,23 +6,16 @@
           <i class="material-icons lg">
             directions_car
           </i>
-          <p>Number of trips :10</p>
+          <p>{{ 'HOME.#OfTrips' | translate }} {{allTrips.totalTrips}}</p>
         </mat-card>
       </div>
-      <div class="col text-center">
-        <mat-card>
-          <i class="material-icons lg">
-            date_range
-          </i>
-          <p>Number of Requests :10</p>
-        </mat-card>
-      </div>
+     
       <div class="col text-center">
         <mat-card>
           <i class="material-icons lg">
             how_to_reg
           </i>
-          <p>Number Of Users :10</p>
+          <p>{{ 'HOME.#OfUsers' | translate }} {{allUsers.length}}</p>
         </mat-card>
       </div>
       <div class="col text-center">
@@ -30,44 +23,191 @@
           <i class="material-icons lg">
             report
           </i>
-          <p>Number Of Reports :10</p>
+          <p>{{ 'HOME.#OfReports' | translate }} {{allReports.length}}</p>
         </mat-card>
       </div>
     </div>
-    <div class="row mt-4">
-      <mat-card class="w-100">
-        <table class="table">
-          <caption>List of Reports</caption>
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-card>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+      
+      <mat-tab-group class="w-100">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">how_to_reg</mat-icon>
+            {{ 'HOME.Users' | translate }}
+          </ng-template>
+          <mat-card>
+            <mat-form-field class="w-100">
+              <input matInput (keyup)="applyUserFilter($event.target.value)" placeholder="{{ 'HOME.filterButton' | translate }}">
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100" matSort>
+
+              <!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+              <!-- Position Column -->
+              <ng-container matColumnDef="ID">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.id' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="Username">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'HOME.Username' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="FullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.FullName' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.fullName}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="Email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.Email' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="Country">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.country' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.country}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="Gender">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.Gender' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.gender}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="Mobile">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.MobileNumber' | translate }} </th>
+                <td mat-cell *matCellDef="let user"> {{user.mobileNumber}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="usersColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: usersColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </mat-card>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">directions_car</mat-icon>
+            {{ 'HOME.TripsLabel' | translate }}
+          </ng-template>
+
+          <mat-card>
+            <mat-form-field class="w-100">
+              <input matInput (keyup)="applyTripFilter($event.target.value)" placeholder="{{ 'HOME.filterButton' | translate }}">
+            </mat-form-field>
+            <table mat-table [dataSource]="tripDataSource" class="mat-elevation-z8 w-100" matSort>
+
+              <!--- Note that these columns can be defined in any order.
+    The actual rendered columns are set as a property on the row definition" -->
+              <!-- Position Column -->
+              <ng-container matColumnDef="ID">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.id' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.id}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="driverId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'HOME.DriverId' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.driverId}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="fromDest">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.fromDest' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.fromDestination}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="toDest">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.toDest' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.toDestination}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="isArrived">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.isArrived' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.isArrived}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="startTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.StartTime' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.startTime}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="arriveTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.ArriveTime' | translate }} </th>
+                <td mat-cell *matCellDef="let trip"> {{trip.arriveTime}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </mat-card>
+        </mat-tab>
+
+        <mat-tab>
+          <mat-card>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">report</mat-icon>
+            {{ 'HOME.Reports' | translate }}
+          </ng-template>
+          <table mat-table [dataSource]="reportDataSource" class="mat-elevation-z8 w-100" matSort>
+
+            <!--- Note that these columns can be defined in any order.
+    The actual rendered columns are set as a property on the row definition" -->
+            <!-- Position Column -->
+            <ng-container matColumnDef="ID">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.id' | translate }} </th>
+              <td mat-cell *matCellDef="let report"> {{report.id}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="userId">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'HOME.DriverId' | translate }} </th>
+              <td mat-cell *matCellDef="let report"> {{report.userId}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="reportedUser">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.fromDest' | translate }} </th>
+              <td mat-cell *matCellDef="let report"> {{report.reportedUser}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="reportType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.toDest' | translate }} </th>
+              <td mat-cell *matCellDef="let report"> {{report.reportType}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="note">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'HOME.isArrived' | translate }} </th>
+              <td mat-cell *matCellDef="let report"> {{report.note}} </td>
+            </ng-container>
+
+           
+
+            <tr mat-header-row *matHeaderRowDef="reportColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: reportColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+       
     </div>
   </div>
 </div>

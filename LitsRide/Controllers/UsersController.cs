@@ -86,7 +86,16 @@
                       .Include(x=>x.Trip)
                       .FirstOrDefault());
         }
-       
+
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public IActionResult getAllUser()
+        {
+            
+            return Ok(_context.User.ToList());
+            
+        }
+
         // GET api/values
         [HttpPost, Route("Login")]
         public IActionResult Login([FromBody]User user)

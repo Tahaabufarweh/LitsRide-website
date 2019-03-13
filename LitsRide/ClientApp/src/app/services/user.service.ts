@@ -15,6 +15,7 @@ const baseUrl = 'api/Users/'
 const getUserRoute = 'GetUser/';
 const signupRoute = 'SignUp';
 const signinRoute = 'signin';
+const getUsersRoute = 'GetAllUsers';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -32,7 +33,9 @@ export class UserService {
   }
 
   
-
+  getUsers() {
+    return this.httpClient.get(baseUrl + getUsersRoute);
+  }
 
     createUser(user: User) {
         return this.httpClient.post(baseUrl + signupRoute, JSON.stringify(user), httpOptions);
