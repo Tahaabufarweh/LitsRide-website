@@ -27,8 +27,22 @@
 
     <div class="example-sidenav-content">
       <mat-toolbar color="primary" style="margin-bottom:10px;">
-        Lets ridein
+        <img src="pic1.png" height="70" width="70" />
         <span class="example-spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menuLang" *ngIf="this.authService.isLoggedin()">
+          <mat-icon matBadge="15" matBadgeColor="warn">notification_important</mat-icon>
+        </button>
+        <mat-menu #menuLang="matMenu">
+          <button mat-menu-item (click)="translate.use('ar'); setPrefLang('ar')">
+            <span>العربية</span>
+          </button>
+          <button mat-menu-item (click)="translate.use('fr'); setPrefLang('fr')">
+            <span>Française</span>
+          </button>
+          <button mat-menu-item (click)="translate.use('en'); setPrefLang('en')">
+            <span>English</span>
+          </button>
+        </mat-menu>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon class="example-icon mr-3">account_circle</mat-icon>
         </button>
@@ -46,7 +60,7 @@
             <span>{{ 'HOME.Logout' | translate }}</span>
           </button>
         </mat-menu>
-        <button mat-icon-button [matMenuTriggerFor]="menuLang">
+        <button mat-icon-button [matMenuTriggerFor]="menuLang" >
           <mat-icon class="example-icon mr-3">language</mat-icon>
         </button>
         <mat-menu #menuLang="matMenu">
@@ -61,9 +75,11 @@
           </button>
         </mat-menu>
 
+
       </mat-toolbar>
       <div class="container pad">
         <router-outlet></router-outlet>
+        <simple-notifications></simple-notifications>
       </div>
     </div>
   </mat-sidenav-container>

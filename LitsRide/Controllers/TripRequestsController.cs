@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LitsRide.Models;
 using LitsRide.Models.Enum;
+using LitsRide.Models.Notifications;
 
 namespace LitsRide.Controllers
 {
@@ -38,6 +39,21 @@ namespace LitsRide.Controllers
                 return NotFound();
             }
             tripRequest.Status = Status;
+            string passengerName = _context.User.Find(tripRequest.PassengerId).Username;
+
+            if (Status == (int)Models.Enum.TripRequestStatus.Approved)
+            {
+                string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestAccepted);
+                PushNotification(notificationText, tripRequest.TripId);
+
+            }
+            else if (Status == (int)Models.Enum.TripRequestStatus.Reject)
+            {
+                string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestReject);
+                PushNotification(notificationText, tripRequest.TripId);
+
+            }
+
             await _context.SaveChangesAsync();
 
             return tripRequest;
@@ -95,6 +111,9 @@ namespace LitsRide.Controllers
                 
                 await _context.TripRequest.AddAsync(NewTripRequest);
                 await _context.SaveChangesAsync();
+                string passengerName = _context.User.Find(NewTripRequest.PassengerId).Username;
+                string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.newRequest);
+                PushNotification(notificationText, NewTripRequest.TripId);
             }
             return CreatedAtAction("GetTripRequest", new { id = NewTripRequest.Id }, NewTripRequest);
 
@@ -112,5 +131,32 @@ namespace LitsRide.Controllers
 
             return tripRequest;
         }
+
+        public string ReplaceNotificationBody(string username , string notifyBody) {
+            notifyBody = notifyBody.Replace("User", username);
+            return notifyBody;
+        }
+
+        public void PushNotification(string notificationText , int tripId) {
+
+            Notification notification = new Notification
+            {
+                NotificationText = notificationText,
+                IsOpened = false,
+                NotifyDate = DateTime.Now,
+                NotifyLink = "trip-details/" + tripId
+            };
+
+            try
+            {
+                _context.Notification.Add(notification);
+                _context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

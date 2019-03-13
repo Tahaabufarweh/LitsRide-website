@@ -38,7 +38,6 @@ import { NotificationService } from './services/notification.service';
 import { PaginationComponent } from './trips/pagination.component';
 import { RatingService } from './services/rating.service';
 import { TripRequestService } from './services/trip-request.service';
-
 import { RideModalComponent } from './ride-modal/ride-modal.component';
 import { AdminService } from './services/admin.service';
 
@@ -136,7 +135,6 @@ export function tokenGetter() {
     },
     NotificationService,
     AuthService,
-    TripRequestService,
     RatingService,
     UserService,
     TripRequestService,

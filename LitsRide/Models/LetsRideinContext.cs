@@ -15,6 +15,7 @@ namespace LitsRide.Models
         {
         }
 
+        public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<Rating> Rating { get; set; }
         public virtual DbSet<Report> Report { get; set; }
         public virtual DbSet<Trip> Trip { get; set; }
@@ -33,6 +34,24 @@ namespace LitsRide.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+
+            modelBuilder.Entity<Notification>(entity =>
+            {
+                entity.Property(e => e.IsOpened).HasColumnName("isOpened");
+
+                entity.Property(e => e.NotificationText).IsRequired();
+
+                entity.Property(e => e.NotifyDate)
+                    .HasColumnName("notifyDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.NotifyLink).HasMaxLength(100);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Notification)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Notification_User");
+            });
 
             modelBuilder.Entity<Rating>(entity =>
             {
@@ -53,8 +72,6 @@ namespace LitsRide.Models
 
             modelBuilder.Entity<Report>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.ReportedUserNavigation)
                     .WithMany(p => p.ReportReportedUserNavigation)
                     .HasForeignKey(d => d.ReportedUser)

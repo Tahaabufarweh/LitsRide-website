@@ -46,7 +46,6 @@
     <mat-card class="col-md-12">
       <mat-tab-group>
         <mat-tab label="{{ 'HOME.ProfileInfo' | translate }}">
-          <mat-card>
             <mat-grid-list cols="1" rowHeight="2:1">
               <mat-grid-tile>
                 <p>{{user.country}}</p>
@@ -79,12 +78,9 @@
               </div>
             
             </mat-grid-list>
-          </mat-card>
         </mat-tab>
         <mat-tab label="{{ 'HOME.TripsLabel' | translate }}">
-         
-          <mat-card>
-
+  
             <table class="table">
               <thead>
                 <tr>
@@ -110,7 +106,6 @@
               </tbody>
             </table>
 
-</mat-card>
 
 </mat-tab>
         <mat-tab label="{{ 'HOME.Requests' | translate }}" *ngIf="user.id ==authService.getLoggedInUserId()">
@@ -137,8 +132,6 @@
        
         </mat-tab>
         <mat-tab label="{{ 'HOME.Ratings' | translate }}">
-        
-          <mat-card>
             <table class="table">
               <thead>
                 <tr>
@@ -157,8 +150,6 @@
                 </tr>
               </tbody>
             </table>
-           
-          </mat-card>
         </mat-tab>
       </mat-tab-group>
     </mat-card>
