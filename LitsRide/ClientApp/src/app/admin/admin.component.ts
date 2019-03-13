@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { TripsService } from '../services/trips.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +7,10 @@ import { PageEvent, MatPaginator, MatSort } from '@angular/material';
 import { UserService } from '../services/user.service';
 import { MatTableDataSource } from '@angular/material';
 import { AdminService } from '../services/admin.service';
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { HttpClient } from 'selenium-webdriver/http';
+import { User } from '../modelInterfaces';
 
 @Component({
     selector: 'app-admin',
@@ -14,13 +18,19 @@ import { AdminService } from '../services/admin.service';
     styleUrls: ['./admin.component.scss']
 })
 /** admin component*/
-export class AdminComponent {
+export class AdminComponent implements AfterViewInit{
   /** admin ctor */
 
+  
   public allTrips;
   public allUsers;
   public allReports;
+  
+  data;
 
+  totalusers ;
+  isLoadingResults = true;
+  isRateLimitReached = false;
   constructor(private authService: AuthService,
     private tripsService: TripsService,
     public translate: TranslateService,
@@ -31,13 +41,12 @@ export class AdminComponent {
   }
   ngOnInit() {
     this.fillTable({}, 1, 10);
-   
-   
-
+    this.getAllOwners(1,2);
+    
   }
   onPageChanged(page: PageEvent) {
     console.log(page);
-    this.fillTable({}, page.pageIndex + 1, page.pageSize)
+    this.getAllOwners(page.pageIndex + 1, page.pageSize)
   }
 
   fillTable(filter = {} as any, pageNo, pageSize) {
@@ -51,15 +60,15 @@ export class AdminComponent {
       console.log(error)
       })
 
-    this.userService.getUsers().subscribe(response => {
-      this.allUsers = response;
-      this.dataSource = new MatTableDataSource(this.allUsers);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      console.log(this.dataSource);
-    }, error => {
-      console.log(error)
-      })
+    //this.userService.getUsers().subscribe(response => {
+    //  this.allUsers = response;
+    //  this.dataSource = new MatTableDataSource(this.allUsers);
+    //  this.dataSource.paginator = this.paginator;
+    //  this.dataSource.sort = this.sort;
+    //  console.log(this.dataSource);
+    //}, error => {
+    //  console.log(error)
+    //  })
 
     this.adminService.getReports().subscribe(response => {
       this.allReports = response;
@@ -75,11 +84,11 @@ export class AdminComponent {
   {
     this.fillTable({}, 1, 10);
   }
-  
+ 
   usersColumns: string[] = ['ID', 'Username', 'FullName', 'Email', 'Country', 'Gender', 'Mobile'];
   displayedColumns: string[] = ['ID', 'driverId', 'fromDest', 'toDest', 'isArrived', 'startTime', 'arriveTime'];
   reportColumns: string[] = ['ID', 'userId', 'reportedUser', 'reportType', 'note'];
-  dataSource;
+  dataSource = this.data;
   tripDataSource;
   reportDataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -90,7 +99,24 @@ export class AdminComponent {
 
   @ViewChild(MatPaginator) paginator3: MatPaginator;
   @ViewChild(MatSort) sort3: MatSort;
+  public getAllOwners(pageno, pagesize) {
+    this.userService.getUsers(pageno, pagesize).subscribe(res => {
+        this.allUsers = res;
+      this.dataSource = new MatTableDataSource(this.allUsers.users);
+      this.dataSource.paginator = this.paginator;
+      this.totalusers = this.allUsers.totalUsers;
+      console.log(this.totalusers);
+      console.log(this.dataSource)
+    }), error => {
+      console.log("failedd");
+      }
 
+  }
+  ngAfterViewInit(): void {
+   
+    
+  }
+  
   applyUserFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
@@ -105,3 +131,5 @@ export class AdminComponent {
     }
   }
 }
+
+

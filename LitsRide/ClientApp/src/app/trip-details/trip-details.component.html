@@ -1,94 +1,51 @@
-<div class="container">
-      <mat-card>
-        <mat-card-header class="text-center">
-          <br /><br />
-        </mat-card-header>
-        <mat-card-content>
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.Username' | translate }} : <a [routerLink]="['/profile', Trip?.driver?.id ]"> {{ Trip.driver.username }}</a>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.fromDest' | translate }} :{{Trip.fromDestination}}
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.fromDest' | translate }} : {{Trip.fromDestination}}
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.toDest' | translate }} :{{Trip.toDestination}}
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.StartTime' | translate }} :{{Trip.startTime}}
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.ArriveTime' | translate }} :{{Trip.arriveTime}}
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-              {{ 'HOME.carInfo' | translate }} :{{Trip.carInfo}}
-            </div>
-            <div class="col-md-3">
-              {{ 'HOME.carNo' | translate }} :{{Trip.carNo}}
-            </div>
-            <div class="col-md-3">
-              {{ 'HOME.seatsNo' | translate }} :{{Trip.seatsNo}}
-            </div>
-            <div class="col-md-1"></div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-              {{ 'HOME.details' | translate }} :{{Trip.details}}
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.price' | translate }} :{{Trip.price}}
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              {{ 'HOME.Status' | translate }} :{{Trip.status}}
-            </div>
-            
-          </div>
+<mat-card>
+<mat-grid-list cols="2" rows="1" rowHeight="500px">
+  <mat-grid-tile class="w-50">
+    <mat-list>
+      <mat-list-item> {{ 'HOME.Username' | translate }} : <a [routerLink]="['/profile', Trip?.driver?.id ]"> {{ Trip.driver.username }}</a></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>  {{ 'HOME.fromDest' | translate }} :{{Trip.fromDestination}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item> {{ 'HOME.StartTime' | translate }} :{{Trip.startTime}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>  {{ 'HOME.carInfo' | translate }} :{{Trip.carInfo}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>  {{ 'HOME.details' | translate }} :{{Trip.details}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item> {{ 'HOME.seatsNo' | translate }} :{{Trip.seatsNo}}</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-grid-tile>
 
-          <hr />
-          <mat-card *ngFor="let request of Trip.tripRequest">
-            <p>{{request.passenger.username}}</p>
-            <p>{{request.passengerNote}}</p>
-            <p>{{request.status}}</p>
-            <p>{{request.paymentMethod}}</p>
-            <p>{{request.requestDate}}</p>
-            <button mat-raised-button color="primary">Accept</button>
-            <button mat-raised-button color="danger">Reject</button>
-            <button mat-raised-button color="warning">Cancel</button>
-          </mat-card>
-        </mat-card-content>
+  <mat-grid-tile class="w-50">
+    <mat-list>
+      <mat-list-item> {{ 'HOME.price' | translate }} :{{Trip.price}}</mat-list-item>
 
-        <div class="row">
-          <div class="col-md-9"></div>
-          <div class="col-md-3">
-            <button class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="openRideDialog()">{{ 'HOME.rideButton' | translate }}</button>
-          </div>
-        </div>
-      </mat-card>
-    </div>
+      <mat-divider></mat-divider>
+      <mat-list-item> {{ 'HOME.toDest' | translate }} :{{Trip.toDestination}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item> {{ 'HOME.ArriveTime' | translate }} :{{Trip.arriveTime}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item> {{ 'HOME.carNo' | translate }} :{{Trip.carNo}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>  {{ 'HOME.Status' | translate }} :{{Trip.status}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item></mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-grid-tile>
 
+
+</mat-grid-list>
+<mat-card *ngFor="let request of Trip.tripRequest">
+  <p>{{request.passenger.username}}</p>
+  <p>{{request.passengerNote}}</p>
+  <p>{{request.status}}</p>
+  <p>{{request.paymentMethod}}</p>
+  <p>{{request.requestDate}}</p>
+  <button mat-raised-button color="primary">Accept</button>
+  <button mat-raised-button color="danger">Reject</button>
+  <button mat-raised-button color="warning">Cancel</button>
+</mat-card>
+<button class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="openRideDialog()">{{ 'HOME.rideButton' | translate }}</button>
+</mat-card>

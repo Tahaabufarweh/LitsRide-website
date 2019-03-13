@@ -35,7 +35,10 @@ export class TripsComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private rideService: TripRequestService,
-    private notificationService: NotificationService,) {
+    private notificationService: NotificationService, )
+  {
+    translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
+
     this.authService.checkLogin();
   }
 
@@ -49,7 +52,9 @@ export class TripsComponent implements OnInit {
       this.allTrips = response;
     }, error => {
       console.log(error)
-    })
+      })
+
+   
   }
 
   navigateToDetails(id)

@@ -26,7 +26,10 @@ export class AppComponent implements OnInit {
   
   @Input() themeColor = '';
 
-  constructor(public translate: TranslateService, private authService: AuthService, private router: Router , private langService : InternationalizationService) {
+  constructor(public translate: TranslateService,
+    private authService: AuthService,
+    private router: Router,
+    private langService: InternationalizationService) {
 
     this.langService.getLanguage()
     this.authService.checkLogin();

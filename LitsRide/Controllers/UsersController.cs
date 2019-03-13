@@ -28,7 +28,7 @@
         #endregion
 
         #region Constructor
-        public UsersController(LetsRideinContext context , IHostingEnvironment hostingEnvironment)
+        public UsersController(LetsRideinContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
         }
@@ -62,7 +62,7 @@
                 return CreatedAtAction("GetUser", new { id = NewUser.Id }, NewUser);
             }
         }
-        
+
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -79,21 +79,27 @@
         [Route("GetUser/{id}")]
         public IActionResult getUser(int id) {
             return Ok(_context.User.Where(x => x.Id == id)
-                      .Include(x=>x.RatingRatedUserNavigation)
+                      .Include(x => x.RatingRatedUserNavigation)
                       .Include("RatingRatedUserNavigation.User")
-                      .Include(x=>x.TripRequest)
+                      .Include(x => x.TripRequest)
                       .Include("TripRequest.Passenger")
-                      .Include(x=>x.Trip)
+                      .Include(x => x.Trip)
                       .FirstOrDefault());
         }
 
         [HttpGet]
         [Route("GetAllUsers")]
-        public IActionResult getAllUser()
+        public IActionResult GetAllUsers(int PageNo = 1, int PageSize = 10)
         {
-            
-            return Ok(_context.User.ToList());
-            
+            var totalItems = _context.User.Count();
+            var user = _context.User.OrderBy(u=>u.Id).Skip((PageNo - 1) * PageSize).Take(PageSize)
+                                                    .ToList();
+            return Ok(  new UserModelPage()
+            {
+                Users = user,
+                TotalUsers = totalItems
+            });
+      
         }
 
         // GET api/values
