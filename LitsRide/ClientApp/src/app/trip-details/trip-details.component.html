@@ -71,8 +71,8 @@
           </div>
 
           <hr />
-          <mat-card *ngFor="let request of requests">
-            <p>{{request.user.username}}</p>
+          <mat-card *ngFor="let request of Trip.tripRequest">
+            <p>{{request.passenger.username}}</p>
             <p>{{request.passengerNote}}</p>
             <p>{{request.status}}</p>
             <p>{{request.paymentMethod}}</p>

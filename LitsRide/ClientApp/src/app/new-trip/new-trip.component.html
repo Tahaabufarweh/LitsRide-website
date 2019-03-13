@@ -33,7 +33,8 @@
 
           <ng-template matStepLabel>   {{ 'HOME.completeTrip' | translate }}</ng-template>
           <br />
-          <angular2-date-picker formControlName="StartTime" (change)="setStartTime($event)"
+          <mat-hint>{{ 'HOME.StartTime' | translate }}</mat-hint>
+          <angular2-date-picker formControlName="StartTime" (change)="setStartTime($event)" placeholder="hi"
                                 style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
 
 
@@ -44,7 +45,7 @@
           <br />
 
 
-
+          <mat-hint>{{ 'HOME.ExcpectedTime' | translate }}</mat-hint>
           <angular2-date-picker formControlName="ExpectedArrivalTime"
                                 style="width: 250px;  position: relative !important; top: 0px !important; height: auto; left: 0; z-index: 50 !important; transform: translateX(0);" [settings]="settings"></angular2-date-picker>
           <br />

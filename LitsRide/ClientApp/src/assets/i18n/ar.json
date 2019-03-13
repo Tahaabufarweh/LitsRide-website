@@ -84,15 +84,22 @@
     "Note": "ملاحظة",
     "SavePhoto": "حفظ الصورة",
     "LeaveNote": "اكتب ملاحظة للسائق",
-    "Opened":"مفتوحة",
+    "Opened": "مفتوحة",
     "Closed": "مغلقة",
     "FullBoard": "ممتلئة",
     "Deleted": "محذوفة",
-    "New":"جديد",
-    "Approved" :"مقبول",  
-    "Reject": "مرفوض"
-   
+    "New": "جديد",
+    "Approved": "مقبول",
+    "Reject": "مرفوض",
+    "ExcpectedTime": "وقت الوصول المتوقع",
+    "#OfTrips": " : عدد الرحلات ",
+    "#OfUsers": ": عدد المستخدمين",
+    "#OfReports": ": عدد الابلاغات",
 
+    "Users": "المستخدمين",
+    "Reports": "الابلاغات",
+    "id": "الرقم",
+    "DriverId": "رقم السائق"
 
 
 
