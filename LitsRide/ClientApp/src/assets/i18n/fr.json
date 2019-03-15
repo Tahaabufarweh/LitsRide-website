@@ -99,7 +99,10 @@
     "Users": "Utilisateurs",
     "Reports": "Rapports",
     "id": "ID",
-    "DriverId": "chauffeur ID"
+    "DriverId": "chauffeur ID",
+    "UserId": "Identifiant d'utilisateur",
+    "ReportedUser": "Utilisateur signalé",
+    "ReportType": "Type de rapport"
 
 
   }

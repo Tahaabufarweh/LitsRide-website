@@ -67,10 +67,18 @@ namespace LitsRide.Controllers
         /// <returns>Report object</returns>
         [HttpGet]
         [Route("AllReports")]
-        public IActionResult GetAllReports()
+        public IActionResult GetAllReports(int PageNo = 1, int PageSize = 10)
         {
-            
-            return Ok(_context.Report.ToList());
+            var totalReports = _context.Report.Count();
+            var report = _context.Report.OrderByDescending(x => x.Id).Skip((PageNo - 1) * PageSize).Take(PageSize)
+                                                            .ToList();
+
+
+            return Ok(new ReportModelPage()
+            {
+                Reports = report,
+                TotalReports = totalReports
+            });
         }
 
         /// <summary>

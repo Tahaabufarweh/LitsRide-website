@@ -11,6 +11,7 @@ import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { HttpClient } from 'selenium-webdriver/http';
 import { User } from '../modelInterfaces';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-admin',
@@ -18,19 +19,19 @@ import { User } from '../modelInterfaces';
     styleUrls: ['./admin.component.scss']
 })
 /** admin component*/
-export class AdminComponent implements AfterViewInit{
+export class AdminComponent {
   /** admin ctor */
 
   
   public allTrips;
+  public all;
   public allUsers;
+  public users;
   public allReports;
-  
-  data;
-
-  totalusers ;
-  isLoadingResults = true;
-  isRateLimitReached = false;
+  public totalReports;
+  public reports;
+  totalusers;
+  filter = new FormControl("");
   constructor(private authService: AuthService,
     private tripsService: TripsService,
     public translate: TranslateService,
@@ -40,96 +41,77 @@ export class AdminComponent implements AfterViewInit{
       this.authService.checkLogin();
   }
   ngOnInit() {
-    this.fillTable({}, 1, 10);
-    this.getAllOwners(1,2);
+    this.getAlltrips({}, 1, 5);
+    
+    this.getAllUsers(this.filter.value, 1, 5);
+    this.getAllreports(1, 5);
     
   }
-  onPageChanged(page: PageEvent) {
-    console.log(page);
-    this.getAllOwners(page.pageIndex + 1, page.pageSize)
-  }
+  
 
-  fillTable(filter = {} as any, pageNo, pageSize) {
+  public getAlltrips(filter = {} as any, pageNo, pageSize) {
     this.tripsService.getAllTrips(filter, pageNo, pageSize).subscribe(response => {
-      this.allTrips = response;
+      this.all = response;
+      this.allTrips = this.all.trips;
       console.log(this.allTrips);
-      this.tripDataSource = new MatTableDataSource(this.allTrips.trips);
-      this.tripDataSource.paginator = this.paginator2;
-      this.tripDataSource.sort = this.sort2;
-    }, error => {
-      console.log(error)
-      })
 
-    //this.userService.getUsers().subscribe(response => {
-    //  this.allUsers = response;
-    //  this.dataSource = new MatTableDataSource(this.allUsers);
-    //  this.dataSource.paginator = this.paginator;
-    //  this.dataSource.sort = this.sort;
-    //  console.log(this.dataSource);
-    //}, error => {
-    //  console.log(error)
-    //  })
-
-    this.adminService.getReports().subscribe(response => {
-      this.allReports = response;
-      this.reportDataSource = new MatTableDataSource(this.allReports);
-      this.reportDataSource.paginator = this.paginator3;
-      this.reportDataSource.sort = this.sort3;
-      console.log(this.reportDataSource);
     }, error => {
       console.log(error)
     })
   }
-  searchTrip()
-  {
-    this.fillTable({}, 1, 10);
+    
+  public getAllreports(pageNo, pageSize) {
+    this.adminService.getReports(pageNo, pageSize).subscribe(response => {
+      this.allReports = response;
+      this.reports = this.allReports.reports;
+      this.totalReports = this.allReports.totalReports;
+      console.log(this.allReports);
+      console.log(this.totalReports);
+    }, error => {
+      console.log("failed")
+    })
   }
+  
+ rce;
  
-  usersColumns: string[] = ['ID', 'Username', 'FullName', 'Email', 'Country', 'Gender', 'Mobile'];
-  displayedColumns: string[] = ['ID', 'driverId', 'fromDest', 'toDest', 'isArrived', 'startTime', 'arriveTime'];
-  reportColumns: string[] = ['ID', 'userId', 'reportedUser', 'reportType', 'note'];
-  dataSource = this.data;
-  tripDataSource;
-  reportDataSource;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  @ViewChild(MatPaginator) paginator2: MatPaginator;
-  @ViewChild(MatSort) sort2: MatSort;
-
-  @ViewChild(MatPaginator) paginator3: MatPaginator;
-  @ViewChild(MatSort) sort3: MatSort;
-  public getAllOwners(pageno, pagesize) {
-    this.userService.getUsers(pageno, pagesize).subscribe(res => {
-        this.allUsers = res;
-      this.dataSource = new MatTableDataSource(this.allUsers.users);
-      this.dataSource.paginator = this.paginator;
+  public getAllUsers(filter,pageno, pagesize) {
+    this.userService.getUsers(filter,pageno, pagesize).subscribe(res => {
+      this.allUsers = res;
+      this.users = this.allUsers.users;
       this.totalusers = this.allUsers.totalUsers;
       console.log(this.totalusers);
-      console.log(this.dataSource)
+      console.log(this.users);
+
+   
     }), error => {
       console.log("failedd");
       }
 
   }
-  ngAfterViewInit(): void {
-   
-    
-  }
-  
-  applyUserFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  onPageChanged(page: PageEvent) {
+    console.log(page);
+    this.getAllUsers(this.filter.value, page.pageIndex + 1, page.pageSize)
   }
 
-  applyTripFilter(filterValue: string) {
-    this.tripDataSource.filter = filterValue.trim().toLowerCase();
-    if (this.tripDataSource.paginator) {
-      this.tripDataSource.paginator.firstPage();
-    }
+  tripsPageChanged(page: PageEvent) {
+    console.log(page);
+    this.getAlltrips({}, page.pageIndex + 1, page.pageSize)
   }
+
+  reportsPageChanged(page: PageEvent) {
+    console.log(page);
+    this.getAllreports(page.pageIndex + 1, page.pageSize)
+  }
+  
+  
+  applyUserFilter(filterValue: string) {
+    
+    this.getAllUsers(filterValue.trim().toLowerCase(),1,2);
+    
+  }
+
+ 
+  
 }
 
 

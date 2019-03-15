@@ -99,7 +99,10 @@
     "Users": "Users",
     "Reports": "Reports",
     "id": "ID",
-    "DriverId": "Driver ID"
+    "DriverId": "Driver ID",
+    "UserId": "User Id",
+    "ReportedUser": "Reported User",
+    "ReportType": "Report Type"
 
 
 

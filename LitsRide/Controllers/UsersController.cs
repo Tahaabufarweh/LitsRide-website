@@ -89,11 +89,15 @@
 
         [HttpGet]
         [Route("GetAllUsers")]
-        public IActionResult GetAllUsers(int PageNo = 1, int PageSize = 10)
+        public IActionResult GetAllUsers(string username="",int PageNo = 1, int PageSize = 10)
         {
             var totalItems = _context.User.Count();
-            var user = _context.User.OrderBy(u=>u.Id).Skip((PageNo - 1) * PageSize).Take(PageSize)
-                                                    .ToList();
+                   
+           var user = _context.User.Where(x => (string.IsNullOrEmpty(username) || x.Username.Contains(username))).OrderByDescending(x => x.Username).Skip((PageNo - 1) * PageSize).Take(PageSize)
+                                                            .ToList();
+            
+           
+           
             return Ok(  new UserModelPage()
             {
                 Users = user,

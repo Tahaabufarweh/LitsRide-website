@@ -17,7 +17,7 @@ export class AdminService {
   }
 
   
-  getReports() {
-    return this.httpClient.get(baseUrl + getReportRoute);
+  getReports(pageNo, pageSize) {
+    return this.httpClient.get(baseUrl + getReportRoute + "?PageNo=" + pageNo + "&PageSize=" + pageSize);
   }
 }
