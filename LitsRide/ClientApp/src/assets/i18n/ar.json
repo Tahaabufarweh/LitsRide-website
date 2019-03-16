@@ -104,7 +104,9 @@
     "ReportedUser": "المستخدم المبلغ عنه",
     "ReportType": "نوع البلاغ",
     "usernameinvalid": "اسم المستخدم غير صالح ",
-    "Emailinvalid": "البريد الالكتروني غير صالح "
+    "Emailinvalid": "البريد الالكتروني غير صالح ",
+    "reportNote": "ما هي المشكلة ؟",
+    "reprot": "ابلاغ"
 
 
 

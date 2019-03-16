@@ -24,8 +24,10 @@ namespace LitsRide.Controllers
         /// <returns>Report Object</returns>
         [HttpPost]
         [Route("InsertNewReport")]
-        public async Task<ActionResult<Report>> InsertNewReport([FromBody] Report NewReport)
+        public async Task<ActionResult<Report>> InsertNewReport([FromBody] Report NewReport,int id)
         {
+            NewReport.ReportedUser = id;
+           
             NewReport.ReportType = 1; 
             _context.Report.Add(NewReport);
             await _context.SaveChangesAsync();

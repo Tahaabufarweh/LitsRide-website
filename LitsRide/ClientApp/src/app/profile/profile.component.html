@@ -31,7 +31,12 @@
 
 
       <div class="row text-center">
-        <div class="col" *ngIf="user.id !=authService.getLoggedInUserId()"><button mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button></div>
+        <div class="col" *ngIf="user.id !=authService.getLoggedInUserId()">
+          <button mat-raised-button color="primary" (click)="openRatingDialog()">{{ 'HOME.rateButton' | translate }}</button>
+          <div class="m-2"></div>
+          <button mat-raised-button color="primary" (click)="openReportDialog()">{{ 'HOME.report' | translate }}</button>
+
+        </div>
          
         <div class="col" *ngIf="user.id ==authService.getLoggedInUserId()">
           <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>

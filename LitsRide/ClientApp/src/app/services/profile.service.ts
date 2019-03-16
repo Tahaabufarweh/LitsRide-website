@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 const baseUrl = 'api/Users/'
 const postFileRoute = 'PostFile/';
 
+const reportUrl = 'api/Reports/'
+const newReportRoute = 'InsertNewReport';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -23,5 +26,10 @@ export class ProfileService {
     const formData: FormData = new FormData();
     formData.append('File', file);
     return this.httpClient.post(baseUrl + postFileRoute  + id, formData);
+  }
+
+  createReport(report, id) {
+    console.log(id);
+    return this.httpClient.post(reportUrl + newReportRoute + "?id=" + id, JSON.stringify(report), httpOptions);
   }
 }

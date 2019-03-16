@@ -104,7 +104,9 @@
     "ReportedUser": "Reported User",
     "ReportType": "Report Type",
     "usernameinvalid": "Username Invalid",
-    "Emailinvalid": "Email Invalid"
+    "Emailinvalid": "Email Invalid",
+    "reportNote": "What is the Problem ? ",
+    "report": "Report"
 
 
 

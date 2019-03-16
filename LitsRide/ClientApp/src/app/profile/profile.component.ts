@@ -18,6 +18,7 @@ import { Validators, FormControl, FormGroup} from '@angular/forms';
 import { NotificationService } from '../services/notification.service';
 import { ProfileService } from '../services/profile.service';
 import { error } from 'util';
+import { ReportComponent } from '../report/report.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit {
  
   /** profile ctor */
   RatingDialogRef: MatDialogRef<RatingComponent>;
+  ReportDialogRef: MatDialogRef<ReportComponent>;
   CompleteDialogRef: MatDialogRef<CompleteProfileComponent>;
   constructor(public dialog: MatDialog,
     private userService: UserService,
@@ -74,6 +76,12 @@ export class ProfileComponent implements OnInit {
     this.RatingDialogRef = this.dialog.open(RatingComponent);
     this.RatingDialogRef.afterClosed().subscribe(data => this.fillTable(data));    
   }
+
+  openReportDialog() {
+    this.ReportDialogRef = this.dialog.open(ReportComponent);
+    this.ReportDialogRef.afterClosed().subscribe(data => this.fillReport(data));
+  }
+
   fillTable(rate = {} as FormGroup) {
 
     console.log(rate);
@@ -89,7 +97,22 @@ export class ProfileComponent implements OnInit {
     });
     
   }
-  
+  fillReport(report = {} as FormGroup) {
+
+    console.log(report);
+    console.log(this.user.id);
+    this.profileService.createReport(report, Number(this.user.id)).subscribe(response => {
+
+      this.notificationService.createNotificationService('success', 'Report Success', 'Your report has been sent');
+      console.log("success");
+
+    }, error => {
+      console.log("failed");
+
+    });
+
+  }
+
   
 
   openCompleteDialog() {

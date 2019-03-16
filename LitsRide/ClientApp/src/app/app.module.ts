@@ -40,7 +40,7 @@ import { RatingService } from './services/rating.service';
 import { TripRequestService } from './services/trip-request.service';
 import { RideModalComponent } from './ride-modal/ride-modal.component';
 import { AdminService } from './services/admin.service';
-
+import { ReportComponent } from './report/report.component';
 // Configs 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -80,7 +80,8 @@ export function tokenGetter() {
     FilteringComponent,
     CompleteProfileComponent,
     TripDetailsComponent,
-    RideModalComponent
+    RideModalComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -121,7 +122,9 @@ export function tokenGetter() {
       { path: 'filtering', component: FilteringComponent },
       { path: 'complete-profile', component: CompleteProfileComponent },
       { path: 'trip-details/:id', component: TripDetailsComponent },
-      { path: 'ride', component: RideModalComponent }
+      { path: 'ride', component: RideModalComponent },
+      { path: 'report', component: ReportComponent }
+
     ])
   ],
   providers: [
