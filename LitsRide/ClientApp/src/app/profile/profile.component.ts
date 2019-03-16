@@ -29,7 +29,7 @@ import { error } from 'util';
 export class ProfileComponent implements OnInit {
  
   displayedColumns = ['fullName', 'username', 'email', 'password'];  
-  url: string = "https://cdn2.iconfinder.com/data/icons/business-management-52/96/Artboard_20-512.png";
+  url = "https://cdn2.iconfinder.com/data/icons/business-management-52/96/Artboard_20-512.png";
   user = {} as any;
   user2 = {} as any;
  
@@ -102,19 +102,23 @@ export class ProfileComponent implements OnInit {
       var reader = new FileReader();
 
       reader.onload = (event: ProgressEvent) => {
-        this.url = (<FileReader>event.target).result;
-        console.log(this.url);
+        this.url = (<FileReader>event.target).result.toString();
+        
       }
+      this.saveUserPhoto(event.target.files[0]);
 
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
-  saveUserPhoto(id) {
-    this.profileService.saveProfilePic(id, this.url).subscribe(response => {
-      console.log("success");
+  saveUserPhoto(file) {
+    this.profileService.saveProfilePic(this.authService.getLoggedInUserId(), file).subscribe(response => {
+      this.notificationService.createNotificationService('success', 'Uploading Success', 'Profile picture uploaded successfully');
+      this.user.profileImageName = response;
+      console.log(this.url)
     }, error => {
-      console.log("failed");
+        this.notificationService.createNotificationService('danger', 'Uploading Error!', 'Error in uploading your profile pic');
+
 
     });
   }

@@ -3,7 +3,8 @@ import { InternationalizationService } from './services/internationalization.ser
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
-
+import { NotificationService } from './services/notification.service';
+import { interval, Subscription } from 'rxjs';
 declare interface RouteInfo {
   path: string;
   title: string;
@@ -23,13 +24,14 @@ export const ROUTES: RouteInfo[] = [
 })
 export class AppComponent implements OnInit {
   menuItems: any[];
-  
+  public userNotifications : any = [];
+  intervalId: number;
   @Input() themeColor = '';
 
   constructor(public translate: TranslateService,
     private authService: AuthService,
     private router: Router,
-    private langService: InternationalizationService) {
+    private langService: InternationalizationService, private notificationService: NotificationService) {
 
     this.langService.getLanguage()
     this.authService.checkLogin();
@@ -42,14 +44,21 @@ export class AppComponent implements OnInit {
     return false;
   }
   ngOnInit() {
+    this.getUserNotifications()
+    const source = interval(1000 * 60);
     this.menuItems = ROUTES.filter(menuItem => menuItem);
-
+    source.subscribe(val => this.getUserNotifications());
   }
   
   setPrefLang(value) {
     this.langService.setLang(value)
   }
-
+  getUserNotifications() {
+    this.notificationService.getUserNotification(this.authService.getLoggedInUserId()).subscribe(response => {
+      this.userNotifications = response;
+      
+    })
+  }
   title = 'app';
   isRtl() {
     return this.langService.isRtl();

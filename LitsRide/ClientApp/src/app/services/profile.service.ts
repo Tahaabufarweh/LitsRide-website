@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 const baseUrl = 'api/Users/'
-const postFileRoute = 'PostFile/{userId}';
+const postFileRoute = 'PostFile/';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,8 +18,10 @@ export class ProfileService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
 
-  saveProfilePic(id, fileName)
+  saveProfilePic(id, file)
   {
-    return this.httpClient.post(baseUrl + postFileRoute + id + fileName,httpOptions);
+    const formData: FormData = new FormData();
+    formData.append('File', file);
+    return this.httpClient.post(baseUrl + postFileRoute  + id, formData);
   }
 }

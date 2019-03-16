@@ -16,7 +16,7 @@
             <label for="imageUpload" *ngIf="user.id ==authService.getLoggedInUserId()"></label>
           </div>
           <div class="avatar-preview">
-            <img class="imgpreview" [src]=url />
+            <img class="imgpreview" [src]="user.profileImageName ? 'ProfilePictures/' + user.id + '/' + user.profileImageName : this.url " />
           </div>
 
 

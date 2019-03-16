@@ -31,6 +31,7 @@
         public UsersController(LetsRideinContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
         #endregion
 
@@ -218,7 +219,7 @@
             }
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
-            return Ok();
+            return Ok(User.ProfileImageName);
         }
 
         /// <summary>
