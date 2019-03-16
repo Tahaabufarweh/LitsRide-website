@@ -46,38 +46,60 @@
     <mat-card class="col-md-12">
       <mat-tab-group>
         <mat-tab label="{{ 'HOME.ProfileInfo' | translate }}">
-            <mat-grid-list cols="1" rowHeight="2:1">
-              <mat-grid-tile>
-                <p>{{user.country}}</p>
-              </mat-grid-tile>
+
+          <mat-list>
+            <mat-list-item>
               <div *ngIf="user.fullName !== null">
-              <mat-card><mat-icon matPrefix>person</mat-icon><b>{{ 'HOME.FullName' | translate }} </b>{{user.fullName}}</mat-card>
+                <mat-icon matPrefix>person</mat-icon><b>{{ 'HOME.FullName' | translate }} </b>{{user.fullName}}
               </div>
-              <div *ngIf="user.gender !== null"><mat-card *ngIf="user.gender==true ;else female">
-                <i class="material-icons">wc</i>
-                <b>{{ 'HOME.Gender' | translate }} </b>Male
-              </mat-card>
-              <ng-template #female>
-                <mat-card><i class="material-icons">wc</i>
-                <b>{{ 'HOME.Gender' | translate }} </b>Female</mat-card></ng-template>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div *ngIf="user.gender !== null">
+                <mat-card *ngIf="user.gender==true ;else female">
+                  <i class="material-icons">wc</i>
+                  <b>{{ 'HOME.Gender' | translate }} </b>Male
+                  </mat-card>
+                  <ng-template #female>
+
+                    <i class="material-icons">wc</i>
+                    <b>{{ 'HOME.Gender' | translate }} </b>Female
+
+                  </ng-template>
               </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
               <div *ngIf="user.country !== null">
-              <mat-card><i class="material-icons">language</i><b>{{ 'HOME.country' | translate }} </b>{{user.country}}</mat-card>
+                <i class="material-icons">language</i><b>{{ 'HOME.country' | translate }} </b>{{user.country}}
               </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
               <div *ngIf="user.username !== null">
-              <mat-card><i class="material-icons">person_pin</i><b>{{ 'HOME.Username' | translate }} </b>{{user.username}}</mat-card>
+                <i class="material-icons">person_pin</i><b>{{ 'HOME.Username' | translate }} </b>{{user.username}}
               </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
               <div *ngIf="user.email !== null">
-              <mat-card><i class="material-icons">email</i><b>{{ 'HOME.Email' | translate }} </b> {{user.email}}</mat-card>
+                <i class="material-icons">email</i><b>{{ 'HOME.Email' | translate }} </b> {{user.email}}
               </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
               <div *ngIf="user.mobileNumber !== null">
-              <mat-card><i class="material-icons">phone_iphone</i><b>{{ 'HOME.MobileNumber' | translate }} </b> {{ user.mobileNumber }} </mat-card>
+                <i class="material-icons">phone_iphone</i><b>{{ 'HOME.MobileNumber' | translate }} </b> {{ user.mobileNumber }}
               </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
               <div *ngIf="user.birthDate !== null">
-              <mat-card><i class="material-icons">date_range</i><b>{{ 'HOME.BirthDate' | translate }} </b>{{ user.birthDate | date }}</mat-card>
+                <i class="material-icons">date_range</i><b>{{ 'HOME.BirthDate' | translate }} </b>{{ user.birthDate | date }}
               </div>
-            
-            </mat-grid-list>
+            </mat-list-item>
+          </mat-list>
         </mat-tab>
         <mat-tab label="{{ 'HOME.TripsLabel' | translate }}">
   

@@ -102,7 +102,9 @@
     "DriverId": "Driver ID",
     "UserId": "User Id",
     "ReportedUser": "Reported User",
-    "ReportType": "Report Type"
+    "ReportType": "Report Type",
+    "usernameinvalid": "Username Invalid",
+    "Emailinvalid": "Email Invalid"
 
 
 
