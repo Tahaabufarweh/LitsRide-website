@@ -33,8 +33,9 @@ export class UserService {
   }
 
   
-  getUsers(pageNo,pageSize) {
-    return this.httpClient.get(baseUrl + getUsersRoute + "?PageNo=" + pageNo + "&PageSize=" + pageSize);
+  getUsers(filter, pageNo, pageSize) {
+    console.log(filter);
+    return this.httpClient.get(baseUrl + getUsersRoute + "?username=" + filter + "&PageNo=" + pageNo + "&PageSize=" + pageSize);
   }
 
     createUser(user: User) {
