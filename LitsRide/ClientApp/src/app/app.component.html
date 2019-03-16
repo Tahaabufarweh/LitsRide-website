@@ -29,19 +29,14 @@
       <mat-toolbar color="primary" style="margin-bottom:10px;">
         <img src="pic1.png" height="70" width="70" />
         <span class="example-spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="menuLang" *ngIf="this.authService.isLoggedin()">
-          <mat-icon matBadge="15" matBadgeColor="warn">notification_important</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menuNotify" *ngIf="this.authService.isLoggedin()" >
+          <mat-icon [matBadge]="userNotifications?.length" matBadgeColor="warn">notification_important</mat-icon>
         </button>
-        <mat-menu #menuLang="matMenu">
-          <button mat-menu-item (click)="translate.use('ar'); setPrefLang('ar')">
-            <span>العربية</span>
+        <mat-menu #menuNotify="matMenu">
+          <button mat-menu-item *ngFor="let notfication of userNotifications">
+            <span>{{notfication.notificationText}}</span>
           </button>
-          <button mat-menu-item (click)="translate.use('fr'); setPrefLang('fr')">
-            <span>Française</span>
-          </button>
-          <button mat-menu-item (click)="translate.use('en'); setPrefLang('en')">
-            <span>English</span>
-          </button>
+         
         </mat-menu>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon class="example-icon mr-3">account_circle</mat-icon>
