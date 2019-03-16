@@ -102,8 +102,9 @@
     "DriverId": "رقم السائق",
     "UserId": "رقم المبلغ",
     "ReportedUser": "المستخدم المبلغ عنه",
-    "ReportType": "نوع البلاغ"
-
+    "ReportType": "نوع البلاغ",
+    "usernameinvalid": "اسم المستخدم غير صالح ",
+    "Emailinvalid": "البريد الالكتروني غير صالح "
 
 
 

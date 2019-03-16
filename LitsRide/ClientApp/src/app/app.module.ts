@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { DemoMaterialModule } from './material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatNativeDateModule, MatTableModule, MatToolbarModule, MatMenuModule, MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { MatNativeDateModule, MatTableModule, MatToolbarModule, MatMenuModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -40,8 +40,6 @@ import { RatingService } from './services/rating.service';
 import { TripRequestService } from './services/trip-request.service';
 import { RideModalComponent } from './ride-modal/ride-modal.component';
 import { AdminService } from './services/admin.service';
-
-
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -92,7 +90,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     MatNativeDateModule,
     
-    MatToolbarModule, MatMenuModule, MatInputModule, MatTableModule, MatButtonModule, MatCardModule,
+    MatToolbarModule, MatMenuModule, MatTableModule, MatButtonModule, MatCardModule,
     SocialLoginModule,
     JwtModule.forRoot({
       config: {
