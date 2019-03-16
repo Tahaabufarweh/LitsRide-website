@@ -26,6 +26,7 @@ namespace LitsRide.Controllers
         [Route("InsertNewReport")]
         public async Task<ActionResult<Report>> InsertNewReport([FromBody] Report NewReport)
         {
+            NewReport.ReportType = 1; 
             _context.Report.Add(NewReport);
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetReport", new { id = NewReport.Id }, NewReport);
@@ -38,9 +39,9 @@ namespace LitsRide.Controllers
         /// <returns>Report List</returns>
         [HttpGet]
         [Route("GetAllReportByUserId/{UserId}")]
-        public async Task<ActionResult<IEnumerable<Rating>>> GetAllReportByUserId(int UserId)
+        public async Task<ActionResult<IEnumerable<Report>>> GetAllReportByUserId(int UserId)
         {
-            return await _context.Rating.Where(x => x.Id == UserId).Include(x => x.User).OrderByDescending(x => x.Id).ToListAsync();
+            return await _context.Report.Where(x => x.UserId == UserId).Include(x => x.User).OrderByDescending(x => x.Id).ToListAsync();
         }
 
         /// <summary>

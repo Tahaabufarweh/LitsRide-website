@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const baseUrl = 'api/TripRequests/'
 const newRequest = 'NewRequest/';
+const approveOrRejectRequestRoute = 'ApproveOrRejectRequest/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -17,4 +18,10 @@ export class TripRequestService {
     console.log(tripid);
     return this.http.post(baseUrl + newRequest + "?tripid=" + tripid, JSON.stringify(ride), httpOptions);
   }
+
+  AcceptOrApproveRequest(requestId, status) {
+    this.http.get(baseUrl + approveOrRejectRequestRoute + "/" + requestId + "/" + status);
+  }
+
+  
 }

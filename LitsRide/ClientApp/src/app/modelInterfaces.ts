@@ -16,3 +16,8 @@ export interface Rating {
   ratedUser: string,
   
 }
+ enum TripRequestStatus {
+  New = 1,
+  Approved = 2,
+  Reject = 3
+}

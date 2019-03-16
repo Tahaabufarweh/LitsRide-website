@@ -29,8 +29,8 @@ namespace LitsRide.Controllers
             return await _context.TripRequest.ToListAsync();
         }
         
-        [HttpPost]
-        [Route("ApproveOrRejectRequest")]
+        [HttpGet]
+        [Route("ApproveOrRejectRequest/{id}/{status}")]
         public async Task<ActionResult<TripRequest>> ApproveOrRejectRequest(int id, int Status)
         {
             var tripRequest = await _context.TripRequest.FindAsync(id);
@@ -41,13 +41,13 @@ namespace LitsRide.Controllers
             tripRequest.Status = Status;
             string passengerName = _context.User.Find(tripRequest.PassengerId).Username;
 
-            if (Status == (int)Models.Enum.TripRequestStatus.Approved)
+            if (Status == (int) TripRequestStatus.Approved)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestAccepted);
                 PushNotification(notificationText, tripRequest.TripId);
 
             }
-            else if (Status == (int)Models.Enum.TripRequestStatus.Reject)
+            else if (Status == (int) TripRequestStatus.Reject)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestReject);
                 PushNotification(notificationText, tripRequest.TripId);
@@ -101,7 +101,7 @@ namespace LitsRide.Controllers
             {
                 return BadRequest("Passenger exist in this trip!");
             }
-            else if (list.Count() >= TripObj.SeatsNo)
+            else if (list.Where(x=>x.Status == (int) TripRequestStatus.Approved).Count() >= TripObj.SeatsNo)
             {
                 return BadRequest("Trip is full board!");
             }
