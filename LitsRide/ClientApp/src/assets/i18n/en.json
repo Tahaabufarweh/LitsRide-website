@@ -106,7 +106,10 @@
     "usernameinvalid": "Username Invalid",
     "Emailinvalid": "Email Invalid",
     "reportNote": "What is the Problem ? ",
-    "report": "Report"
+    "report": "Report",
+    "RequestedOn": "Requested On : ",
+    "accept": "Accept",
+    "reject": "Reject"
 
 
 

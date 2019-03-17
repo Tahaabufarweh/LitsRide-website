@@ -45,7 +45,9 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-button (click)="navigateToDetails(trip.id)"> {{ 'HOME.details' | translate }}</button>
-          <button mat-button (click)="openRideDialog(trip.id)">{{ 'HOME.rideButton' | translate }}</button>
+          
+          <button *ngIf="trip?.driver.id !=authService.getLoggedInUserId()" mat-button (click)="openRideDialog(trip.id)">{{ 'HOME.rideButton' | translate }}</button>
+            
         </mat-card-actions>
       </mat-card>
     </div>
