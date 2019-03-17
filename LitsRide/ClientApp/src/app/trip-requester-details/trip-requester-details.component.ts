@@ -32,8 +32,8 @@ export class TripRequesterDetailsComponent {
     console.log(this.requests)
   }
 
-  acceptOrReject(requestId, status) {
+  deleteRequest(requestId) {
     console.log(requestId);
-    this.requestService.AcceptOrApproveRequest(Number(requestId), Number(status));
+    this.requestService.deleteRequest(Number(requestId));
   }
 }

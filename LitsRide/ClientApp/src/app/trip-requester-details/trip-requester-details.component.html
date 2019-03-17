@@ -14,7 +14,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button *ngIf="request.status!=2" mat-button color="primary" (click)="acceptOrReject(request.id, 2)">{{ 'HOME.Delete' | translate }}</button>
+      <button *ngIf="request.status!=2" mat-button color="primary" (click)="acceptOrReject(request.id)">{{ 'HOME.Delete' | translate }}</button>
       <div class="danger" *ngIf="request.status==2" mat-button>{{ 'HOME.Approved' | translate }}</div>
     </mat-card-actions>
   </mat-card>

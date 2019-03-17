@@ -37,4 +37,8 @@ export class TripOwnerDetailsComponent implements OnInit {
     console.log(requestId);
     this.requestService.AcceptOrApproveRequest(Number(requestId), Number(status));
   }
+  deleteRequest(requestId, status) {
+    console.log(requestId);
+    this.requestService.AcceptOrApproveRequest(Number(requestId), Number(status));
+  }
 }
