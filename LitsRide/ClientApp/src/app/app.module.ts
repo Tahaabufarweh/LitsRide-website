@@ -41,6 +41,8 @@ import { TripRequestService } from './services/trip-request.service';
 import { RideModalComponent } from './ride-modal/ride-modal.component';
 import { AdminService } from './services/admin.service';
 import { ReportComponent } from './report/report.component';
+import { TripOwnerDetailsComponent } from './trip-owner-details/trip-owner-details.component';
+import { TripRequesterDetailsComponent } from './trip-requester-details/trip-requester-details.component';
 // Configs 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -81,7 +83,9 @@ export function tokenGetter() {
     CompleteProfileComponent,
     TripDetailsComponent,
     RideModalComponent,
-    ReportComponent
+    ReportComponent,
+    TripOwnerDetailsComponent,
+    TripRequesterDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

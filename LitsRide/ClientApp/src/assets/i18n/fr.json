@@ -106,8 +106,11 @@
     "usernameinvalid": "nom d'utilisateur invalide",
     "Emailinvalid": "Email invalide",
     "reportNote": "Quel est le problème?",
-    "report": "Rapport"
-
+    "report": "Rapport",
+    "RequestedOn": "Demandé le : ",
+    "accept": "Acceptez",
+    "reject": "Rejeter",
+    "Delete": "Effacer"
 
   }
 }

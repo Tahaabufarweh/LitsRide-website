@@ -28,9 +28,18 @@ namespace LitsRide.Controllers
         {
             return await _context.TripRequest.ToListAsync();
         }
-        
+
         [HttpGet]
-        [Route("ApproveOrRejectRequest/{id}/{status}")]
+        [Route("RemoveRequest/{id}")]
+        public IActionResult RemoveRequest(int id)
+        {
+            var request = _context.TripRequest.FirstOrDefault(x => x.Id == id);
+            _context.Remove(request);
+            _context.SaveChanges();
+            return Ok();
+        }
+        [HttpGet]
+        [Route("ApproveOrRejectRequest/{id}/{Status}")]
         public async Task<ActionResult<TripRequest>> ApproveOrRejectRequest(int id, int Status)
         {
             var tripRequest = await _context.TripRequest.FindAsync(id);
@@ -55,7 +64,6 @@ namespace LitsRide.Controllers
             }
 
             await _context.SaveChangesAsync();
-
             return tripRequest;
         }
 

@@ -106,7 +106,12 @@
     "usernameinvalid": "اسم المستخدم غير صالح ",
     "Emailinvalid": "البريد الالكتروني غير صالح ",
     "reportNote": "ما هي المشكلة ؟",
-    "reprot": "ابلاغ"
+    "reprot": "ابلاغ",
+    "RequestedOn": "طلبت بتاريخ : ",
+    "accept": "قبول",
+    "reject": "رفض",
+    "Delete": "حذف"
+
 
 
 

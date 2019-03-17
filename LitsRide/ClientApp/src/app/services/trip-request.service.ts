@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const baseUrl = 'api/TripRequests/'
 const newRequest = 'NewRequest/';
 const approveOrRejectRequestRoute = 'ApproveOrRejectRequest/';
+const deleteRoute = 'RemoveRequest/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -20,7 +21,10 @@ export class TripRequestService {
   }
 
   AcceptOrApproveRequest(requestId, status) {
-    this.http.get(baseUrl + approveOrRejectRequestRoute + "/" + requestId + "/" + status);
+    this.http.get(baseUrl + approveOrRejectRequestRoute+"/"+ requestId+"/" + status);
+  }
+  deleteRequest(requestId) {
+    this.http.get(baseUrl + deleteRoute  + requestId );
   }
 
   
