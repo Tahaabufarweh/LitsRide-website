@@ -6,7 +6,7 @@
       <mat-divider></mat-divider>
       <mat-list-item>  {{ 'HOME.fromDest' | translate }} :{{Trip.fromDestination}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item> {{ 'HOME.StartTime' | translate }} :{{Trip.startTime}}</mat-list-item>
+      <mat-list-item> {{ 'HOME.StartTime' | translate }} :{{Trip.startTime | date}}</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>  {{ 'HOME.carInfo' | translate }} :{{Trip.carInfo}}</mat-list-item>
       <mat-divider></mat-divider>
@@ -24,7 +24,7 @@
       <mat-divider></mat-divider>
       <mat-list-item> {{ 'HOME.toDest' | translate }} :{{Trip.toDestination}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item> {{ 'HOME.ArriveTime' | translate }} :{{Trip.arriveTime}}</mat-list-item>
+      <mat-list-item> {{ 'HOME.ArriveTime' | translate }} :{{Trip.arriveTime | date}}</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item> {{ 'HOME.carNo' | translate }} :{{Trip.carNo}}</mat-list-item>
       <mat-divider></mat-divider>

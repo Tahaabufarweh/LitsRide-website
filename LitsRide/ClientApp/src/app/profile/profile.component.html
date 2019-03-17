@@ -41,7 +41,6 @@
         <div class="col" *ngIf="user.id ==authService.getLoggedInUserId()">
           <button mat-raised-button color="primary" (click)="openCompleteDialog()">{{ 'HOME.editprofileinfo' | translate }}</button>
           <div class="m-2"></div>
-          <button mat-raised-button color="primary" (click)="saveUserPhoto(user.id)">{{ 'HOME.SavePhoto' | translate }}</button>
         </div>
         </div>
     </mat-card>
@@ -62,10 +61,10 @@
             <mat-divider></mat-divider>
             <mat-list-item>
               <div *ngIf="user.gender !== null">
-                <mat-card *ngIf="user.gender==true ;else female">
+                <div *ngIf="user.gender==true ;else female">
                   <i class="material-icons">wc</i>
                   <b>{{ 'HOME.Gender' | translate }} </b>Male
-                  </mat-card>
+                  </div>
                   <ng-template #female>
 
                     <i class="material-icons">wc</i>
@@ -185,4 +184,3 @@
   </div>
 
 </div>
-<simple-notifications></simple-notifications>

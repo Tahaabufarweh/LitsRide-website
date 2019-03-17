@@ -50,7 +50,7 @@ namespace LitsRide.Controllers
                 throw e;
             }
 
-            return Ok("Created");
+            return Ok();
         }
 
         /// <summary>
