@@ -49,17 +49,18 @@ namespace LitsRide.Controllers
             }
             tripRequest.Status = Status;
             string passengerName = _context.User.Find(tripRequest.PassengerId).Username;
-
+           
             if (Status == (int) TripRequestStatus.Approved)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestAccepted);
-                PushNotification(notificationText, tripRequest.TripId);
+                //PushNotification(notificationText, tripRequest.TripId);
+
 
             }
-            else if (Status == (int) TripRequestStatus.Reject)
+             if (Status == (int) TripRequestStatus.Reject)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestReject);
-                PushNotification(notificationText, tripRequest.TripId);
+               // PushNotification(notificationText, tripRequest.TripId);
 
             }
 

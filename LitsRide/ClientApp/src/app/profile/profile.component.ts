@@ -61,14 +61,7 @@ export class ProfileComponent implements OnInit {
     })
   }
  
-  //getRatedUsername(id)
-  //{
-  //  this.userService.getUserDetialsById(id).subscribe(response => {
-  //    this.user2 = response;
-  //    console.log(this.user2);
-  //  });
-    
-  //}
+  
 
 
   openRatingDialog()
@@ -112,12 +105,26 @@ export class ProfileComponent implements OnInit {
     });
 
   }
+  editProfileInfo(user = {} as FormGroup) {
 
+    console.log(user);
+    console.log(this.user.id);
+    this.userService.updateUserInfo(this.user.id,user).subscribe(response => {
+
+      this.notificationService.createNotificationService('success', 'Update Success', 'Your Profile has been Updated Successfully');
+      console.log("success");
+
+    }, error => {
+      console.log("failed");
+
+    });
+
+  }
   
 
   openCompleteDialog() {
     this.CompleteDialogRef = this.dialog.open(CompleteProfileComponent);
-
+    this.CompleteDialogRef.afterClosed().subscribe(data => this.editProfileInfo(data));
 
   }
   readUrl(event: any) {
