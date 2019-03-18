@@ -7,6 +7,7 @@ import { TripsService } from '../services/trips.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
+import { error } from 'util';
 
 
 @Component({
@@ -116,8 +117,11 @@ export class NewTripComponent {
     console.log(JSON.stringify(this.TripsForm.value));
     this.tripsService.createNewTrip(this.TripsForm.value).subscribe(response => {
       console.log(response);
-      this.notificationService.createNotificationService('success', 'Trip added', '');
-      this.route.navigate(["/Trips"]);
-    })
+      this.notificationService.createNotificationService('success', 'Trip added', 'Your trip has been added successfully');
+      this.route.navigate(["/trips"]);
+    }, error => {
+        this.notificationService.createNotificationService('danger', 'Erorr!', '');
+
+      })
   }
 }

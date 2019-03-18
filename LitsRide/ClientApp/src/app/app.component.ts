@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
   getUserNotifications() {
     this.notificationService.getUserNotification(this.authService.getLoggedInUserId()).subscribe(response => {
       this.userNotifications = response;
-      
+      console.log(this.userNotifications)
     })
   }
   title = 'app';
