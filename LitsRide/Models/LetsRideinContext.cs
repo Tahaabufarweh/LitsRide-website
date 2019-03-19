@@ -15,6 +15,7 @@ namespace LitsRide.Models
         {
         }
 
+        public virtual DbSet<Advertisement> Advertisement { get; set; }
         public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<Rating> Rating { get; set; }
         public virtual DbSet<Report> Report { get; set; }
