@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TripRequesterDetailsComponent {
   @Input() requests;
   public tripRequests;
+
   /** trip-owner-details ctor */
   constructor(private userService: UserService,
     public translate: TranslateService,
@@ -32,8 +33,15 @@ export class TripRequesterDetailsComponent {
     console.log(this.requests)
   }
 
-  deleteRequest(requestId) {
+  deleteRequest(requestId, status) {
     console.log(requestId);
-    this.requestService.deleteRequest(Number(requestId));
+    this.requestService.deleteRequest(requestId).subscribe(response => {
+
+      this.tripRequests = Array(response);
+      console.log("success")
+      
+    }, error => {
+      console.log("failed")
+    });;
   }
 }

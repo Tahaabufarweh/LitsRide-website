@@ -21,10 +21,10 @@ export class TripRequestService {
   }
 
   AcceptOrApproveRequest(requestId, status) {
-    this.http.get(baseUrl + approveOrRejectRequestRoute+"/"+ requestId+"/" + status);
+    return this.http.get(baseUrl + approveOrRejectRequestRoute + requestId+'/' + status);
   }
   deleteRequest(requestId) {
-    this.http.get(baseUrl + deleteRoute  + requestId );
+   return this.http.get(baseUrl + deleteRoute  + requestId );
   }
 
   

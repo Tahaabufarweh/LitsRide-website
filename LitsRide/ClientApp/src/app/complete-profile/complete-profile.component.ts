@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { MatDialogRef } from '@angular/material';
 export interface Country {
   code: string;
   viewValue: string;
@@ -18,22 +19,21 @@ export interface Country {
 
 
 export class CompleteProfileComponent implements OnInit {
-  EditProfileForm = new FormGroup({
-    fullName: new FormControl('', ),
-    email: new FormControl('',  Validators.email),
-    password: new FormControl('', Validators.minLength(8)),
-    username: new FormControl('', Validators.minLength(6)),
-    MobileNumber: new FormControl('', Validators.required),
-    rePass: new FormControl(''),
-    Country: new FormControl(''),
-    BirthDate: new FormControl('', Validators.required),
-    Gender: new FormControl('', Validators.required),
-    CarInfo: new FormControl('', Validators.required),
-    CarNumber: new FormControl('', Validators.required)
-
-  }, { validators: this.passValidator })
-
   user = {} as any;
+  EditProfileForm = new FormGroup({
+    fullName: new FormControl(),
+   
+    MobileNumber: new FormControl(),
+   
+    Country: new FormControl(),
+    BirthDate: new FormControl(),
+    Gender: new FormControl(),
+    CarInfo: new FormControl(),
+    CarNumber: new FormControl()
+
+  })
+
+  
   ngOnInit() {
     this.userService.getUserDetialsById(this.authService.getLoggedInUserId()).subscribe(response => {
       this.user = response;
@@ -47,6 +47,7 @@ export class CompleteProfileComponent implements OnInit {
     public translate: TranslateService,
     private userService: UserService,
     private router: Router,
+    private dialogRef: MatDialogRef<CompleteProfileComponent>,
     private authService: AuthService) {
 
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
@@ -55,19 +56,7 @@ export class CompleteProfileComponent implements OnInit {
   get fullName() {
     return this.EditProfileForm.get('fullName') as FormControl;
   }
-
-  get username() {
-    return this.EditProfileForm.get('username') as FormControl;
-  }
-
-  get email() {
-    return this.EditProfileForm.get('email') as FormControl;
-  }
-
-  get password() {
-    return this.EditProfileForm.get('password') as FormControl;
-  }
-
+  
   get MobileNumber() {
     return this.EditProfileForm.get('MobileNumber') as FormControl;
 
@@ -77,9 +66,20 @@ export class CompleteProfileComponent implements OnInit {
     return this.EditProfileForm.get('Country') as FormControl;
   }
 
-  get rePass() {
-    return this.EditProfileForm.get('rePass') as FormControl;
+  get BirthDate() {
+    return this.EditProfileForm.get('BirthDate') as FormControl;
   }
+  get Gender() {
+    return this.EditProfileForm.get('Gender') as FormControl;
+  }
+  get CarInfo() {
+    return this.EditProfileForm.get('CarInfo') as FormControl;
+  }
+  get CarNumber() {
+    return this.EditProfileForm.get('CarNumber') as FormControl;
+  }
+
+ 
   countries: Country[] = [
     {
       viewValue: 'Afghanistan',
@@ -1296,24 +1296,28 @@ export class CompleteProfileComponent implements OnInit {
       }
     }
 
+    
+    
 
   }
-  pass = this.password.value;
-  passValidator(AC: AbstractControl) {
-    let password = AC.get('password').value; // to get value in input tag
-    let confirmPassword = AC.get('rePass').value; // to get value in input tag
-    if (password != confirmPassword) {
+  
+  
+  updateInfo() {
+    this.EditProfileForm.setValue({
+      fullName: this.fullName.value,
 
-      AC.get('rePass').setErrors({
-        "MatchPassword": true
-      });
+      MobileNumber: this.MobileNumber.value,
 
-    } else {
-
-      return null
-    }
-
+      Country: this.Country.value,
+      BirthDate: this.BirthDate.value,
+      Gender: this.Gender.value,
+      CarInfo: this.CarInfo.value,
+      CarNumber: this.CarNumber.value
+    });
+    console.log(this.EditProfileForm.value);
+    this.dialogRef.close(this.EditProfileForm.value);
   }
+  
 
 
 }

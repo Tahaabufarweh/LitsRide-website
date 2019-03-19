@@ -164,7 +164,7 @@
         /// <returns>user </returns>
         [HttpPost]
         [Route("UpdateUserInfo")]
-        public async Task<IActionResult> UpdateUserInfo( int id, [FromBody] User NewUserInfo)
+        public async Task<ActionResult<User>> UpdateUserInfo( int id, [FromBody] User NewUserInfo)
         {
             User OldUser = _context.User.Where(user => user.Id == NewUserInfo.Id).FirstOrDefault();
             if (OldUser == null)
@@ -173,6 +173,9 @@
             }
             OldUser.FullName = NewUserInfo.FullName;
             OldUser.Gender = NewUserInfo.Gender;
+            OldUser.MobileNumber = NewUserInfo.MobileNumber;
+            OldUser.CarNumber = NewUserInfo.CarNumber;
+            OldUser.BirthDate = NewUserInfo.BirthDate;
             OldUser.CarInfo = NewUserInfo.CarInfo;
             OldUser.Country = NewUserInfo.Country;
             await _context.SaveChangesAsync();
