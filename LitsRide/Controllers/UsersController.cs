@@ -119,10 +119,11 @@
 
         [HttpPost]
         [Route("CreateNewAd")]
-        public async Task<ActionResult<User>> CreateNewAd([FromBody] Advertisement NewAd, IFormFile File)
+        public async Task<ActionResult<User>> CreateNewAd(string AdvLink, IFormFile File)
         {
+            Advertisement advertisement = new Advertisement();
             // full path to file in temp location
-            string path = _hostingEnvironment.WebRootPath + "\\AdsPictures\\" + NewAd.Id;
+            string path = _hostingEnvironment.WebRootPath + "\\AdsPictures\\";
             
             if (!Directory.Exists(path))
             {
@@ -136,10 +137,13 @@
                     try
                     {
                         await File.CopyToAsync(stream);
-                        NewAd.ImageName = File.FileName;
-                        _context.Advertisement.Add(NewAd);
+                        advertisement.ImageName = File.FileName;
+                        advertisement.AdvLink = AdvLink;
+                        advertisement.IsActive = true;
+                        _context.Advertisement.Add(advertisement);
+
                         await _context.SaveChangesAsync();
-                        return Ok(NewAd);
+                        return Ok(advertisement);
 
                        
                     }
@@ -151,7 +155,7 @@
                 
             }
 
-            return Ok(NewAd);
+            return Ok(advertisement);
         }
         
 
