@@ -30,6 +30,7 @@
     <br />
     <br />
     <br />
+   
     <div class="row">
       
       <mat-tab-group class="w-100">
@@ -145,6 +146,31 @@
             <mat-paginator [length]="totalReports" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20, 25]" (page)="reportsPageChanged($event)"></mat-paginator>
 
           </mat-card>
+        </mat-tab>
+        <mat-tab>
+          <div class="text-center">
+            <button mat-stroked-button color="primary" (click)="openAdsDialog()">Create AD</button>
+          </div>
+          
+            <br />
+            <br />
+              <mat-card  *ngFor="let ad of ads">
+                <mat-card-header>
+                 
+                  <mat-card-title>{{ad.id}}</mat-card-title>
+                  <mat-card-subtitle>{{ad.advLink}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                
+                <mat-card-actions>
+                  <button mat-stroked-button color="primary">Delete</button>
+                 
+                </mat-card-actions>
+              </mat-card>
+            
+            
+          
+          
         </mat-tab>
       </mat-tab-group>
        

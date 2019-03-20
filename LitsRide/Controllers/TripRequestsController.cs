@@ -53,14 +53,14 @@ namespace LitsRide.Controllers
             if (Status == (int) TripRequestStatus.Approved)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestAccepted);
-                //PushNotification(notificationText, tripRequest.TripId);
+                PushNotification(notificationText, tripRequest.TripId,tripRequest.PassengerId);
 
 
             }
              if (Status == (int) TripRequestStatus.Reject)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestReject);
-               // PushNotification(notificationText, tripRequest.TripId);
+                PushNotification(notificationText, tripRequest.TripId,tripRequest.PassengerId);
 
             }
 
@@ -122,7 +122,7 @@ namespace LitsRide.Controllers
                 await _context.SaveChangesAsync();
                 string passengerName = _context.User.Find(NewTripRequest.PassengerId).Username;
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.newRequest);
-                PushNotification(notificationText, NewTripRequest.TripId);
+                PushNotification(notificationText, NewTripRequest.TripId,NewTripRequest.PassengerId);
             }
             return CreatedAtAction("GetTripRequest", new { id = NewTripRequest.Id }, NewTripRequest);
 
@@ -146,10 +146,11 @@ namespace LitsRide.Controllers
             return notifyBody;
         }
 
-        public void PushNotification(string notificationText , int tripId) {
+        public void PushNotification(string notificationText , int tripId,int userId) {
 
             Notification notification = new Notification
             {
+                UserId=userId,
                 NotificationText = notificationText,
                 IsOpened = false,
                 NotifyDate = DateTime.Now,

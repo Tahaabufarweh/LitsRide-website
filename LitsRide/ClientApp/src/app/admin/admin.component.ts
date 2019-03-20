@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { TripsService } from '../services/trips.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { PageEvent, MatPaginator, MatSort } from '@angular/material';
+import { PageEvent, MatPaginator, MatSort, MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../services/user.service';
 import { MatTableDataSource } from '@angular/material';
 import { AdminService } from '../services/admin.service';
@@ -11,7 +11,9 @@ import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { HttpClient } from 'selenium-webdriver/http';
 import { User } from '../modelInterfaces';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AdsDialogComponent } from '../ads-dialog/ads-dialog.component';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
     selector: 'app-admin',
@@ -30,6 +32,7 @@ export class AdminComponent {
   public allReports;
   public totalReports;
   public reports;
+  public ads;
   totalusers;
   filter = new FormControl("");
   constructor(private authService: AuthService,
@@ -37,7 +40,9 @@ export class AdminComponent {
     public translate: TranslateService,
     public userService: UserService,
     public adminService: AdminService,
-    private router: Router,) {
+    private router: Router,
+    private notificationService:NotificationService,
+    public dialog: MatDialog,) {
       this.authService.checkLogin();
   }
   ngOnInit() {
@@ -45,7 +50,7 @@ export class AdminComponent {
     
     this.getAllUsers(this.filter.value, 1, 5);
     this.getAllreports(1, 5);
-    
+    this.getAllAds();
   }
   
 
@@ -59,7 +64,36 @@ export class AdminComponent {
       console.log(error)
     })
   }
-    
+
+  public getAllAds() {
+    this.adminService.getAds().subscribe(response => {
+      this.ads = response;
+
+      console.log(this.ads);
+
+    }, error => {
+      console.log("failed");
+    })
+  }
+  AdsDialogRef: MatDialogRef<AdsDialogComponent>;
+  openAdsDialog() {
+    this.AdsDialogRef = this.dialog.open(AdsDialogComponent);
+    this.AdsDialogRef.afterClosed().subscribe(data => this.fillAd(data));
+  }
+  fillAd(AD) {
+
+    console.log("bla bla",AD);
+
+    this.adminService.CreateAd(AD.AdvLink, AD.ImageName).subscribe(response => {
+
+      this.notificationService.createNotificationService('success', 'Ad Success', 'Your Advertisement has been published');
+      console.log("success");
+
+    }, error => {
+      console.log("failed");
+
+    });
+  }
   public getAllreports(pageNo, pageSize) {
     this.adminService.getReports(pageNo, pageSize).subscribe(response => {
       this.allReports = response;
@@ -72,7 +106,7 @@ export class AdminComponent {
     })
   }
   
- rce;
+ 
  
   public getAllUsers(filter,pageno, pagesize) {
     this.userService.getUsers(filter,pageno, pagesize).subscribe(res => {

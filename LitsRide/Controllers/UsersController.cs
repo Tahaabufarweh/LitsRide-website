@@ -106,6 +106,54 @@
             });
       
         }
+        // GET api/Advertisement
+        [HttpGet]
+        [Route("GetAllAds")]
+        public IActionResult GetAllAds()
+        {
+            var user = _context.Advertisement.ToList();            
+            return Ok(user);           
+
+        }
+
+
+        [HttpPost]
+        [Route("CreateNewAd")]
+        public async Task<ActionResult<User>> CreateNewAd([FromBody] Advertisement NewAd, IFormFile File)
+        {
+            // full path to file in temp location
+            string path = _hostingEnvironment.WebRootPath + "\\AdsPictures\\" + NewAd.Id;
+            
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string fullPath = Path.Combine(path, File.FileName);
+            if (File.Length > 0)
+            {
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    try
+                    {
+                        await File.CopyToAsync(stream);
+                        NewAd.ImageName = File.FileName;
+                        _context.Advertisement.Add(NewAd);
+                        await _context.SaveChangesAsync();
+                        return Ok(NewAd);
+
+                       
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+                
+            }
+
+            return Ok(NewAd);
+        }
+        
 
         // GET api/values
         [HttpPost, Route("Login")]

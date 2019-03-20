@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './services/notification.service';
 import { interval, Subscription } from 'rxjs';
+import { error } from '@angular/compiler/src/util';
 declare interface RouteInfo {
   path: string;
   title: string;
@@ -57,7 +58,12 @@ export class AppComponent implements OnInit {
     this.notificationService.getUserNotification(this.authService.getLoggedInUserId()).subscribe(response => {
       this.userNotifications = response;
       console.log(this.userNotifications)
-    })
+    }, error => { console.log("failed") }
+    )
+  }
+  navigateToTrip(link)
+  {
+    this.router.navigate(['/' + link]);
   }
   title = 'app';
   isRtl() {

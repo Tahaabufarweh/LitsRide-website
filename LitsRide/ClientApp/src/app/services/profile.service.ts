@@ -25,6 +25,7 @@ export class ProfileService {
   {
     const formData: FormData = new FormData();
     formData.append('File', file);
+    console.log(formData);
     return this.httpClient.post(baseUrl + postFileRoute  + id, formData);
   }
 

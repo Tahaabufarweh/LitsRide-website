@@ -33,9 +33,11 @@
           <mat-icon [matBadge]="userNotifications?.length" matBadgeColor="warn">notification_important</mat-icon>
         </button>
         <mat-menu #menuNotify="matMenu">
-          <button mat-menu-item *ngFor="let notfication of userNotifications">
+          <div  mat-menu-item *ngFor="let notfication of userNotifications">
+            <button mat-button (click)="navigateToTrip(notfication.notifyLink)">
             <span>{{notfication.notificationText}}</span>
-          </button>
+              </button>
+          </div>
          
         </mat-menu>
         <button mat-icon-button [matMenuTriggerFor]="menu">
