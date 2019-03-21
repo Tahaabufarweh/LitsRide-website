@@ -44,6 +44,7 @@ import { ReportComponent } from './report/report.component';
 import { TripOwnerDetailsComponent } from './trip-owner-details/trip-owner-details.component';
 import { TripRequesterDetailsComponent } from './trip-requester-details/trip-requester-details.component';
 import { AdsDialogComponent } from './ads-dialog/ads-dialog.component';
+
 // Configs 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -96,7 +97,7 @@ export function tokenGetter() {
     AngularDateTimePickerModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
-    
+   
     MatToolbarModule, MatMenuModule, MatTableModule, MatButtonModule, MatCardModule,
     SocialLoginModule,
     JwtModule.forRoot({

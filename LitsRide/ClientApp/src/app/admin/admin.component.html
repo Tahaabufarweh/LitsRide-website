@@ -59,7 +59,7 @@
                 <tbody>
                   <tr *ngFor="let user of users">
                     <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
+                    <td><a [routerLink]="['/profile',user.id ]">{{user.username}}</a></td>
                     <td>{{user.fullName}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.country}}</td>
@@ -97,7 +97,7 @@
               <tbody>
                 <tr *ngFor="let trip of allTrips">
                   <td>{{trip.id}}</td>
-                  <td>{{trip.driverId}}</td>
+                  <td><a  [routerLink]="['/profile',trip.driver.id ]">{{trip.driver.username}}</a></td>
                   <td>{{trip.fromDestination}}</td>
                   <td>{{trip.toDestination}}</td>
                   <td>{{trip.isArrived}}</td>
@@ -135,8 +135,8 @@
               <tbody>
                 <tr *ngFor="let report of reports">
                   <td>{{report.id}}</td>
-                  <td>{{report.userId}}</td>
-                  <td>{{report.reportedUser}}</td>
+                  <td><a [routerLink]="['/profile',report.user.id ]">{{report.user.username}}</a></td>
+                  <td><a [routerLink]="['/profile',report.reportedUserNavigation.id ]">{{report.reportedUserNavigation.username}}</a></td>
                   <td>{{report.reportType}}</td>
                   <td>{{report.note}}</td>
                  
@@ -159,20 +159,26 @@
 
           <br />
           <br />
-          <mat-card *ngFor="let ad of ads">
-            <mat-card-header>
-             
-              <mat-card-title>{{ad.id}}</mat-card-title>
-              <mat-card-subtitle>{{ad.advLink}}</mat-card-subtitle>
-            </mat-card-header>
+          <div *ngFor="let ad of ads">
+            <mat-card>
+              <mat-card-header>
 
-            <img src="{{url}}{{ad.imageName}}" />
+                <mat-card-title>ID: {{ad.id}}</mat-card-title>
+                <mat-card-subtitle>AD Link :<a href="{{ad.advLink}}">{{ad.advLink}}</a></mat-card-subtitle>
 
-            <mat-card-actions>
-              <button mat-stroked-button (click)="DeleteAd(ad.id)" color="primary">Delete</button>
+              </mat-card-header>
 
-            </mat-card-actions>
-          </mat-card>
+              <img class="avatar-preview w-100" [src]="ad?.imageName ? 'AdsPictures' + '/' + ad?.imageName : this.url " />
+
+
+              <mat-card-actions>
+                <button mat-stroked-button (click)="DeleteAd(ad.id)" color="primary">Delete</button>
+
+              </mat-card-actions>
+            </mat-card>
+
+           <br />
+          </div>
 
 
         </mat-tab>

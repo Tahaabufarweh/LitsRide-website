@@ -24,7 +24,7 @@ import { NotificationService } from '../services/notification.service';
 export class AdminComponent {
   /** admin ctor */
 
-  public url = '../../../../wwwroot/AdsPictures/';
+ 
   public allTrips;
   public all;
   public allUsers;
@@ -115,6 +115,16 @@ export class AdminComponent {
     }, error => {
       console.log("failed")
     })
+  }
+  public reportUsers;
+  public reportUsername;
+  public getUserById(id) {
+    return this.userService.getUserById(id).subscribe(response => {
+      this.reportUsers = response;
+     this.reportUsername = this.reportUsers.username;
+     console.log(this.reportUsername);
+      return this.reportUsername;
+      })
   }
   
  

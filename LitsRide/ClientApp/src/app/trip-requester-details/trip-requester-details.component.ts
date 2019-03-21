@@ -39,7 +39,7 @@ export class TripRequesterDetailsComponent {
 
       this.tripRequests = Array(response);
       console.log("success")
-      
+     
     }, error => {
       console.log("failed")
     });;

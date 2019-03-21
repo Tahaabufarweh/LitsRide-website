@@ -49,11 +49,12 @@ export class TripDetailsComponent implements OnInit
     console.log(ride);
 
     this.rideService.createRate(ride, Number(this.Trip.id)).subscribe(response => {
-
+      
       this.notificationService.createNotificationService('success', 'Request Success', 'Your request has been sent');
       console.log("success");
-
+      
     }, error => {
+      this.notificationService.createNotificationService('error', 'Request Faile', error.error);
       console.log("failed");
 
     });

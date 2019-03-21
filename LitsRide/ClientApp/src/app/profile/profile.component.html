@@ -115,10 +115,12 @@
                   <th>{{ 'HOME.StartTime' | translate }} </th>
                   <th>{{ 'HOME.Status' | translate }} </th>
                   <th>{{ 'HOME.isArrived' | translate }} </th>
+                  <th>{{ 'HOME.Details' | translate }} </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let T of user.trip">
+                  <td><a [routerLink]="['/trip-details',T.id ]">{{T.id}}</a></td>
                   <td>{{T.fromDestination}}</td>
                   <td>{{T.toDestination}}</td>
                   <td>{{T.startTime | date}}</td>

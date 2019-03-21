@@ -17,7 +17,7 @@
       <mat-hint *ngIf="request.status ==2"> {{ 'HOME.Approved' | translate }}</mat-hint>
       <mat-hint *ngIf="request.status ==3"> {{ 'HOME.Reject' | translate }}</mat-hint>
       <button  mat-button color="primary" (click)="deleteRequest(request.id)">{{ 'HOME.Delete' | translate }}</button>
-      <div class="danger" *ngIf="request.status==2" mat-button>{{ 'HOME.Approved' | translate }}</div>
+     
     </mat-card-actions>
   </mat-card>
 </div>

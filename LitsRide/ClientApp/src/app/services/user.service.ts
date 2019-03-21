@@ -33,6 +33,9 @@ export class UserService {
     return this.httpClient.get(baseUrl + getUserRoute + id);
   }
 
+  getUserById(id) {
+    return this.httpClient.get(baseUrl +  id);
+  }
   
   getUsers(filter, pageNo, pageSize) {
     console.log(filter);

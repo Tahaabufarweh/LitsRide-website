@@ -73,7 +73,7 @@ namespace LitsRide.Controllers
         public IActionResult GetAllReports(int PageNo = 1, int PageSize = 10)
         {
             var totalReports = _context.Report.Count();
-            var report = _context.Report.OrderByDescending(x => x.Id).Skip((PageNo - 1) * PageSize).Take(PageSize)
+            var report = _context.Report.OrderByDescending(x => x.Id).Skip((PageNo - 1) * PageSize).Take(PageSize).Include(x=>x.User).Include(x=>x.ReportedUserNavigation)
                                                             .ToList();
 
 

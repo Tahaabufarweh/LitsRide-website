@@ -13,6 +13,7 @@ import { RideModalComponent } from '../ride-modal/ride-modal.component';
 import { TripRequestService } from '../services/trip-request.service';
 import { FormGroup } from '@angular/forms';
 import { NotificationService } from '../services/notification.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
     selector: 'app-trips',
@@ -24,6 +25,7 @@ export class TripsComponent implements OnInit {
 
   public allTrips;
   public filter;
+  public ads;
   RideDialogRef: MatDialogRef<RideModalComponent>;
     /** trips ctor */
   fileNameDialogRef: MatDialogRef<FilteringComponent>;
@@ -35,7 +37,8 @@ export class TripsComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private rideService: TripRequestService,
-    private notificationService: NotificationService, )
+    private notificationService: NotificationService,
+    private adminService: AdminService)
   {
     translate.use(localStorage.getItem('lang') !== null || localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en');
 
@@ -45,8 +48,19 @@ export class TripsComponent implements OnInit {
 
   ngOnInit() {
     this.fillTable({}, 1, 10);
+    this.getAllAds();
   }
 
+  public getAllAds() {
+    this.adminService.getAds().subscribe(response => {
+      this.ads = response;
+
+      console.log(response);
+
+    }, error => {
+      console.log("failed");
+    })
+  }
   fillTable(filter = {} as any, pageNo , pageSize) {
     this.tripsService.getAllTrips(filter, pageNo, pageSize).subscribe(response => {
       this.allTrips = response;

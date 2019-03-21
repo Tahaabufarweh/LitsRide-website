@@ -45,5 +45,5 @@
     <app-trip-requester-details [requests]="Trip.tripRequest"></app-trip-requester-details>
   </div>
 
-  <button *ngIf="Trip?.driver.id != authService.getLoggedInUserId()" class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="openRideDialog()">{{ 'HOME.rideButton' | translate }}</button>
+  <button *ngIf="Trip?.driverId != authService.getLoggedInUserId()" class="btn btn-danger btn-round m-2" mat-raised-button color="primary" (click)="openRideDialog()">{{ 'HOME.rideButton' | translate }}</button>
 </mat-card>
