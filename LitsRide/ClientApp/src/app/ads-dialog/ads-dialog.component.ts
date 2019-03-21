@@ -34,7 +34,7 @@ export class AdsDialogComponent implements OnInit {
       ImageName: this.img
 
     });
-    console.log(this.img);
+    console.log(this.adForm.value);
     this.dialogRef.close(this.adForm.value);
 
   }

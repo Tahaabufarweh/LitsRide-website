@@ -116,10 +116,22 @@
 
         }
 
+        // GET api/Advertisement
+        [HttpGet]
+        [Route("DeleteAd/{id}")]
+        public IActionResult DeleteAd(int id)
+        {
+            var ad = _context.Advertisement.FirstOrDefault(x => x.Id == id);
+            _context.Remove(ad);
+            _context.SaveChanges();
+            return Ok();
+
+        }
+
 
         [HttpPost]
         [Route("CreateNewAd")]
-        public async Task<ActionResult<User>> CreateNewAd(string AdvLink, IFormFile File)
+        public async Task<ActionResult<User>> CreateNewAd([FromForm]string AdvLink, IFormFile File)
         {
             Advertisement advertisement = new Advertisement();
             // full path to file in temp location

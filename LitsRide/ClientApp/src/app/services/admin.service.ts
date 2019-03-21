@@ -22,6 +22,7 @@ const adsUrl = 'api/Users/';
 const getAdsRoute = 'GetAllAds';
 
 const postAdRoute = 'CreateNewAd/';
+const deleteAdRoute = 'DeleteAd/';
 @Injectable()
 export class AdminService {
   constructor(private httpClient: HttpClient, private router: Router) {
@@ -37,8 +38,14 @@ export class AdminService {
     return this.httpClient.get(adsUrl + getAdsRoute);
   }
 
+  deleteAd(id) {
+    return this.httpClient.get(adsUrl + deleteAdRoute+ id);
+  }
+
   CreateAd(ad, file: File) {
+
     const formData: FormData = new FormData();
+    console.log(ad);
     formData.append('AdvLink', ad);
     formData.append('File', file);
    

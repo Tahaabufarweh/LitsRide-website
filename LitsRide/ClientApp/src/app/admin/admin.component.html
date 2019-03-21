@@ -148,29 +148,33 @@
           </mat-card>
         </mat-tab>
         <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">add_to_photos</mat-icon>
+            Advertisements
+          </ng-template>
+          <br />
           <div class="text-center">
             <button mat-stroked-button color="primary" (click)="openAdsDialog()">Create AD</button>
           </div>
-          
-            <br />
-            <br />
-              <mat-card  *ngFor="let ad of ads">
-                <mat-card-header>
-                 
-                  <mat-card-title>{{ad.id}}</mat-card-title>
-                  <mat-card-subtitle>{{ad.advLink}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                
-                <mat-card-actions>
-                  <button mat-stroked-button color="primary">Delete</button>
-                 
-                </mat-card-actions>
-              </mat-card>
-            
-            
-          
-          
+
+          <br />
+          <br />
+          <mat-card *ngFor="let ad of ads">
+            <mat-card-header>
+             
+              <mat-card-title>{{ad.id}}</mat-card-title>
+              <mat-card-subtitle>{{ad.advLink}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <img src="{{url}}{{ad.imageName}}" />
+
+            <mat-card-actions>
+              <button mat-stroked-button (click)="DeleteAd(ad.id)" color="primary">Delete</button>
+
+            </mat-card-actions>
+          </mat-card>
+
+
         </mat-tab>
       </mat-tab-group>
        

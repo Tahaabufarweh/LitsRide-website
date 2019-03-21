@@ -24,7 +24,7 @@ import { NotificationService } from '../services/notification.service';
 export class AdminComponent {
   /** admin ctor */
 
-  
+  public url = '../../../../wwwroot/AdsPictures/';
   public allTrips;
   public all;
   public allUsers;
@@ -65,6 +65,17 @@ export class AdminComponent {
     })
   }
 
+  public DeleteAd(id) {
+    this.adminService.deleteAd(id).subscribe(response => {
+      this.notificationService.createNotificationService('success', 'Ad Removed', 'Your Advertisement has been deleted');
+
+      this.ads = this.getAllAds();
+     
+    }, error => {
+      console.log(error)
+    })
+  }
+
   public getAllAds() {
     this.adminService.getAds().subscribe(response => {
       this.ads = response;
@@ -88,7 +99,7 @@ export class AdminComponent {
 
       this.notificationService.createNotificationService('success', 'Ad Success', 'Your Advertisement has been published');
       console.log("success");
-
+      this.ads = this.getAllAds();
     }, error => {
       console.log("failed");
 
