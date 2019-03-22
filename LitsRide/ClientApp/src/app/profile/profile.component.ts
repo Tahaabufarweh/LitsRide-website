@@ -105,11 +105,11 @@ export class ProfileComponent implements OnInit {
     });
 
   }
-  editProfileInfo(user = {} as FormGroup) {
+  editProfileInfo(user) {
 
     console.log(user);
     console.log(this.user.id);
-    this.userService.updateUserInfo(this.user.id,user).subscribe(response => {
+    this.userService.updateUserInfo(user).subscribe(response => {
 
       this.notificationService.createNotificationService('success', 'Update Success', 'Your Profile has been Updated Successfully');
       console.log("success");

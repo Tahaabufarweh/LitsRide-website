@@ -29,7 +29,9 @@ export class CompleteProfileComponent implements OnInit {
     BirthDate: new FormControl(),
     Gender: new FormControl(),
     CarInfo: new FormControl(),
-    CarNumber: new FormControl()
+    CarNumber: new FormControl(),
+    id:new FormControl()
+
 
   })
 
@@ -1303,19 +1305,18 @@ export class CompleteProfileComponent implements OnInit {
   
   
   updateInfo() {
-    this.EditProfileForm.setValue({
-      fullName: this.fullName.value,
-
-      MobileNumber: this.MobileNumber.value,
-
-      Country: this.Country.value,
-      BirthDate: this.BirthDate.value,
-      Gender: this.Gender.value,
-      CarInfo: this.CarInfo.value,
-      CarNumber: this.CarNumber.value
-    });
-    console.log(this.EditProfileForm.value);
-    this.dialogRef.close(this.EditProfileForm.value);
+    this.user.fullName = this.fullName.value;
+    this.user.mobileNumber = this.MobileNumber.value;
+    this.user.country = this.Country.value;
+    this.user.birthDate = this.BirthDate.value;
+    this.user.gender = this.Gender.value;
+    this.user.carInfo = this.CarInfo.value;
+    this.user.carNumber = this.CarNumber.value;
+   
+   
+    
+    console.log(this.user);
+    this.dialogRef.close(this.user);
   }
   
 
