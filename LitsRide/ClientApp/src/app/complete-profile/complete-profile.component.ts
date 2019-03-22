@@ -1308,7 +1308,7 @@ export class CompleteProfileComponent implements OnInit {
     this.user.fullName = this.fullName.value;
     this.user.mobileNumber = this.MobileNumber.value;
     this.user.country = this.Country.value;
-    this.user.birthDate = this.BirthDate.value;
+    //this.user.birthDate = this.BirthDate.value;
     this.user.gender = this.Gender.value;
     this.user.carInfo = this.CarInfo.value;
     this.user.carNumber = this.CarNumber.value;

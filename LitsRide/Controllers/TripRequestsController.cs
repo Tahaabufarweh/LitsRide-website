@@ -43,17 +43,18 @@ namespace LitsRide.Controllers
         public async Task<ActionResult<TripRequest>> ApproveOrRejectRequest(int id, int Status)
         {
             var tripRequest = await _context.TripRequest.FindAsync(id);
+            var trip = await _context.Trip.FindAsync(tripRequest.TripId);
             if (tripRequest == null)
             {
                 return NotFound();
             }
             tripRequest.Status = Status;
-            string passengerName = _context.User.Find(tripRequest.PassengerId).Username;
+            string passengerName = _context.User.Find(trip.DriverId).Username;
            
             if (Status == (int) TripRequestStatus.Approved)
             {
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.requestAccepted);
-                PushNotification(notificationText, tripRequest.TripId,tripRequest.PassengerId);
+                PushNotification(notificationText, tripRequest.TripId, tripRequest.PassengerId);
 
 
             }
@@ -98,7 +99,7 @@ namespace LitsRide.Controllers
         [Route("NewRequest")]
         public async Task<IActionResult> NewRequest([FromBody] TripRequest NewTripRequest,int tripid)
         {
-            NewTripRequest.RequestDate = DateTime.Now;
+            NewTripRequest.RequestDate = DateTime.Today.Date;
             NewTripRequest.TripId = tripid;
             List<TripRequest> list = _context.TripRequest.Where(request => request.TripId == NewTripRequest.TripId).ToList().ToList();
             Trip TripObj = _context.Trip.Where(trip => trip.Id == NewTripRequest.TripId).FirstOrDefault();
@@ -122,7 +123,7 @@ namespace LitsRide.Controllers
                 await _context.SaveChangesAsync();
                 string passengerName = _context.User.Find(NewTripRequest.PassengerId).Username;
                 string notificationText = ReplaceNotificationBody(passengerName, NotificationsTemplates.newRequest);
-                PushNotification(notificationText, NewTripRequest.TripId,NewTripRequest.PassengerId);
+                PushNotification(notificationText, NewTripRequest.TripId,NewTripRequest.Trip.DriverId);
             }
             return CreatedAtAction("GetTripRequest", new { id = NewTripRequest.Id }, NewTripRequest);
 
@@ -142,7 +143,7 @@ namespace LitsRide.Controllers
         }
 
         public string ReplaceNotificationBody(string username , string notifyBody) {
-            notifyBody = notifyBody.Replace("User", username);
+            notifyBody = notifyBody.Replace("{User}", username);
             return notifyBody;
         }
 

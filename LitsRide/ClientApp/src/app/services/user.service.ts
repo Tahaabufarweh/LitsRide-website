@@ -53,6 +53,6 @@ export class UserService {
   updateUserInfo(user)
   {
     console.log(user)
-    return this.httpClient.post(baseUrl + updateUserRoute, user, httpOptions);
+    return this.httpClient.post(baseUrl + updateUserRoute, JSON.stringify(user), httpOptions);
   }
 }
